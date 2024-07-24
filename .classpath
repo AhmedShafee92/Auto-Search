@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/CDC-1.0%Foundation-1.0">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/activation.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/animal-sniffer-annotations-1.23.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/annotations-4.1.1.4.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/api-common-2.33.0.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/auto-value-annotations-1.10.4.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/checker-qual-3.44.0.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/commons-codec-1.11.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/commons-codec-1.17.0.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/commons-collections4-4.4.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/commons-compress-1.21.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/commons-io-2.11.0.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/commons-math3-3.6.1.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/conscrypt-openjdk-uber-2.5.2.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/curvesapi-1.06.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/error_prone_annotations-2.28.0.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/failureaccess-1.0.2.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/gax-2.50.0.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/gax-grpc-2.50.0.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/gax-httpjson-2.50.0.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/google-auth-library-credentials-1.23.0.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/google-auth-library-oauth2-http-1.23.0.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/google-cloud-vertexai-1.6.0.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/google-http-client-1.44.2.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/google-http-client-gson-1.44.2.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/grpc-alts-1.62.2.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/grpc-api-1.62.2.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/grpc-auth-1.62.2.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/grpc-context-1.62.2.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/grpc-core-1.62.2.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/grpc-googleapis-1.62.2.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/grpc-google-common-protos-2.41.0.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/grpc-google-iam-v1-1.36.0.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/grpc-grpclb-1.62.2.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/grpc-inprocess-1.62.2.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/grpc-netty-shaded-1.62.2.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/grpc-protobuf-1.62.2.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/grpc-protobuf-lite-1.62.2.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/grpc-services-1.62.2.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/grpc-stub-1.62.2.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/grpc-util-1.62.2.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/grpc-xds-1.62.2.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/gson-2.11.0.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/guava-33.1.0-jre.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/httpclient-4.5.13.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/httpclient-4.5.14.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/httpcore-4.4.13.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/httpcore-4.4.16.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/httpmime-4.5.13.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/j2objc-annotations-3.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/javax.annotation-api-1.3.2.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/javax.mail.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/javax.mail-api-1.6.2.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/json-20220924.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/jsr305-3.0.2.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/log4j-api-2.14.1.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/mail.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/opencensus-api-0.31.1.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/opencensus-contrib-http-util-0.31.1.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/opencensus-proto-0.2.0.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/perfmark-api-0.27.0.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/poi-5.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/poi-ooxml-5.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/poi-ooxml-lite-5.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/protobuf-java-3.25.3.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/protobuf-java-util-3.25.3.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/proto-google-cloud-vertexai-v1-1.6.0.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/proto-google-common-protos-2.41.0.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/proto-google-iam-v1-1.36.0.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/re2j-1.7.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/selenium-server-4.4.0.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/smtp-1.6.2.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/SparseBitSet-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/techsoftemail.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/threetenbp-1.6.9.jar"/>
+	<classpathentry kind="lib" path="C:/JARs-auto-search-app/xmlbeans-5.0.2.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
