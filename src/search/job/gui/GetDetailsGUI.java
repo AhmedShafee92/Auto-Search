@@ -142,7 +142,7 @@ public class GetDetailsGUI
 						 * 
 						 * 1- scan the web (google , ping , duckduck)
 						 * 	
-						 * 	1.a- if we find a company, need to check how to find the human resource  
+						 * 	1.a - if we find a company, need to check how to find the human resource  
 						 *  1.b - if we success to find the email insert to the excel sheet 
 						 * 	1.c - 
 						 * 
