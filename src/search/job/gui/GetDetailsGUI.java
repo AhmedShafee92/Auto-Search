@@ -138,6 +138,27 @@ public class GetDetailsGUI
 						//TODO: complete the first option of the search 
 						//Store sensitive data about linkedIn 
 						StoreUserDataLocal.storeEncrptyData(emailString, password);
+						/*
+						 * 
+						 * 1- scan the web (google , ping , duckduck)
+						 * 	
+						 * 	1.a- if we find a company, need to check how to find the human resource  
+						 *  1.b - if we success to find the email insert to the excel sheet 
+						 * 	1.c - 
+						 * 
+						 * 
+						 * 2- collect the result inside excel file 
+						 * 
+						 * 3-start send the email using the excel sheet 
+						 * 
+						 * 
+						 */
+						
+						
+						/* 1- Collect data where the person can work */
+						/* 2- create a local data abase for the companies that fit his skills and jobs  */
+						/* 3- start send data to these companies */
+						
 						SendMail.setFrom(emailString);
 						SendMail.setEmailPassword(password);
 						

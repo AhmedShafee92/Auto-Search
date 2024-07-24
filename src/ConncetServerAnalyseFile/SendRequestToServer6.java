@@ -16,10 +16,10 @@ public class SendRequestToServer6
 	//Implementation Method 
 	public static String analyseData() throws IOException 
 	{
-	   
+		
 	   //FileLocation = StoreUserDataLocal.getFileCVPathLoaction();
 		String resultOFAnlyseFile = "";
-	    String promotToAI = "What this is person can work :";
+	    String promotToAI = "What this person can work :";
 		convetFileToText(fileLocation); 	    
 		promotToAI +=fileTotext;
 	    resultOFAnlyseFile = analyseDataFile(promotToAI);
