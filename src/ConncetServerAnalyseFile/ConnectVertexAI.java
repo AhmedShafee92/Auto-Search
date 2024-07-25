@@ -17,8 +17,6 @@ public class ConnectVertexAI
     String modelName = "gemini-1.5-flash-001";
     String textPrompt = "please analyse which job this person can work  :\n";
     textPrompt +=promot;
-    System.out.println(promot);
-
     String output = textInput(projectId, location, modelName, textPrompt);
     
     return output;
