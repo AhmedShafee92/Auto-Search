@@ -135,17 +135,18 @@ public class GetDetailsGUI
 				}
 				else
 					{	
-						//TODO: complete the first option of the search 
-						//Store sensitive data about linkedIn 
+						//	TODO: complete the first option of the search 
+						//	Store sensitive data about linkedIn
+					
 						StoreUserDataLocal.storeEncrptyData(emailString, password);
 						/*
 						 * 
 						 * 1- scan the web (google , ping , duckduck)
 						 * 	
-						 * 	1.a - if we find a company, need to check how to find the human resource  
-						 *  1.b - if we success to find the email insert to the excel sheet 
-						 * 	1.c - 
-						 * 
+						 * 		1.a - if we find a company, need to check how to find the human resource  
+						 *  	1.b - if we success to find the email insert to the excel sheet 
+						 * 		1.c - start send emails after collected  the data about the person 
+						 * 		
 						 * 
 						 * 2- collect the result inside excel file 
 						 * 
