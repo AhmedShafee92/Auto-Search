@@ -128,7 +128,9 @@ public class GetDetailsGUI
 				{
 					System.err.println("Can't get the password data  ");
 				}
-				password = new String(passwordChars);	
+				password = new String(passwordChars);
+				//Validity the user data, that the data is not empty .
+				
 				if(emailString.isEmpty() || password.isEmpty())
 				{
 				    JOptionPane.showMessageDialog(null, "You chose rock!");
@@ -143,7 +145,7 @@ public class GetDetailsGUI
 						 * 
 						 * 1- scan the web (google , ping , duckduck)
 						 * 	
-						 * 		1.a - if we find a company, need to check how to find the human resource  
+						 * 		1.a - if we find a company, need to check how to find the human resource 
 						 *  	1.b - if we success to find the email insert to the excel sheet 
 						 * 		1.c - start send emails after collected  the data about the person 
 						 * 		
@@ -157,7 +159,7 @@ public class GetDetailsGUI
 						
 						
 						/* 1- Collect data where the person can work */
-						/* 2- create a local data abase for the companies that fit his skills and jobs  */
+						/* 2- create a local data base for the companies that fit his skills and jobs  */
 						/* 3- start send data to these companies */
 						
 						SendMail.setFrom(emailString);
