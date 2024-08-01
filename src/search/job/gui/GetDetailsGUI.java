@@ -1,7 +1,6 @@
 package search.job.gui;
 
 // The libraries
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -143,16 +142,15 @@ public class GetDetailsGUI
 						StoreUserDataLocal.storeEncrptyData(emailString, password);
 						/*
 						 * 
-						 * 1- scan the web (google , ping , duckduck)
-						 * 	
-						 * 		1.a - if we find a company, need to check how to find the human resource 
-						 *  	1.b - if we success to find the email insert to the excel sheet 
-						 * 		1.c - start send emails after collected  the data about the person 
-						 * 		
+						 * 1- scan the web (using the axiom)
 						 * 
-						 * 2- collect the result inside excel file 
+						 * 	{
+						 * 		1.a - If we find a companies that match the skills of the person .
+						 * 		1.b - Collect these companies inside excel sheet . 
+						 *
+						 * 		1.c - start apply to position in each company that we collected inside the excel sheet 
+						 * 	}	
 						 * 
-						 * 3-start send the email using the excel sheet 
 						 * 
 						 * 
 						 */
