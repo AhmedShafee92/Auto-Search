@@ -174,6 +174,7 @@ public class GetDetailsGUI
 						// Update the data inside the send email class 
 						frame.setVisible(false);
 						AutomationJobSearchGUI.main(null);
+						
 					}
 		    	}
 	});

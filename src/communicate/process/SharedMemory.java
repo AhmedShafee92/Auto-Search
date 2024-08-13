@@ -9,13 +9,15 @@ public class SharedMemory
 {
     public static void main(String[] args) 
     {
-        try{
+        try
+        {
             // Command to run the Python script
             String command = "python3 C:/Users/shafe/PycharmProjects/pythonProject1/your_script.py";
 
             
             // Start the process
-            Process process = Runtime.getRuntime().exec(command);
+            @SuppressWarnings("deprecation")
+			Process process = Runtime.getRuntime().exec(command);
 
             // Send input to the Python script
             String input = "Hello from Java";
@@ -27,13 +29,15 @@ public class SharedMemory
             // Read output from the Python script
             BufferedReader stdout = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String line;
-            while ((line = stdout.readLine()) != null) {
+            while ((line = stdout.readLine()) != null) 
+            {
                 System.out.println("Output from Python: " + line);
             }
             stdout.close();
 
             // Wait for the process to finish
             process.waitFor();
+            
         } catch (Exception e) 
         {
             e.printStackTrace();

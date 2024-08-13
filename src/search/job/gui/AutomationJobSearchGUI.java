@@ -8,14 +8,16 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class AutomationJobSearchGUI {
+public class AutomationJobSearchGUI 
+{
 
 	private JFrame frame;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -31,14 +33,16 @@ public class AutomationJobSearchGUI {
 	/**
 	 * Create the application.
 	 */
-	public AutomationJobSearchGUI() {
+	public AutomationJobSearchGUI() 
+	{
 		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize() 
+	{
 		frame = new JFrame();
 		frame.setBounds(150, 150, 727, 467);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,8 +52,10 @@ public class AutomationJobSearchGUI {
 		
 		/// Automated search button action 
 		JButton automatedSearchButton = new JButton("Automated Search Jobs");
-		automatedSearchButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		automatedSearchButton.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
 				
 				frame.setVisible(false);
 				showMessage();
