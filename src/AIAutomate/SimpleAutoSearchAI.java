@@ -1,5 +1,29 @@
 package AIAutomate;
 
-public class SimpleAutoSearchAI {
+public class SimpleAutoSearchAI 
+{
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
