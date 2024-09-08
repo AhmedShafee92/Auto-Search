@@ -9,7 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import ConncetServerAnalyseFile.SendRequestToServer6;
+
+import conncetServerAnalyseFile.SendRequestToServer6;
 import first.option.forsendcv.SendMail;
 import store.user.data.StoreUserDataLocal;
 import three.option.forsendcv.SearchIntoLinkedIn;
@@ -142,7 +143,13 @@ public class GetDetailsGUI
 						StoreUserDataLocal.storeEncrptyData(emailString, password);
 						/*
 						 * 
-						 * 1- scan the web (using the axiom)
+						 * 1-here will change the using , will use 
+						 * vertex AI model that training with images. 
+						 * 
+						 * The model training with a lot of image of web page 
+						 * and when we running this model will detect what king of this page 
+						 * 
+						 * 
 						 * 
 						 * 	{
 						 * 		1.a - If we find a companies that match the skills of the person .

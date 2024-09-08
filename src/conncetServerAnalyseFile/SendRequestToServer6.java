@@ -1,4 +1,4 @@
-package ConncetServerAnalyseFile;
+package conncetServerAnalyseFile;
 
 //Libraries 
 import java.io.IOException;
