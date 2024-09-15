@@ -30,7 +30,7 @@ public class ConnectVertexAIImage {
     // to be created once, and can be reused for multiple requests.
     try (VertexAI vertexAI = new VertexAI(projectId, location)) 
     {
-	      String imageUri = "C://Users//shafe//Downloads//AI-Image.jpg" ;
+	      String imageUri = "C://Users//shafe//Downloads//AI-Image.jpgx" ;
 	
 	      GenerativeModel model = new GenerativeModel(modelName, vertexAI);
 	      GenerateContentResponse response = model.generateContent(ContentMaker.fromMultiModalData(
