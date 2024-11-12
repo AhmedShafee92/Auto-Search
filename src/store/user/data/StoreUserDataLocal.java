@@ -14,7 +14,7 @@ import java.io.OutputStream;
 import java.util.Base64;
 import javax.swing.JFrame;
 
-import conncetServerAnalyseFile.SendRequestToServer6;
+import conncet.server.analyse.file.SendRequestToServer6;
 import first.option.forsendcv.SendMail;
 
 public class StoreUserDataLocal 

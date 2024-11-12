@@ -1,4 +1,4 @@
-package conncetServerAnalyseFile;
+package conncet.server.analyse.file;
 
 import com.google.cloud.vertexai.VertexAI;
 import com.google.cloud.vertexai.api.GenerateContentResponse;

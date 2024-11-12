@@ -10,11 +10,14 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import conncetServerAnalyseFile.SendRequestToServer6;
+import conncet.server.analyse.file.SendRequestToServer6;
 import first.option.forsendcv.SendMail;
 import store.user.data.StoreUserDataLocal;
 import three.option.forsendcv.SearchIntoLinkedIn;
 import javax.swing.JPasswordField;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class GetDetailsGUI 
 {
@@ -33,6 +36,26 @@ public class GetDetailsGUI
 		showScreen();
 	}		
 
+	private static int createPersonalFile()
+	{
+		// TODO: change the URL of the file (file path : the project place )
+		String filePath = "C:/Users/shafe/OneDrive/Desktop/personal_data_test.txt";
+        try {
+            File file = new File(filePath);
+            if (file.createNewFile()) {
+                System.out.println("File created successfully: " + filePath);
+            } else {
+                System.out.println("File already exists.");
+            }
+
+        } catch (IOException e1) {
+            System.out.println("An error occurred: " + e1.getMessage());
+            return 1;
+        }
+        
+		return 0; 	
+	}
+	
 	//Implementation of Main Function 
 	private static void showScreen() 
     {
@@ -194,13 +217,19 @@ public class GetDetailsGUI
 	{
 		//TODO: put the implementation of the method in private method
 	   public void actionPerformed(ActionEvent e) 
-	   {		
+	   {
+		   // create personal file (content the information about the user )
+		   createPersonalFile();	   
+		   
+		   
 		   String analyseFileForPostions = "";
+		   String personalUserData = "";
 		   Object[] options = {"Yes, Save The Data",
 		   "No, Analyse the data again"};
 		   try 
 		   {
 			   analyseFileForPostions = SendRequestToServer6.analyseData();
+			   
 		   }
 		   catch (IOException e1) 
 		   {
@@ -218,13 +247,23 @@ public class GetDetailsGUI
 			{
 				// here we need to save the data of the analyse AI machine inside the local machine of the user   
 				StoreUserDataLocal.storeAnalyseData(analyseFileForPostions);   	
-		    
 			}
 		    
 		}
 	  });
 	AnalysePesonalData.setBounds(234,348,146,58);	
 	frame.getContentPane().add(AnalysePesonalData);	
+	
+	JButton btnNewButton = new JButton("Personal Data");
+	btnNewButton.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) 
+		{
+			// Here will show the user the summary of the analysing that we created 
+		}
+
+	});
+	btnNewButton.setBounds(48, 353, 114, 49);
+	frame.getContentPane().add(btnNewButton);
 	frame.setVisible(true);
 	
  }
@@ -271,6 +310,4 @@ public class GetDetailsGUI
 	{
 		GetDetailsGUI.PasswordUser = linkedInPasswordField;
 	}	
-	
-
 }
