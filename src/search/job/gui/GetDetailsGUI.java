@@ -4,11 +4,21 @@ package search.job.gui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
+import org.apache.http.ParseException;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 
 import conncet.server.analyse.file.SendRequestToServer6;
 import first.option.forsendcv.SendMail;
@@ -264,6 +274,66 @@ public class GetDetailsGUI
 	});
 	btnNewButton.setBounds(48, 353, 114, 49);
 	frame.getContentPane().add(btnNewButton);
+	
+	JButton btnNewButton_1 = new JButton("Test Server ");
+	btnNewButton_1.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			
+	        CloseableHttpClient httpClient = HttpClients.createDefault();
+	        HttpPost httpPost = new HttpPost("http://localhost:3000/your_api_endpoint");
+
+	        // Prepare request data (replace with your actual data)
+	        String requestBody = "{\"data\": \"your_data_to_send\"}";
+	        try {
+				httpPost.setEntity(new StringEntity(requestBody));
+			} catch (UnsupportedEncodingException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+	        httpPost.setHeader("Content-type", "application/json");
+
+	        CloseableHttpResponse response = null;
+			try {
+				response = httpClient.execute(httpPost);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+	        try {
+	            int statusCode = response.getStatusLine().getStatusCode();
+	            if (statusCode == 200) {
+	                String responseBody = EntityUtils.toString(response.getEntity());
+	                System.out.println("Response: " + responseBody);
+	            } else {
+	                System.err.println("Request failed with status code: " + statusCode);
+	            }
+	        } catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} finally {
+	            try {
+					response.close();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+	            try {
+					httpClient.close();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+	        }
+			
+			
+		}
+	});
+	btnNewButton_1.setBounds(592, 218, 85, 21);
+	frame.getContentPane().add(btnNewButton_1);
 	frame.setVisible(true);
 	
  }

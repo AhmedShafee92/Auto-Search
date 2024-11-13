@@ -7,6 +7,8 @@ import java.nio.file.Paths;
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
+
+
 public class SendRequestToServer6 
 {
 	//Data Area 
@@ -32,17 +34,16 @@ public class SendRequestToServer6
 	private static String analyseDataFile(String textFile) throws IOException 
 	{
 		assert(textFile != null);
-	
-		try 
-		{
-			String vertexResponce = "";
-			vertexResponce = ConnectVertexAI.SendVertexAI(textFile);
-			return vertexResponce;
-		} catch (Exception e) 
-		{
-			// TODO: handle exception
-			System.err.println(e);	
-		}
+		/*
+		 * try { String vertexResponce = ""; vertexResponce =
+		 * ConnectVertexAI.SendVertexAI(textFile); return vertexResponce; } catch
+		 * (Exception e) { // TODO: handle exception System.err.println(e); }
+		 */
+		
+		// need to send the request to the localhost server port 3000 to get the response of the analysing 
+		
+		
+		
         return null;
     }
 	
@@ -66,7 +67,7 @@ public class SendRequestToServer6
 		 }
 	
 	 }
-	
+		
 
 	// Gets and Sets Functions 
 	
