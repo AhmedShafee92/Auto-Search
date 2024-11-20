@@ -7,7 +7,7 @@ import java.net.URL;
 
 public class TestServerAIAnalyse {
     public static void main(String[] args) throws Exception {
-        String textToAnalyze = "This is the text I want to analyze.";
+        String textToAnalyze = "What is the capital of france  .";
         String url = "http://localhost:3000/analyze_text"; // Replace with your server URL
 
         URL obj = new URL(url);

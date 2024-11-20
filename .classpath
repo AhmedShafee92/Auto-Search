@@ -88,5 +88,7 @@
 	<classpathentry kind="lib" path="C:/JARs-auto-search-app/techsoftemail.jar"/>
 	<classpathentry kind="lib" path="C:/JARs-auto-search-app/threetenbp-1.6.9.jar"/>
 	<classpathentry kind="lib" path="C:/JARs-auto-search-app/xmlbeans-5.0.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/shafe/.m2/repository/org/java-websocket/Java-WebSocket/1.5.2/Java-WebSocket-1.5.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/shafe/.m2/repository/org/java-websocket/Java-WebSocket/1.5.2/Java-WebSocket-1.5.2-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
