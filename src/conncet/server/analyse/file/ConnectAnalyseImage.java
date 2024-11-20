@@ -3,10 +3,10 @@ package conncet.server.analyse.file;
 import java.io.*;
 import java.net.*;
 
-public class ClientWebSucket {
+public class ConnectAnalyseImage {
     public static void main(String[] args) {
-        String serverAddress = "127.0.0.1"; // Updated host
-        int port = 4000; // Updated port
+        String serverAddress = "localhost"; // Change to server IP if needed
+        int port = 4000;
 
         try (Socket socket = new Socket(serverAddress, port);
              BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
