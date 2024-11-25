@@ -1,5 +1,24 @@
 package ai.automate.fill.data.webpage;
 
-public class ScreenShootWebPageAnalyse {
+public class ScreenShootWebPageAnalyse 
+{
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
