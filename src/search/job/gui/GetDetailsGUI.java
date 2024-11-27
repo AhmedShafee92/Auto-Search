@@ -48,11 +48,12 @@ public class GetDetailsGUI
 
 	private static int createPersonalFile()
 	{
-		// TODO: change the URL of the file (file path : the project place )
-		String filePath = "C:/Users/shafe/OneDrive/Desktop/personal_data_test.txt";
+        String userHome = System.getProperty("user.home");
+        String filePath = userHome + File.separator + "Desktop/personal_data_test.txt";
+
         try {
-            File file = new File(filePath);
-            if (file.createNewFile()) {
+        		File file = new File(filePath);
+        		if (file.createNewFile()) {
                 System.out.println("File created successfully: " + filePath);
             } else {
                 System.out.println("File already exists.");
