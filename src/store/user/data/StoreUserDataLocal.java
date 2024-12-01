@@ -31,20 +31,36 @@ public class StoreUserDataLocal
 	private static void createFolder()
 	{
 		// Create a File object for the new folder
-		File newFolder = new File("c:/appdata");
+		File personal_data = new File("personal_data");
 	    // Create the new folder
-	    boolean success = newFolder.mkdir();    
-	    if (success) 
+	    boolean success_create_personaldata = personal_data.mkdir();    
+	    if (success_create_personaldata) 
 	    {
 	      // The folder was created successfully
-	      System.out.println("Folder created successfully");
+	      System.out.println("Folder created successfully personal data folder");
 	    } 
 	    else 
 	    {
 	      // The folder was not created
-	      System.out.println("Floder exist");
+	      System.out.println("Floder exist personal data folder");
 	    }
 	       
+	    
+	    
+		File pricavy_data = new File("privacy_data");
+	    // Create the new folder
+		boolean success_create_pricaydata = pricavy_data.mkdir();    
+	    if (success_create_pricaydata) 
+	    {
+	      // The folder was created successfully
+	      System.out.println("Folder created successfully  privacy data folder");
+	    } 
+	    else 
+	    {
+	      // The folder was not created
+	      System.out.println("Floder exist privacy data folder");
+	    }
+	    
 	}
 	
 	// Here we save the data in encrypted way 
@@ -57,6 +73,8 @@ public class StoreUserDataLocal
 	     String encryptedPassword = Base64.getEncoder().encodeToString(password.getBytes());
 	
 	     // Store the encrypted data in a file
+	     // should change this folder name with the privacy data 
+	     // the url should be privacy_data (the folder will inside the project )
 	     String filePath = "C:/appdata/encrypted_data.txt";
 	     setFileUserDataLocation(filePath);
 	     try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {

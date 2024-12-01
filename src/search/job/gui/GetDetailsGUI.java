@@ -46,6 +46,7 @@ public class GetDetailsGUI
 		showScreen();
 	}		
 
+	// Function for building file Personal User Info . 
 	private static int createPersonalFile()
 	{
         String userHome = System.getProperty("user.home");
@@ -55,7 +56,8 @@ public class GetDetailsGUI
         		File file = new File(filePath);
         		if (file.createNewFile()) {
                 System.out.println("File created successfully: " + filePath);
-            } else {
+            } else 
+            {
                 System.out.println("File already exists.");
             }
 
@@ -339,8 +341,7 @@ public class GetDetailsGUI
 	
  }
     
-	//Get and Set method of the Email and Password (LinkedIn and Normal_Email)
-	
+	//Get and Set method of the Email and Password (LinkedIn and Normal_Email) . 
 	public static JTextField getEmailInput() 
 	{
 		return LinkedInEmail;
