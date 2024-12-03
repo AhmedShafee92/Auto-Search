@@ -1,4 +1,5 @@
 package store.user.data;
+
 //Libraries 
 import java.awt.FileDialog;
 import java.io.BufferedWriter;
@@ -77,9 +78,7 @@ public class StoreUserDataLocal
 	     String encryptedEmail = Base64.getEncoder().encodeToString(email.getBytes());
 	     String encryptedPassword = Base64.getEncoder().encodeToString(password.getBytes());
 	
-	     // Store the encrypted data in a file
-	     // should change this folder name with the privacy data 
-	     // the url should be privacy_data (the folder will inside the project )
+	     // Store the encrypted data ץ
 	     String filePath = "PrivacyData/encrypted_data.txt";
 	     setFileUserDataLocation(filePath);
 	     try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
@@ -130,7 +129,7 @@ public class StoreUserDataLocal
 		// Here we save the word file that the user insert inside the personal_data/cv_user.docs
 		copyFile(filePath,"personal_data/user_cv.docx");
 	    SendMail.setUrl(filePath);
-		 // Write the contents of the file to the "c:/appdata" directory with the original file extension
+
 	}
 	
 	

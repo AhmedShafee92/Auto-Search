@@ -182,8 +182,10 @@ public class GetDetailsGUI
 				else
 					{	
 						//	TODO: complete the first option of the search 
-						//	Store sensitive data about linkedIn
-					
+						
+						// Store sensitive data about linkedIn.
+						// should create the privacy data folder , and then create file for encrypted file and then 
+						// save the data inside . 
 						StoreUserDataLocal.storeEncrptyData(emailString, password);
 						/*
 						 * 
@@ -281,9 +283,8 @@ public class GetDetailsGUI
 				StoreUserDataLocal.storeAnalyseData(analyseFileForPostions);   	
 			}
 			
-			// Here 1- create the user_cv JSON file format 
-			// 2- and save the file inside the personal_data folder 
 			
+			// Step 3- add JSON user_cv to personal_data folder 
 			String file_path = "personal_data//user_cv.docx";			
 	        String folderName = "personal_data"; // Folder inside the program folder
 	        String fileName = "user_cv.docx"; // File to check
@@ -292,7 +293,10 @@ public class GetDetailsGUI
 	        File file = new File(folderName, fileName);
 
 	        // Check if the file exists
-	        if (file.exists() && file.isFile()) {
+	        if (file.exists() && file.isFile()) 
+	        {
+	        	// Here 1- create the user_cv JSON file format 
+				// 2- and save the file inside the personal_data folder 
 				ConvertCVFileJson.serverConvertWordToJson(file_path);
 	        } else {
 	            System.out.println("The file '" + fileName + "' does not exist in the folder: " + folderName);
