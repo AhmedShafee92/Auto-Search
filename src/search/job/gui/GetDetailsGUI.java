@@ -22,6 +22,7 @@ import org.apache.http.util.EntityUtils;
 
 import conncet.server.analyse.file.SendRequestToServer6;
 import first.option.forsendcv.SendMail;
+import store.user.data.ConvertCVFileJson;
 import store.user.data.StoreUserDataLocal;
 import three.option.forsendcv.SearchIntoLinkedIn;
 import javax.swing.JPasswordField;
@@ -50,8 +51,9 @@ public class GetDetailsGUI
 	private static int createPersonalFile()
 	{
        // TODO : Here we should change the location of personal_data that have analyse of the user where can work ( list of places)  or which positions
-	   //(which positions software engineer joiner ,Data scenes ).
-		//The new url should be anaylse_data/anaylse_user_data.excel 
+	   // (which positions software engineer joiner ,Data scenes ).
+	   // The new URL should be anaylse_data/anaylse_user_data excel. 
+		
 		String userHome = System.getProperty("user.home");
         String filePath = userHome + File.separator + "Desktop/personal_data_test.txt";
         try{
@@ -237,14 +239,17 @@ public class GetDetailsGUI
 		//TODO: put the implementation of the method in private method
 	   public void actionPerformed(ActionEvent e) 
 	   {
-		   // create personal file (content the information about the user )
+		   // create personal file (content the information about the user).
 		   createPersonalFile();	   
 		  	   
 		   /*
-		    * 1- show the user the analyse that should show him - completed    
-		    * 2- save the analyse data inside the (folder : analyse_data/analyse_data_user.docs ) - completed 
+		    * 1- Show the user the analyse that should show him - completed -here should to call the server that 
+		    * running in the java script that connect google API .   
+		    *  
+		    * 2- Save the analyse data inside the (folder : analyse_data/analyse_data_user.docs ) - completed 
+		    * Here we should change the URL of the folder location . 
 		    * 
-		    * 3-save inside the json file user_cv.json that format of the cv (personal_data/user_cv.json ) - In progress . 
+		    * 3- Save inside the JSON file user_cv.json that format of the CV (personal_data/user_cv.json ) - In progress . 
 		    * 
 		    */
 		   
@@ -254,6 +259,7 @@ public class GetDetailsGUI
 		   "No, Analyse the data again"};
 		   try 
 		   {
+			   // TODO : change  server SendRequestToServer6 with ConnectAnalyseText.connectAnalyseTextServer
 			   analyseFileForPostions = SendRequestToServer6.analyseData();
 			   
 		   }
@@ -274,6 +280,24 @@ public class GetDetailsGUI
 				// here we need to save the data of the analyse AI machine inside the local machine of the user   
 				StoreUserDataLocal.storeAnalyseData(analyseFileForPostions);   	
 			}
+			
+			// Here 1- create the user_cv JSON file format 
+			// 2- and save the file inside the personal_data folder 
+			
+			String file_path = "personal_data//user_cv.docx";			
+	        String folderName = "personal_data"; // Folder inside the program folder
+	        String fileName = "user_cv.docx"; // File to check
+
+	        // Build the relative path
+	        File file = new File(folderName, fileName);
+
+	        // Check if the file exists
+	        if (file.exists() && file.isFile()) {
+				ConvertCVFileJson.serverConvertWordToJson(file_path);
+	        } else {
+	            System.out.println("The file '" + fileName + "' does not exist in the folder: " + folderName);
+	        }
+						
 		    
 		}
 	  });

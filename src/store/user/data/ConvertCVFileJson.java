@@ -14,11 +14,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class ConvertCVFileJson {
-    public static void main(String[] args) {
+    public static void serverConvertWordToJson(String filePathUser) {
         String serverUrl = "http://localhost:5000/upload";
         String userHome = System.getProperty("user.home");
 
-        String filePath = "personal_data\\user_cv.docx";
+        // HERE should change to : filePathUser
+        String filePath = filePathUser;
 
         // Create HTTP client
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {

@@ -6,7 +6,7 @@ import java.net.URL;
 
 public class ConnectConvertStringToJson 
 {
-    public static void main(String[] args) {
+    public static void serverConvertStringJsonh(String[] args) {
         String serverUrl = "http://localhost:4000/process";
         String inputString = "Hello, Server!"; // String to send to the server
 
