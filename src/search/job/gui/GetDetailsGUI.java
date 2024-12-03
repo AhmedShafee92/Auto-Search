@@ -49,10 +49,12 @@ public class GetDetailsGUI
 	// Function for building file Personal User Info . 
 	private static int createPersonalFile()
 	{
-        String userHome = System.getProperty("user.home");
+       // TODO : Here we should change the location of personal_data that have analyse of the user where can work ( list of places)  or which positions
+	   //(which positions software engineer joiner ,Data scenes ).
+		//The new url should be anaylse_data/anaylse_user_data.excel 
+		String userHome = System.getProperty("user.home");
         String filePath = userHome + File.separator + "Desktop/personal_data_test.txt";
-
-        try {
+        try{
         		File file = new File(filePath);
         		if (file.createNewFile()) {
                 System.out.println("File created successfully: " + filePath);
@@ -98,6 +100,10 @@ public class GetDetailsGUI
 		{
 			public void actionPerformed(ActionEvent e) 
 			{  
+				// Here we want to do two steps :
+				// 1- create personal_data folder and if exist we do nothing 
+				// 2.1- create copy of the word file of the CV  
+				// 2.2 - add the word file of the cv copy to the personal_data folder 
 				StoreUserDataLocal.storeDataLocal();
 			}
 		
@@ -233,7 +239,14 @@ public class GetDetailsGUI
 	   {
 		   // create personal file (content the information about the user )
 		   createPersonalFile();	   
-		   
+		  	   
+		   /*
+		    * 1- show the user the analyse that should show him - completed    
+		    * 2- save the analyse data inside the (folder : analyse_data/analyse_data_user.docs ) - completed 
+		    * 
+		    * 3-save inside the json file user_cv.json that format of the cv (personal_data/user_cv.json ) - In progress . 
+		    * 
+		    */
 		   
 		   String analyseFileForPostions = "";
 		   String personalUserData = "";
