@@ -186,6 +186,31 @@ public class GetDetailsGUI
 						// Store sensitive data about linkedIn.
 						// should create the privacy data folder , and then create file for encrypted file and then 
 						// save the data inside . 
+						
+				        String folderName = "PrivacyData"; // Folder inside the program folder
+				        String fileName = "encrypted_data.txt"; // File to check
+
+				        // Build the relative path
+				        File file = new File(folderName, fileName);
+
+				        // Check if the file exists
+				        if (file.exists() && file.isFile()) {
+				            System.out.println("The file '" + fileName + "' exists in the folder: " + folderName);
+				        } else 
+				        {
+				        
+				        	// here we should create the folder and the file encrypted_data
+				        	System.out.println("The file '" + fileName + "' does not exist in the folder: " + folderName);
+				        
+				        }
+					
+					
+					
+					
+					
+					
+					
+					
 						StoreUserDataLocal.storeEncrptyData(emailString, password);
 						/*
 						 * 
