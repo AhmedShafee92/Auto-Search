@@ -152,6 +152,13 @@ public class GetDetailsGUI
 		    public void actionPerformed(ActionEvent e) 
 		    {		
 		    	// store sensitive data about email and the password 			
+		    	
+		    	
+		    	// The steps that will happen when the user press the search button : 
+		    	// save the privacy data of the user : (Email + password-Email, Email + password: LinkedIn (if exist) ). 
+		    	// show the next page of the search (Automation search , Manual search ). 
+		    	
+		    	
 		    	String emailString = null;
 		    	String password = null;
 		    	char[] passwordChars = null;
@@ -199,7 +206,8 @@ public class GetDetailsGUI
 				        } else 
 				        {
 				        
-				        	// here we should create the folder and the file encrypted_data
+				        	// here we should create the folder and the file encrypted_data. 
+				        		
 				        	System.out.println("The file '" + fileName + "' does not exist in the folder: " + folderName);
 				        
 				        }
