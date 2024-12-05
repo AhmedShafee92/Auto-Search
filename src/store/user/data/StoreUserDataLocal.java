@@ -79,7 +79,7 @@ public class StoreUserDataLocal
 	     String encryptedPassword = Base64.getEncoder().encodeToString(password.getBytes());
 	
 	     // Store the encrypted data ץ
-	     String filePath = "PrivacyData/encrypted_data.txt";
+	     String filePath = "PrivacyData/encrypted_personal_data.txt";
 	     setFileUserDataLocation(filePath);
 	     try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
 	         writer.write(encryptedEmail);
@@ -96,7 +96,7 @@ public class StoreUserDataLocal
 	 {
 		 
 		 // Store the encrypted data in a file
-	     String filePath = "C:/appdata/Personalpostions.txt";
+	     String filePath = "personal_data/Personalpostions.txt";
 	     setFileUserDataLocation(filePath);
 	     try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) 
 	     {

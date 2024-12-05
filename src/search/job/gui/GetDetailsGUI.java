@@ -152,13 +152,49 @@ public class GetDetailsGUI
 		    public void actionPerformed(ActionEvent e) 
 		    {		
 		    	// store sensitive data about email and the password 			
-		    	
-		    	
+		    		    	
 		    	// The steps that will happen when the user press the search button : 
-		    	// save the privacy data of the user : (Email + password-Email, Email + password: LinkedIn (if exist) ). 
-		    	// show the next page of the search (Automation search , Manual search ). 
+		    	// 1-  save the privacy data of the user : (Email + password-Email, Email + password: LinkedIn (if exist) ). 
+		    	// 1.1 - create privacy folder + create privacy file 
+		    	// insert the encrypted data to the file . 
 		    	
-		    	
+		        // Specify folder and file using relative paths
+		        String folderName = "PrivacyData"; // Folder inside the program folder
+		        String fileName = "encrypted_personal_data.txt"; // File to check
+
+		        // Create a File object for the folder
+		        File folder = new File(folderName);
+
+		        // Check if the folder exists, if not, create it
+		        if (!folder.exists()) {
+		            if (folder.mkdir()) {
+		                System.out.println("Folder created successfully: " + folderName);
+		            } else {
+		                System.out.println("Failed to create the folder: " + folderName);
+		                return;
+		            }
+		        } else {
+		            System.out.println("Folder already exists: " + folderName);
+		        }
+
+		        // Create a File object for the file inside the folder
+		        File file = new File(folder, fileName);
+
+		        try {
+		            // Check if the file exists, if not, create it
+		            if (file.createNewFile()) {
+		                System.out.println("File created successfully: " + file.getPath());
+		            } else {
+		                System.out.println("File already exists: " + file.getPath());
+		            }
+		        } catch (IOException e1) {
+		            System.out.println("An error occurred while creating the file.");
+		            e1.printStackTrace();
+		        }
+		        
+		        
+		    	// 2- show the next page of the search (Automation search , Manual search )- completed . 
+		    	 	
 		    	String emailString = null;
 		    	String password = null;
 		    	char[] passwordChars = null;
@@ -187,59 +223,13 @@ public class GetDetailsGUI
 				    JOptionPane.showMessageDialog(null, "You chose rock!");
 				}
 				else
-					{	
-						//	TODO: complete the first option of the search 
+				{	
 						
 						// Store sensitive data about linkedIn.
-						// should create the privacy data folder , and then create file for encrypted file and then 
-						// save the data inside . 
+						// should create the privacy data folder , and then create file for encrypted file and then.
+						// save the data inside. 
 						
-				        String folderName = "PrivacyData"; // Folder inside the program folder
-				        String fileName = "encrypted_data.txt"; // File to check
-
-				        // Build the relative path
-				        File file = new File(folderName, fileName);
-
-				        // Check if the file exists
-				        if (file.exists() && file.isFile()) {
-				            System.out.println("The file '" + fileName + "' exists in the folder: " + folderName);
-				        } else 
-				        {
-				        
-				        	// here we should create the folder and the file encrypted_data. 
-				        		
-				        	System.out.println("The file '" + fileName + "' does not exist in the folder: " + folderName);
-				        
-				        }
-					
-					
-					
-					
-					
-					
-					
-					
 						StoreUserDataLocal.storeEncrptyData(emailString, password);
-						/*
-						 * 
-						 * 1-here will change the using , will use 
-						 * vertex AI model that training with images. 
-						 * 
-						 * The model training with a lot of image of web page 
-						 * and when we running this model will detect what king of this page 
-						 * 
-						 * 
-						 * 
-						 * 	{
-						 * 		1.a - If we find a companies that match the skills of the person .
-						 * 		1.b - Collect these companies inside excel sheet . 
-						 *
-						 * 		1.c - start apply to position in each company that we collected inside the excel sheet 
-						 * 	}	
-						 * 
-						 * 
-						 * 
-						 */
 						
 						
 						/* 1- Collect data where the person can work */
