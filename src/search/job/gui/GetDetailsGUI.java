@@ -29,6 +29,11 @@ import javax.swing.JPasswordField;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class GetDetailsGUI 
 {
@@ -48,27 +53,86 @@ public class GetDetailsGUI
 	}		
 
 	// Function for building file Personal User Info . 
-	private static int createPersonalFile()
+	private static int analysePersonalFile()
 	{
-       // TODO : Here we should change the location of personal_data that have analyse of the user where can work ( list of places)  or which positions
-	   // (which positions software engineer joiner ,Data scenes ).
-	   // The new URL should be anaylse_data/anaylse_user_data excel. 
-		
-		String userHome = System.getProperty("user.home");
-        String filePath = userHome + File.separator + "Desktop/personal_data_test.txt";
-        try{
-        		File file = new File(filePath);
-        		if (file.createNewFile()) {
-                System.out.println("File created successfully: " + filePath);
-            } else 
-            {
-                System.out.println("File already exists.");
+		//( list of places)  or which positions.
+		// (which positions software engineer joiner ,Data scenes ).
+		// The new URL should be anaylse_data/anaylse_user_data excel. 
+	
+		String folderName = "analyse_user_data"; 
+        File folder = new File(folderName);
+        // Check if the folder exists, if not, create it
+        if (!folder.exists()) {
+            if (folder.mkdir()) {
+                System.out.println("Folder created successfully: " + folderName);
+            } else {
+                System.out.println("Failed to create the folder: " + folderName);
+                return 1;
             }
-
-        } catch (IOException e1) {
-            System.out.println("An error occurred: " + e1.getMessage());
-            return 1;
+        } else {
+            System.out.println("Folder already exists: " + folderName);
         }
+		
+        
+        String positons_file = folderName + File.separator + "user_positons_list.xlsx";
+        String places_work_file = folderName + File.separator + "user_places_list.xlsx";
+        
+        { 
+	        // Create a workbook (HSSFWorkbook for .xls or XSSFWorkbook for .xlsx)
+	        Workbook workbook = new XSSFWorkbook();
+	        // Create a sheet in the workbook
+	        Sheet sheet = workbook.createSheet("Sheet1");
+	        // Create a header row
+	        Row headerRow = sheet.createRow(0);
+	        Cell headerCell1 = headerRow.createCell(0);
+	        headerCell1.setCellValue("Positions");
+	 
+	        // Write the workbook to a file
+	        try (FileOutputStream outputStream = new FileOutputStream(positons_file)) {
+	            workbook.write(outputStream);
+	        } catch (IOException e) {
+	            System.out.println("Error writing Excel file.");
+	            e.printStackTrace();
+	        } finally {
+	            // Close the workbook
+	            try {
+	                workbook.close();
+	            } catch (IOException e) {
+	                e.printStackTrace();
+	            }
+	        }
+        }
+               
+        { 
+	        // Create a workbook (HSSFWorkbook for .xls or XSSFWorkbook for .xlsx)
+	        Workbook workbook = new XSSFWorkbook();
+	        // Create a sheet in the workbook
+	        Sheet sheet = workbook.createSheet("Sheet1");
+	        // Create a header row
+	        Row headerRow = sheet.createRow(0);
+	        Cell headerCell1 = headerRow.createCell(0);
+	        headerCell1.setCellValue("Places");
+	 
+	        // Write the workbook to a file
+	        try (FileOutputStream outputStream = new FileOutputStream(places_work_file)) {
+	            workbook.write(outputStream);
+	        } catch (IOException e) {
+	            System.out.println("Error writing Excel file.");
+	            e.printStackTrace();
+	        } finally {
+	            // Close the workbook
+	            try {
+	                workbook.close();
+	            } catch (IOException e) {
+	                e.printStackTrace();
+	            }
+	        }
+        }
+        
+        
+        
+        
+        
         
 		return 0; 	
 	}
@@ -265,7 +329,7 @@ public class GetDetailsGUI
 	   public void actionPerformed(ActionEvent e) 
 	   {
 		   // create personal file (content the information about the user).
-		   createPersonalFile();	   
+		   analysePersonalFile();	   
 		  	   
 		   /*
 		    * 1- Show the user the analyse that should show him - completed -here should to call the server that 
