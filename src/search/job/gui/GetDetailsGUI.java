@@ -55,8 +55,7 @@ public class GetDetailsGUI
 	// Function for building file Personal User Info . 
 	private static int analysePersonalFile()
 	{
-		//( list of places)  or which positions.
-		// (which positions software engineer joiner ,Data scenes ).
+		// list places  and list positions.
 		// The new URL should be anaylse_data/anaylse_user_data excel. 
 	
 		String folderName = "analyse_user_data"; 
@@ -130,14 +129,10 @@ public class GetDetailsGUI
         }
         
         
-        
-        
-        
-        
 		return 0; 	
 	}
 	
-	//Implementation of Main Function 
+	//Implementation of Main Function .
 	private static void showScreen() 
     {
 		
@@ -166,11 +161,8 @@ public class GetDetailsGUI
 		{
 			public void actionPerformed(ActionEvent e) 
 			{  
-				// Here we want to do two steps :
-				// 1- create personal_data folder and if exist we do nothing 
-				// 2.1- create copy of the word file of the CV  
-				// 2.2 - add the word file of the cv copy to the personal_data folder 
-				StoreUserDataLocal.storeDataLocal();
+				
+				StoreUserDataLocal.storeCVUserLocal();
 			}
 		
 		});

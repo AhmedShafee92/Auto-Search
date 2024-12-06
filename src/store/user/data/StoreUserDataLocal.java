@@ -13,6 +13,9 @@ import java.io.OutputStream;
 import java.util.Base64;
 import javax.swing.JFrame;
 
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+
 import conncet.server.analyse.file.SendRequestToServer6;
 import first.option.forsendcv.SendMail;
 
@@ -22,51 +25,56 @@ public class StoreUserDataLocal
 	private static String fileCVPathLoaction;
 	private static String fileUserDataLocation;
 			
-	public static void storeDataLocal()
+	public static void storeCVUserLocal()
 	{
-	
-		// Here we want to do two steps :
-		// 1- create personal_data folder and if exist we do nothing . 
-		// 2.1- create copy of the word file of the CV . 
-		// 2.2 - add the word file of the CV copy to the personal_data folder. 
-	
+		// 1- create copy CV File and personal_data folder . 
+		// 2 - add CV File to personal_data folder. 
 		createFolder();
 		storeData();
 	}	
 	private static void createFolder()
-	{
-		// Create a File object for the new folder
-		File personal_data = new File("personal_data");
-	    // Create the new folder
-		// Here we should add check if the folder is already exist (the issue is with path of the folder, the folder inside the project code )
-	    boolean success_create_personaldata = personal_data.mkdir();    
-	    if (success_create_personaldata) 
-	    {
-	      // The folder was created successfully
-	      System.out.println("Folder created successfully personal data folder");
-	    } 
-	    else 
-	    {
-	      // The folder was not created
-	      System.out.println("Floder exist personal data folder");
-	    }
-	       
-	    // Here we create PrivacyData folder (this code should be when the user press the button start search )
-	   /* 
-		File pricavy_data = new File("PrivacyData");
-	    // Create the new folder
-		boolean success_create_pricaydata = pricavy_data.mkdir();    
-	    if (success_create_pricaydata) 
-	    {
-	      // The folder was created successfully
-	      System.out.println("Folder created successfully  privacy data folder");
-	    } 
-	    else 
-	    {
-	      // The folder was not created
-	      System.out.println("Floder exist privacy data folder");
-	    }*/
+	{	    
 	    
+        // Define the folder path and Word file name
+        String folderPath = "personal_data";
+        String wordFileName = "user_cv.docx";
+
+        // Create the folder if it doesn't exist
+        File folder = new File(folderPath);
+        if (!folder.exists()) {
+            if (folder.mkdir()) {
+            } else {
+                System.out.println("Failed to create folder: " + folderPath);
+                return;
+            }
+        }
+
+        // Define the full path for the Word file
+        String wordFilePath = folderPath + File.separator + wordFileName;
+
+        // Create the Word file
+        createWordFile(wordFilePath);
+    }
+
+    private static void createWordFile(String filePath) 
+    {
+        // Create a new Word document
+        try (XWPFDocument document = new XWPFDocument();
+             FileOutputStream fileOut = new FileOutputStream(filePath)) {
+
+            // Add a paragraph to the document
+            XWPFParagraph paragraph = document.createParagraph();
+            paragraph.createRun().setText("This is a sample Word file created with Apache POI.");
+
+            // Write the document to the file
+            document.write(fileOut);
+            System.out.println("Word file created: " + filePath);
+
+        } catch (IOException e) {
+            System.out.println("Error creating Word file: " + filePath);
+            e.printStackTrace();
+        }
+	           
 	}
 	
 	// Here we save the data in encrypted way 
@@ -114,13 +122,23 @@ public class StoreUserDataLocal
 	{
 		// Create a JFrame for the file dialog
 		JFrame frame = new JFrame();
-		
 		// Use the FileDialog class to prompt the user to select a file
 		FileDialog fileDialog = new FileDialog(frame, "Select a file", FileDialog.LOAD);
 		fileDialog.setVisible(true);
-		
 		// Get the selected file path
 		String filePath = fileDialog.getDirectory() + fileDialog.getFile();
+		
+		
+		
+		
+
+		//DO something ??
+		
+		
+		
+		
+		
+		
 		
 		// This code maybe should update, the system should have an storage internal (for automation using in the background )
 		setFileCVPathLoaction(filePath);
