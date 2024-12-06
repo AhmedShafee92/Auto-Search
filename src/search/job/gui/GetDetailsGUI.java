@@ -52,11 +52,10 @@ public class GetDetailsGUI
 		showScreen();
 	}		
 
-	// Function for building file Personal User Info . 
-	private static int analysePersonalFile()
+	// Building file analyse user data. 
+	private static int analyseUserFile()
 	{
-		// list places  and list positions.
-		// The new URL should be anaylse_data/anaylse_user_data excel. 
+		// Inside the file : 1- excel file -list places  2- excel file -list positions.
 	
 		String folderName = "analyse_user_data"; 
         File folder = new File(folderName);
@@ -320,19 +319,8 @@ public class GetDetailsGUI
 		//TODO: put the implementation of the method in private method
 	   public void actionPerformed(ActionEvent e) 
 	   {
-		   // create personal file (content the information about the user).
-		   analysePersonalFile();	   
-		  	   
-		   /*
-		    * 1- Show the user the analyse that should show him - completed -here should to call the server that 
-		    * running in the java script that connect google API .   
-		    *  
-		    * 2- Save the analyse data inside the (folder : analyse_data/analyse_data_user.docs ) - completed 
-		    * Here we should change the URL of the folder location . 
-		    * 
-		    * 3- Save inside the JSON file user_cv.json that format of the CV (personal_data/user_cv.json ) - In progress . 
-		    * 
-		    */
+		   analyseUserFile();	   
+	
 		   
 		   String analyseFileForPostions = "";
 		   String personalUserData = "";
@@ -342,7 +330,7 @@ public class GetDetailsGUI
 		   {
 			   // TODO : change  server SendRequestToServer6 with ConnectAnalyseText.connectAnalyseTextServer
 			   analyseFileForPostions = SendRequestToServer6.analyseData();
-			   
+			 			      
 		   }
 		   catch (IOException e1) 
 		   {
