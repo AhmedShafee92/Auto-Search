@@ -4,14 +4,16 @@ import java.io.*;
 import java.net.*;
 
 public class ConnectAnalyseText {
-    public static void connectAnalyseTextServer(String[] args) {
+    public static void main(String[] args) {
         String serverAddress = "localhost"; // Change to server IP if needed
         int port = 4000;
 
         try (Socket socket = new Socket(serverAddress, port);
-             BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
-             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
+             
+        	BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
+        	 PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) 
+        {
 
             System.out.println("Connected to the server!");
 
@@ -45,3 +47,29 @@ public class ConnectAnalyseText {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

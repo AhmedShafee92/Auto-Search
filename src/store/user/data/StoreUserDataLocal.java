@@ -13,6 +13,11 @@ import java.io.OutputStream;
 import java.util.Base64;
 import javax.swing.JFrame;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 
@@ -129,17 +134,10 @@ public class StoreUserDataLocal
 		String filePath = fileDialog.getDirectory() + fileDialog.getFile();
 		
 		
-		
-		
-
 		//DO something ??
 		
 		
-		
-		
-		
-		
-		
+		// TODO : we should delete these two lines code . 
 		// This code maybe should update, the system should have an storage internal (for automation using in the background )
 		setFileCVPathLoaction(filePath);
 		SendRequestToServer6.setFileLocation(filePath);
@@ -199,5 +197,101 @@ public class StoreUserDataLocal
 
 
 
+	
+	// TODO: should choose better name . 
+	// Building file analyse user data. 
+		public static int analyseUserFile()
+		{
+			// Inside the file : 1- excel file -list places  2- excel file -list positions.
+		
+			String folderName = "analyse_user_data"; 
+	        File folder = new File(folderName);
+	        // Check if the folder exists, if not, create it
+	        if (!folder.exists()) {
+	            if (folder.mkdir()) {
+	            } else {
+	                System.out.println("Failed to create the folder: " + folderName);
+	                return 1;
+	            }
+	        } else {
+	            System.out.println("Folder already exists: " + folderName);
+	        }
+			
+	        
+	        String positons_file = folderName + File.separator + "user_positons_list.xlsx";
+	        String places_work_file = folderName + File.separator + "user_places_list.xlsx";
+	        
+	        { 
+		        // Create a workbook (HSSFWorkbook for .xls or XSSFWorkbook for .xlsx)
+		        Workbook workbook = new XSSFWorkbook();
+		        // Create a sheet in the workbook
+		        Sheet sheet = workbook.createSheet("Sheet1");
+		        // Create a header row
+		        Row headerRow = sheet.createRow(0);
+		        Cell headerCell1 = headerRow.createCell(0);
+		        headerCell1.setCellValue("Positions");
+		 
+		        // Write the workbook to a file
+		        try (FileOutputStream outputStream = new FileOutputStream(positons_file)) {
+		            workbook.write(outputStream);
+		        } catch (IOException e) {
+		            System.out.println("Error writing Excel file.");
+		            e.printStackTrace();
+		        } finally {
+		            // Close the workbook
+		            try {
+		                workbook.close();
+		            } catch (IOException e) {
+		                e.printStackTrace();
+		            }
+		        }
+	        }
+	               
+	        { 
+		        // Create a workbook (HSSFWorkbook for .xls or XSSFWorkbook for .xlsx)
+		        Workbook workbook = new XSSFWorkbook();
+		        // Create a sheet in the workbook
+		        Sheet sheet = workbook.createSheet("Sheet1");
+		        // Create a header row
+		        Row headerRow = sheet.createRow(0);
+		        Cell headerCell1 = headerRow.createCell(0);
+		        headerCell1.setCellValue("Places");
+		 
+		        // Write the workbook to a file
+		        try (FileOutputStream outputStream = new FileOutputStream(places_work_file)) {
+		            workbook.write(outputStream);
+		        } catch (IOException e) {
+		            System.out.println("Error writing Excel file.");
+		            e.printStackTrace();
+		        } finally {
+		            // Close the workbook
+		            try {
+		                workbook.close();
+		            } catch (IOException e) {
+		                e.printStackTrace();
+		            }
+		        }
+	        }
+	        
+	        
+			return 0; 	
+		}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
