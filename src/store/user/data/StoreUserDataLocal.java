@@ -199,7 +199,7 @@ public class StoreUserDataLocal
 
 	
 	// TODO: should choose better name . 
-	// Building file analyse user data. 
+	// Building file analyse user data . 
 		public static int analyseUserFile()
 		{
 			// Inside the file : 1- excel file -list places  2- excel file -list positions.
@@ -276,21 +276,6 @@ public class StoreUserDataLocal
 	        
 			return 0; 	
 		}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 

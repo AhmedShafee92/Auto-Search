@@ -233,7 +233,8 @@ public class GetDetailsGUI
 		//TODO: put the implementation of the method in private method
 	   public void actionPerformed(ActionEvent e) 
 	   {
-		   // create the data storage that the analyse file need .
+		   //TODO : add check that to see if the user did't insert CV data then will throw error to user . 
+		   // create the data storage that the analyse file need .  
 		   
 		   StoreUserDataLocal.analyseUserFile();
 		   String analyseFileForPostions = "";
@@ -243,7 +244,7 @@ public class GetDetailsGUI
 		   try 
 		   {
 			   // TODO : change  server SendRequestToServer6 with ConnectGoogleAPIServer.analyseUserCVData
-			   analyseFileForPostions = SendRequestToServer6.analyseData();
+			   // analyseFileForPostions = SendRequestToServer6.analyseData();
 			   analyseFileForPostions = ConnectGoogleAPIServer.analyseUserCVData();
 			   
 		   }
@@ -261,6 +262,7 @@ public class GetDetailsGUI
 			
 			if ( result == JOptionPane.OK_OPTION ) 
 			{
+				//TODO : Here we should the list of places and position the user can work in . 
 				// here we need to save the data of the analyse AI machine inside the local machine of the user   
 				StoreUserDataLocal.storeAnalyseData(analyseFileForPostions);   	
 			}
@@ -279,7 +281,9 @@ public class GetDetailsGUI
 	        	// Here 1- create the user_cv JSON file format 
 				// 2- and save the file inside the personal_data folder 
 				ConvertCVFileJson.serverConvertWordToJson(file_path);
-	        } else {
+	        }
+	        else 
+	        {
 	            System.out.println("The file '" + fileName + "' does not exist in the folder: " + folderName);
 	        }
 						
@@ -304,66 +308,6 @@ public class GetDetailsGUI
 	frame.setVisible(true);
 
 	
-	JButton btnNewButton_1 = new JButton("Test Server ");
-	btnNewButton_1.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-			
-	        CloseableHttpClient httpClient = HttpClients.createDefault();
-	        HttpPost httpPost = new HttpPost("http://localhost:3000/your_api_endpoint");
-
-	        // Prepare request data (replace with your actual data)
-	        String requestBody = "{\"data\": \"your_data_to_send\"}";
-	        try {
-				httpPost.setEntity(new StringEntity(requestBody));
-			} catch (UnsupportedEncodingException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-	        httpPost.setHeader("Content-type", "application/json");
-
-	        CloseableHttpResponse response = null;
-			try {
-				response = httpClient.execute(httpPost);
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
-	        try {
-	            int statusCode = response.getStatusLine().getStatusCode();
-	            if (statusCode == 200) {
-	                String responseBody = EntityUtils.toString(response.getEntity());
-	                System.out.println("Response: " + responseBody);
-	            } else {
-	                System.err.println("Request failed with status code: " + statusCode);
-	            }
-	        } catch (ParseException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} finally {
-	            try {
-					response.close();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-	            try {
-					httpClient.close();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-	        }
-			
-			
-		}
-	});
-	btnNewButton_1.setBounds(592, 218, 85, 21);
-	frame.getContentPane().add(btnNewButton_1);
-	frame.setVisible(true);
 	
  }
     
