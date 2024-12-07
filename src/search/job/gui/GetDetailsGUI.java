@@ -278,8 +278,9 @@ public class GetDetailsGUI
 	        // Check if the file exists
 	        if (file.exists() && file.isFile()) 
 	        {
-	        	// Here 1- create the user_cv JSON file format 
-				// 2- and save the file inside the personal_data folder 
+	        	// Here 1- create the user_cv JSON file format .
+				// 2- and save the file inside the personal_data folder . 
+	        	//TODO : here we should fix the process still not working . 
 				ConvertCVFileJson.serverConvertWordToJson(file_path);
 	        }
 	        else 
