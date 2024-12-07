@@ -206,9 +206,7 @@ public class GetDetailsGUI
 		{
 		    public void actionPerformed(ActionEvent e) 
 		    {		
-		    	// store sensitive data about email and the password 			
 		    		    	
-		    	// The steps that will happen when the user press the search button : 
 		    	// 1-  save the privacy data of the user : (Email + password-Email, Email + password: LinkedIn (if exist) ). 
 		    	// 1.1 - create privacy folder + create privacy file 
 		    	// insert the encrypted data to the file . 
@@ -223,7 +221,6 @@ public class GetDetailsGUI
 		        // Check if the folder exists, if not, create it
 		        if (!folder.exists()) {
 		            if (folder.mkdir()) {
-		                System.out.println("Folder created successfully: " + folderName);
 		            } else {
 		                System.out.println("Failed to create the folder: " + folderName);
 		                return;
@@ -238,7 +235,6 @@ public class GetDetailsGUI
 		        try {
 		            // Check if the file exists, if not, create it
 		            if (file.createNewFile()) {
-		                System.out.println("File created successfully: " + file.getPath());
 		            } else {
 		                System.out.println("File already exists: " + file.getPath());
 		            }
@@ -247,9 +243,7 @@ public class GetDetailsGUI
 		            e1.printStackTrace();
 		        }
 		        
-		        
-		    	// 2- show the next page of the search (Automation search , Manual search )- completed . 
-		    	 	
+		        		    	 	
 		    	String emailString = null;
 		    	String password = null;
 		    	char[] passwordChars = null;
@@ -280,34 +274,30 @@ public class GetDetailsGUI
 				else
 				{	
 						
-						// Store sensitive data about linkedIn.
-						// should create the privacy data folder , and then create file for encrypted file and then.
-						// save the data inside. 
+					/* 1- Collect data where the person can work */
+					/* 2- create a local data base for the companies that fit his skills and jobs  */
+					/* 3- start send data to these companies */
+					
+					String emailLinkedinString=LinkedInEmail.getText();
+					char[] passwordCharLinkedin = LinkedInPassword.getPassword();
+					String passwordLinkedin = new String(passwordCharLinkedin);
+
+					// Store sensitive data about User email.						
+					StoreUserDataLocal.storeEncrptyData(emailString, password);							
+					// Store sensitive data about User linkedIn.						
+					StoreUserDataLocal.storeEncrptyData(emailLinkedinString, passwordLinkedin);
+				
+					SendMail.setFrom(emailString);
+					SendMail.setEmailPassword(password);
+					
+					SearchIntoLinkedIn.setLinkedInEmailString(emailLinkedinString);
+					SearchIntoLinkedIn.setLinkedInPasswordString(passwordLinkedin);
+					// Update the data inside the send email class 
+					frame.setVisible(false);
+					AutomationJobSearchGUI.main(null);
 						
-						StoreUserDataLocal.storeEncrptyData(emailString, password);
-						
-						
-						/* 1- Collect data where the person can work */
-						/* 2- create a local data base for the companies that fit his skills and jobs  */
-						/* 3- start send data to these companies */
-						
-						SendMail.setFrom(emailString);
-						SendMail.setEmailPassword(password);
-						
-						String emailLinkedinString=LinkedInEmail.getText();
-						char[] passwordCharLinkedin = LinkedInPassword.getPassword();
-						String passwordLinkedin = new String(passwordCharLinkedin);
-						
-						
-						StoreUserDataLocal.storeEncrptyData(emailLinkedinString, passwordLinkedin);
-						SearchIntoLinkedIn.setLinkedInEmailString(emailLinkedinString);
-						SearchIntoLinkedIn.setLinkedInPasswordString(passwordLinkedin);
-						// Update the data inside the send email class 
-						frame.setVisible(false);
-						AutomationJobSearchGUI.main(null);
-						
-					}
-		    	}
+				}
+	    	}
 	});
 	startSearchingButton.setBounds(437,348,146,58);	
 	frame.getContentPane().add(startSearchingButton);	
@@ -349,7 +339,6 @@ public class GetDetailsGUI
 				// here we need to save the data of the analyse AI machine inside the local machine of the user   
 				StoreUserDataLocal.storeAnalyseData(analyseFileForPostions);   	
 			}
-			
 			
 			// Step 3- add JSON user_cv to personal_data folder 
 			String file_path = "personal_data//user_cv.docx";			
