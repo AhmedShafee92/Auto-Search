@@ -235,7 +235,7 @@ public class GetDetailsGUI
 	   {
 		   //TODO : add check that to see if the user did't insert CV data then will throw error to user . 
 		   // create the data storage that the analyse file need .  
-		   
+ 
 		   StoreUserDataLocal.analyseUserFile();
 		   String analyseFileForPostions = "";
 		   @SuppressWarnings("unused")
@@ -244,8 +244,12 @@ public class GetDetailsGUI
 		   "No, Analyse the data again"};
 		   try 
 		   {
-			   // Here we got analyse about the user CV from google API . 
-			   analyseFileForPostions = ConnectGoogleAPIServer.analyseUserCVData();   
+			   // Check if the user upload the CV . 
+			   if(CheckCVFileExist())
+			   {
+				   // Here we got analyse about the user CV from google API . 
+				   analyseFileForPostions = ConnectGoogleAPIServer.analyseUserCVData();   
+			   }
 		   }
 		   catch (IOException e1) 
 		   {
@@ -310,7 +314,23 @@ public class GetDetailsGUI
 	
 	
  }
-    
+	
+	private static boolean CheckCVFileExist()
+	{
+	      // Specify the file path to check
+        String filePath = "personal_data/user_cv.docx";
+        // Create a File object
+        File file = new File(filePath);
+
+        // Check if the file exists
+        if (file.exists()) {
+            return true;
+        } else {
+            return false ;
+        }
+		
+	}
+	
 	//Get and Set method of the Email and Password (LinkedIn and Normal_Email) . 
 	public static JTextField getEmailInput() 
 	{
@@ -351,5 +371,6 @@ public class GetDetailsGUI
 	private static void setPasswordUser(JPasswordField linkedInPasswordField) 
 	{
 		GetDetailsGUI.PasswordUser = linkedInPasswordField;
-	}	
+	}
+	
 }
