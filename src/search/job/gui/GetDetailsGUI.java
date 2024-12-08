@@ -233,9 +233,7 @@ public class GetDetailsGUI
 		//TODO: put the implementation of the method in private method
 	   public void actionPerformed(ActionEvent e) 
 	   {
-		   //TODO : add check that to see if the user did't insert CV data then will throw error to user . 
-		   // create the data storage that the analyse file need .  
- 
+		
 		   StoreUserDataLocal.analyseUserFile();
 		   String analyseFileForPostions = "";
 		   @SuppressWarnings("unused")
@@ -265,9 +263,12 @@ public class GetDetailsGUI
 			
 			if ( result == JOptionPane.OK_OPTION ) 
 			{
-				//TODO : Here we should the list of places and position the user can work in . 
-				// here we need to save the data of the analyse AI machine inside the local machine of the user   
-				StoreUserDataLocal.storeAnalyseData(analyseFileForPostions);   	
+				
+				// TODO: 1- create function that get from the Google API : where the user can work get list .
+				// 2- function that create list of positions of what the user can work .
+				// 3- Store the results inside the excel files that we created in analyse_user_data .
+				// TODO : delete the old version of storing the data . 
+				StoreUserDataLocal.storeUserAnalyseData(analyseFileForPostions);   	
 			}
 			
 			// Step 3- add JSON user_cv to personal_data folder 
@@ -281,8 +282,7 @@ public class GetDetailsGUI
 	        // Check if the file exists
 	        if (file.exists() && file.isFile()) 
 	        {
-	        	// Here 1- create the user_cv JSON file format .
-				// 2- and save the file inside the personal_data folder . 
+	        	//Convert the user CV word file to JSON file format .
 	        	//TODO : here we should fix the process still not working . 
 				ConvertCVFileJson.serverConvertWordToJson(file_path);
 	        }

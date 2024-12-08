@@ -118,7 +118,7 @@ public class StoreUserDataLocal
 			 
 	}
 	    
-	 public static void storeAnalyseData(String analyseData) 
+	 public static void storeUserAnalyseData(String analyseData) 
 	 {
 		 
 		 // Store the encrypted data in a file
