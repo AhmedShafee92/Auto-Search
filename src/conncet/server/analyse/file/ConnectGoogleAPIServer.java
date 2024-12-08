@@ -26,7 +26,7 @@ public class ConnectGoogleAPIServer
 		String resultOFAnlyseFile = "";
 	    String promotToAI = "What this person can work :";
 		convetFileToText(fileLocation); 	    
-		promotToAI +=fileTotext;
+		promotToAI += fileTotext;
 	    resultOFAnlyseFile = AnalyseText(promotToAI);
 	    return resultOFAnlyseFile;
 	    

@@ -19,7 +19,6 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
-import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 
 import conncet.server.analyse.file.SendRequestToServer6;
 import first.option.forsendcv.SendMail;
@@ -30,12 +29,14 @@ public class StoreUserDataLocal
 	private static String fileCVPathLoaction;
 	private static String fileUserDataLocation;
 			
+	// 1- create copy CV File and personal_data folder . 
+	// 2 - add CV File to personal_data folder. 
 	public static void storeCVUserLocal()
 	{
-		// 1- create copy CV File and personal_data folder . 
-		// 2 - add CV File to personal_data folder. 
+		// create word file and folder and put the word file inside the folder . 
 		createFolder();
-		storeData();
+		// This function show the user option to upload file and stored this file inside local machine . 
+		storeWordFileData();
 	}	
 	private static void createFolder()
 	{	    
@@ -53,37 +54,49 @@ public class StoreUserDataLocal
                 return;
             }
         }
-
         // Define the full path for the Word file
         String wordFilePath = folderPath + File.separator + wordFileName;
-
         // Create the Word file
         createWordFile(wordFilePath);
     }
 
     private static void createWordFile(String filePath) 
-    {
-        // Create a new Word document
+    {    
+        // Create an empty Word document
         try (XWPFDocument document = new XWPFDocument();
              FileOutputStream fileOut = new FileOutputStream(filePath)) {
-
-            // Add a paragraph to the document
-            XWPFParagraph paragraph = document.createParagraph();
-            paragraph.createRun().setText("This is a sample Word file created with Apache POI.");
-
-            // Write the document to the file
+            // Write the empty document to the file
             document.write(fileOut);
-            System.out.println("Word file created: " + filePath);
-
         } catch (IOException e) {
             System.out.println("Error creating Word file: " + filePath);
             e.printStackTrace();
         }
-	           
+                      
 	}
-	
+    
+    
+	// Here we save the CV file of the user.
+	private static void storeWordFileData() 
+	{
+		// Create a JFrame for the file dialog
+		JFrame frame = new JFrame();
+		// Use the FileDialog class to prompt the user to select a file
+		FileDialog fileDialog = new FileDialog(frame, "Select a file", FileDialog.LOAD);
+		fileDialog.setVisible(true);
+		// Get the selected file path
+		String filePath = fileDialog.getDirectory() + fileDialog.getFile();
+
+		// here we save user file location which uploaded . 
+		setFileCVPathLoaction(filePath);
+		// Here we save the word file that the user insert inside the personal_data/cv_user.docs
+		copyFile(filePath,"personal_data/user_cv.docx");
+		// TODO : we can delete this option , there an class that serve the storage of all data about the user . 
+	    SendMail.setUrl(filePath);
+
+	}
+    
+    
 	// Here we save the data in encrypted way 
-	
 	 public static void storeEncrptyData(String email,String password) 
 	 {
 		
@@ -121,33 +134,7 @@ public class StoreUserDataLocal
 		 			 
 	 }
 	      
-	 
-	 // Here we save the CV file of the user.
-	private static void storeData() 
-	{
-		// Create a JFrame for the file dialog
-		JFrame frame = new JFrame();
-		// Use the FileDialog class to prompt the user to select a file
-		FileDialog fileDialog = new FileDialog(frame, "Select a file", FileDialog.LOAD);
-		fileDialog.setVisible(true);
-		// Get the selected file path
-		String filePath = fileDialog.getDirectory() + fileDialog.getFile();
 		
-		
-		//DO something ??
-		
-		
-		// TODO : we should delete these two lines code . 
-		// This code maybe should update, the system should have an storage internal (for automation using in the background )
-		setFileCVPathLoaction(filePath);
-		SendRequestToServer6.setFileLocation(filePath);
-		
-		// Here we save the word file that the user insert inside the personal_data/cv_user.docs
-		copyFile(filePath,"personal_data/user_cv.docx");
-	    SendMail.setUrl(filePath);
-
-	}
-	
 	
 	public static String getFileCVPathLoaction() 
 	{

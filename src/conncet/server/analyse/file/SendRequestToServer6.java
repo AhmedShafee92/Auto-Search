@@ -69,23 +69,5 @@ public class SendRequestToServer6
 	 }
 		
 
-	// Gets and Sets Functions 
-	
-	public static String getFileTotext() 
-	{
-		return fileTotext;
-	}
-	public static void setFileTotext(String fileTotext) 
-	{
-		SendRequestToServer6.fileTotext = fileTotext;
-	}
-	public static String getFileLocation() 
-	{
-		return fileLocation;
-	}
-	public static void setFileLocation(String fileLocation) 
-	{
-		SendRequestToServer6.fileLocation = fileLocation;
-	}	
-	
+
 }
