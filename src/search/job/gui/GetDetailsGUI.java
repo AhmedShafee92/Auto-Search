@@ -238,15 +238,14 @@ public class GetDetailsGUI
 		   
 		   StoreUserDataLocal.analyseUserFile();
 		   String analyseFileForPostions = "";
+		   @SuppressWarnings("unused")
 		   String personalUserData = "";
 		   Object[] options = {"Yes, Save The Data",
 		   "No, Analyse the data again"};
 		   try 
 		   {
-			   // TODO : change  server SendRequestToServer6 with ConnectGoogleAPIServer.analyseUserCVData
-			   // analyseFileForPostions = SendRequestToServer6.analyseData();
-			   analyseFileForPostions = ConnectGoogleAPIServer.analyseUserCVData();
-			   
+			   // Here we got analyse about the user CV from google API . 
+			   analyseFileForPostions = ConnectGoogleAPIServer.analyseUserCVData();   
 		   }
 		   catch (IOException e1) 
 		   {
