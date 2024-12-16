@@ -90,5 +90,7 @@
 	<classpathentry kind="lib" path="C:/JARs-auto-search-app/xmlbeans-5.0.2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/shafe/.m2/repository/org/java-websocket/Java-WebSocket/1.5.2/Java-WebSocket-1.5.2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/shafe/.m2/repository/org/java-websocket/Java-WebSocket/1.5.2/Java-WebSocket-1.5.2-sources.jar"/>
+	<classpathentry kind="lib" path="com.jgoodies.forms_1.9.0.v20240327-0800.jar"/>
+	<classpathentry kind="lib" path="com.jgoodies.common_1.8.1.v20240327-0800.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

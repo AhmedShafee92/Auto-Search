@@ -10,7 +10,7 @@ public class AutomatedJobSearchSecoundScreenGUI {
 	{
 		
 	    showScreen();	
-		 showMessage();
+		showMessage();
 
 	}
 	

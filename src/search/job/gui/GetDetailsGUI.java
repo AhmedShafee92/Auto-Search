@@ -4,37 +4,20 @@ package search.job.gui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-
-import org.apache.http.ParseException;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
-
 import conncet.server.analyse.file.ConnectGoogleAPIServer;
-import conncet.server.analyse.file.SendRequestToServer6;
 import first.option.forsendcv.SendMail;
 import store.user.data.ConvertCVFileJson;
 import store.user.data.StoreUserDataLocal;
 import three.option.forsendcv.SearchIntoLinkedIn;
 import javax.swing.JPasswordField;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
+
 
 public class GetDetailsGUI 
 {
@@ -75,7 +58,7 @@ public class GetDetailsGUI
 			e.printStackTrace();
 		}
 		
-		uploadCV.setBounds(49, 284, 146, 37);
+		uploadCV.setBounds(49, 301, 100, 37);
 		frame.getContentPane().add(uploadCV);
 	    attachButton = new JButton("Attach file");
 		attachButton.addActionListener(new ActionListener() 
@@ -87,13 +70,13 @@ public class GetDetailsGUI
 			}
 		
 		});
-		attachButton.setBounds(172,284,94,37);
+		attachButton.setBounds(172,301,94,37);
 		frame.getContentPane().add(attachButton);
 		
 		//Fields Email and Email_password
 		
-		JLabel insertEmail = new JLabel("Insert your LinkedIn_Email and LinkedIn_Password");
-		insertEmail.setBounds(49,210,199,37);
+		JLabel insertEmail = new JLabel(" LinkedIn_Email");
+		insertEmail.setBounds(203,217,94,30);
 		frame.getContentPane().add(insertEmail);	
 		LinkedInEmail = new JTextField();
 		LinkedInEmail.setBounds(365, 101, 160, 30);
@@ -108,8 +91,8 @@ public class GetDetailsGUI
 		frame.getContentPane().add(LinkedInPassword);
 		
 		
-		JLabel lblNewLabel = new JLabel(" Insert Your Email and Password ");
-		lblNewLabel.setBounds(46, 92, 220, 37);
+		JLabel lblNewLabel = new JLabel(" Password");
+		lblNewLabel.setBounds(205, 154, 114, 37);
 		frame.getContentPane().add(lblNewLabel);	
 		EmailUser = new JTextField();
 		EmailUser.setBounds(365, 219, 160, 28);
@@ -303,15 +286,23 @@ public class GetDetailsGUI
 		{
 			// Here will show the user the summary of the analysing that we created 
 		    JOptionPane.showMessageDialog(null, "Soon Available!");
-
+		    
+		    
+		    
 		}
 
 	});
 	btnNewButton.setBounds(48, 353, 114, 49);
 	frame.getContentPane().add(btnNewButton);
-	frame.setVisible(true);
-
 	
+	JLabel lblLinkedinpassword = new JLabel(" LinkedIn_Password");
+	lblLinkedinpassword.setBounds(203, 257, 94, 34);
+	frame.getContentPane().add(lblLinkedinpassword);
+	
+	JLabel lblNewLabel_1 = new JLabel(" Email ");
+	lblNewLabel_1.setBounds(219, 97, 100, 30);
+	frame.getContentPane().add(lblNewLabel_1);
+	frame.setVisible(true);
 	
  }
 	
@@ -321,7 +312,6 @@ public class GetDetailsGUI
         String filePath = "personal_data/user_cv.docx";
         // Create a File object
         File file = new File(filePath);
-
         // Check if the file exists
         if (file.exists()) {
             return true;
@@ -372,5 +362,4 @@ public class GetDetailsGUI
 	{
 		GetDetailsGUI.PasswordUser = linkedInPasswordField;
 	}
-	
 }

@@ -12,15 +12,12 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Base64;
 import javax.swing.JFrame;
-
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
-
-import conncet.server.analyse.file.SendRequestToServer6;
 import first.option.forsendcv.SendMail;
 
 public class StoreUserDataLocal 
@@ -183,8 +180,6 @@ public class StoreUserDataLocal
 	}
 
 
-
-	
 	// TODO: should choose better name . 
 	// Building file analyse user data . 
 		public static int analyseUserFile()
