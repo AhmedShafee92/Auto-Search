@@ -285,10 +285,9 @@ public class GetDetailsGUI
 		public void actionPerformed(ActionEvent e) 
 		{
 			// Here will show the user the summary of the analysing that we created 
+			// User have the option to see the CV 
 		    JOptionPane.showMessageDialog(null, "Soon Available!");
-		    
-		    
-		    
+		      
 		}
 
 	});

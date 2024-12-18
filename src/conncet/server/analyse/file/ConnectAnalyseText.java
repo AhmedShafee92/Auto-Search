@@ -10,7 +10,7 @@ public class ConnectAnalyseText {
 
         try (Socket socket = new Socket(serverAddress, port);
              
-        	BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
+        	 BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
         	 PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
              BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) 
         {

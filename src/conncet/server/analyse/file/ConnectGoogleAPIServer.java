@@ -15,9 +15,7 @@ public class ConnectGoogleAPIServer
 	//Data Area 
 	private static String fileTotext = "";
 	private static String fileLocation = "personal_data/user_cv.docx";
-	
-
-	
+		
 	//Implementation Method 
 	public static String analyseUserCVData() throws IOException 
 	{
@@ -27,19 +25,22 @@ public class ConnectGoogleAPIServer
 	    String promotToAI = "What this person can work :";
 		convetFileToText(fileLocation); 	    
 		promotToAI += fileTotext;
-	    resultOFAnlyseFile = AnalyseText(promotToAI);
+		resultOFAnlyseFile = AnalyseText(promotToAI);
 	    return resultOFAnlyseFile;
-	    
+	
 	}
 	
 	
 	
-    public static String  AnalyseText(String message) 
+    private static String  AnalyseText(String message) 
     {
-        String serverAddress = "localhost";  // Server address (localhost for local machine)
+    	//TODO : Should send to a specific function inside the server not for localhost just . 
+    	
+        String serverAddress = "127.0.0.1";  // Server address (localhost for local machine)
         int port = 4000;  // Server port
         String response = "";
-        try (Socket socket = new Socket(serverAddress, port)) {
+        try (Socket socket = new Socket(serverAddress, port)) 
+        {
             // Create input and output streams
             BufferedReader serverInput = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
