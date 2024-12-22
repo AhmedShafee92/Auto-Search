@@ -4,13 +4,15 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class TestConnectionServer {
-    public static void main(String[] args) {
+public class TestHttpConnectionServer 
+{
+    public static void main(String[] args) 
+    {
         // Server URL
         String serverUrl = "http://localhost:9000/analyse_text";
 
         // Text to send to the server
-        String textToAnalyze = "Hello from the client side  ";
+        String textToAnalyze = "Hello from the client side, test message  ";
 
         try {
             // Create a JSON request body
