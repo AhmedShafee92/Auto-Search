@@ -18,13 +18,11 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
-import first.option.forsendcv.SendMail;
 
 public class StoreUserDataLocal 
 {
 	//Data Area 
-	private static String fileCVPathLoaction;
-	private static String fileUserDataLocation;
+
 			
 	// 1- create copy CV File and personal_data folder . 
 	// 2 - add CV File to personal_data folder. 
@@ -59,6 +57,12 @@ public class StoreUserDataLocal
 
     private static void createWordFile(String filePath) 
     {    
+        // Check if the word file is exist 
+        File file = new File(filePath);
+    	if (file.exists() && file.isFile())
+    	{
+    		 return ;
+    	}
         // Create an empty Word document
         try (XWPFDocument document = new XWPFDocument();
              FileOutputStream fileOut = new FileOutputStream(filePath)) {
@@ -83,12 +87,8 @@ public class StoreUserDataLocal
 		// Get the selected file path
 		String filePath = fileDialog.getDirectory() + fileDialog.getFile();
 
-		// here we save user file location which uploaded . 
-		setFileCVPathLoaction(filePath);
 		// Here we save the word file that the user insert inside the personal_data/cv_user.docs
 		copyFile(filePath,"personal_data/user_cv.docx");
-		// TODO : we can delete this option , there an class that serve the storage of all data about the user . 
-	    SendMail.setUrl(filePath);
 
 	}
     
@@ -103,7 +103,6 @@ public class StoreUserDataLocal
 	
 	     // Store the encrypted data ץ
 	     String filePath = "PrivacyData/encrypted_personal_data.txt";
-	     setFileUserDataLocation(filePath);
 	     try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
 	         writer.write(encryptedEmail);
 	         writer.newLine();
@@ -115,46 +114,8 @@ public class StoreUserDataLocal
 			 
 	}
 	    
-	 public static void storeUserAnalyseData(String analyseData) 
-	 {
-		 
-		 // Store the encrypted data in a file
-	     String filePath = "personal_data/Personalpostions.txt";
-	     setFileUserDataLocation(filePath);
-	     try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) 
-	     {
-	         writer.write(analyseData);
-	         writer.newLine();
-	     } catch (IOException e) {
-	         e.printStackTrace();
-	     }
-		 			 
-	 }
+
 	      
-		
-	
-	public static String getFileCVPathLoaction() 
-	{
-		return fileCVPathLoaction;
-	}
-	
-	
-	private static void setFileCVPathLoaction(String fileCVPathLoaction) 
-	{
-		StoreUserDataLocal.fileCVPathLoaction = fileCVPathLoaction;
-	}
-	
-	
-	public static String getFileUserDataLocation() {
-		return fileUserDataLocation;
-	}
-	
-	
-	private static void setFileUserDataLocation(String fileUserDataLocation) 
-	{
-		StoreUserDataLocal.fileUserDataLocation = fileUserDataLocation;
-	}
-	
 	private static void copyFile(String source,String desc) 
 	{
 		
@@ -180,28 +141,35 @@ public class StoreUserDataLocal
 	}
 
 
-	// TODO: should choose better name . 
 	// Building file analyse user data . 
-		public static int analyseUserFile()
+		public static int createAnalyseUserFiles()
 		{
-			// Inside the file : 1- excel file -list places  2- excel file -list positions.
-		
+			
+			// Inside the folder : 1- excel file -list places  2- excel file -list positions.
 			String folderName = "analyse_user_data"; 
 	        File folder = new File(folderName);
 	        // Check if the folder exists, if not, create it
-	        if (!folder.exists()) {
+	        if (!folder.exists()) 
+	        {
 	            if (folder.mkdir()) {
 	            } else {
 	                System.out.println("Failed to create the folder: " + folderName);
 	                return 1;
 	            }
-	        } else {
-	            System.out.println("Folder already exists: " + folderName);
 	        }
 			
 	        
 	        String positons_file = folderName + File.separator + "user_positons_list.xlsx";
 	        String places_work_file = folderName + File.separator + "user_places_list.xlsx";
+	        
+	        //Check if the excel files is exist 
+	        File file = new File(positons_file);
+	        // Check if the file exists and is a file
+	        if (file.exists() && file.isFile()) 
+	        {
+	        	return 0;
+	        } 
+	        
 	        
 	        { 
 		        // Create a workbook (HSSFWorkbook for .xls or XSSFWorkbook for .xlsx)

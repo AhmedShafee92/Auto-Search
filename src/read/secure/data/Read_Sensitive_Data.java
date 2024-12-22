@@ -13,7 +13,6 @@ public static String getLocationFile() {
 }
 
 public static void setLocationFile(String locationFile) {
-	Read_Sensitive_Data.locationFile = StoreUserDataLocal.getFileUserDataLocation();
 }
 
 

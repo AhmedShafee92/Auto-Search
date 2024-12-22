@@ -22,7 +22,7 @@ public class Read_PDF_File {
 
 
 	public static void setLocationFile(String locationFile) {
-		Read_PDF_File.locationFile = StoreUserDataLocal.getFileCVPathLoaction();
+
 	}
 	
 	

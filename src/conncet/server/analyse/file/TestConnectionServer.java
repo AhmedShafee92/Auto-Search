@@ -7,10 +7,10 @@ import java.net.URL;
 public class TestConnectionServer {
     public static void main(String[] args) {
         // Server URL
-        String serverUrl = "http://localhost:4000/";
+        String serverUrl = "http://localhost:9000/analyse_text";
 
         // Text to send to the server
-        String textToAnalyze = "what is the capital of UK ";
+        String textToAnalyze = "Hello from the client side  ";
 
         try {
             // Create a JSON request body

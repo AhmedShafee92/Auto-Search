@@ -4,6 +4,8 @@ package search.job.gui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.List;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -213,11 +215,17 @@ public class GetDetailsGUI
 	AnalysePesonalData = new JButton("Analysing Data");
 	AnalysePesonalData.addActionListener(new ActionListener() 
 	{
-		//TODO: put the implementation of the method in private method
 	   public void actionPerformed(ActionEvent e) 
 	   {
-		
-		   StoreUserDataLocal.analyseUserFile();
+		   
+		   // step 1 - show the user the analyse about his file data - completed 
+		   // step 2 - save the positions and the places in the excel files - 
+		   // step 3 - create a JSON file that have all the user data that can using for the failing the web page -
+		   
+		   // create files for storing analysing data 
+		   StoreUserDataLocal.createAnalyseUserFiles();
+		   
+		   // showing the user the analysing data of his CV file . 
 		   String analyseFileForPostions = "";
 		   @SuppressWarnings("unused")
 		   String personalUserData = "";
@@ -236,6 +244,7 @@ public class GetDetailsGUI
 		   {
 			   e1.printStackTrace();
 		   }
+		   // Ask the user if accepted the AI analysing of his CV file 
 			int result = JOptionPane.showOptionDialog(frame,analyseFileForPostions,
 			"A Silly Question",
 			JOptionPane.YES_NO_CANCEL_OPTION,
@@ -251,7 +260,27 @@ public class GetDetailsGUI
 				// 2- function that create list of positions of what the user can work .
 				// 3- Store the results inside the excel files that we created in analyse_user_data .
 				// TODO : delete the old version of storing the data . 
-				StoreUserDataLocal.storeUserAnalyseData(analyseFileForPostions);   	
+				List<String> positionsList = null;
+				List<String> placesList = null;
+				try {
+					 positionsList = ConnectGoogleAPIServer.positionsAnalyseUserCVData();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				try {
+					 placesList = ConnectGoogleAPIServer.placesAnalyseUserCVData();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+				// file the data from the API server inside the local excel files 
+
+			
+
+
+				
 			}
 			
 			// Step 3- add JSON user_cv to personal_data folder 

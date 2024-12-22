@@ -1,10 +1,10 @@
 package conncet.server.analyse.file;
 
-
 import java.io.*;
 import java.net.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
@@ -22,7 +22,7 @@ public class ConnectGoogleAPIServer
 		
 	   //FileLocation = StoreUserDataLocal.getFileCVPathLoaction();
 		String resultOFAnlyseFile = "";
-	    String promotToAI = "What this person can work :";
+	    String promotToAI = "What this person can work and where, depending of the location of the user :";
 		convetFileToText(fileLocation); 	    
 		promotToAI += fileTotext;
 		resultOFAnlyseFile = AnalyseText(promotToAI);
@@ -32,11 +32,10 @@ public class ConnectGoogleAPIServer
 	
 	
 	
-    private static String  AnalyseText(String message) 
+    private static String AnalyseText(String message) 
     {
-    	//TODO : Should send to a specific function inside the server not for localhost just . 
-    	
-        String serverAddress = "127.0.0.1";  // Server address (localhost for local machine)
+    	 
+        String serverAddress = "127.0.0.1";  
         int port = 4000;  // Server port
         String response = "";
         try (Socket socket = new Socket(serverAddress, port)) 
@@ -80,6 +79,71 @@ public class ConnectGoogleAPIServer
 	
 	 }
     
+	
+	
+	// function that return from the google API server list of positions that the user can work 
+	// we send to http server localhost:5000/positions_list 
+	
+	public static List<String> positionsAnalyseUserCVData() throws IOException 
+	{
+		
+	   //FileLocation = StoreUserDataLocal.getFileCVPathLoaction();
+		List<String> resultOFAnlyseFile ;
+	    String promotToAI = "give list of positions the user can work :";
+		convetFileToText(fileLocation); 	    
+		promotToAI += fileTotext;
+		resultOFAnlyseFile = positionsList(promotToAI);
+		return resultOFAnlyseFile;
+	}
+
+
+
+	private static List<String> positionsList(String promotToAI) 
+	{
+		// TODO Auto-generated method stub
+	       String serverAddress = "127.0.0.1";  
+	        int port = 4000;  // Server port
+	        List<String> response = null;
+	        
+
+	    
+	        
+	        
+	        
+    
+	        return response;
+			
+	}
+	
+	// function that return from the google API server list of places that the user can work 
+	// we send to http server localhost:5000/places_list 
+
+	
+	public static List<String> placesAnalyseUserCVData() throws IOException 
+	{
+		
+	   //FileLocation = StoreUserDataLocal.getFileCVPathLoaction();
+		List<String> resultOFAnlyseFile ;
+	    String promotToAI = "according to the user data give me list of positions the user can work ";
+		convetFileToText(fileLocation); 	    
+		promotToAI += fileTotext;
+		resultOFAnlyseFile = positionsList(promotToAI);
+		return resultOFAnlyseFile;
+	}
+
+
+
+	private static List<String> placesList(String promotToAI) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	
+	
+
+	
+	
     
       
     
