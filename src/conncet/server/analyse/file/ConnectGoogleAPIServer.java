@@ -82,37 +82,30 @@ public class ConnectGoogleAPIServer
 	
 	
 	// function that return from the google API server list of positions that the user can work 
-	// we send to http server localhost:5000/positions_list 
+	// we send to HTTP server localhost:5000/positions_list 
 	
-	public static List<String> positionsAnalyseUserCVData() throws IOException 
+	public static StringBuilder positionsAnalyseUserCVData() throws IOException 
 	{
 		
-	   //FileLocation = StoreUserDataLocal.getFileCVPathLoaction();
-		List<String> resultOFAnlyseFile ;
-	    String promotToAI = "give list of positions the user can work :";
-		convetFileToText(fileLocation); 	    
-		promotToAI += fileTotext;
-		resultOFAnlyseFile = positionsList(promotToAI);
+		StringBuilder resultOFAnlyseFile = null;
+	    String promotToAI = "give me list of positions the user can work :";
+	    ConnectGoogleAPIServer.convetFileToText(fileLocation); 	    
+	    promotToAI += fileTotext;	
+	    // The analyse 
+	    
+		System.out.println(promotToAI);
+		// resultOFAnlyseFile = ConnectConvertStringToJson.serverConvertStringJsonh(promotToAI);		
 		return resultOFAnlyseFile;
+				
 	}
 
 
 
-	private static List<String> positionsList(String promotToAI) 
+	private static StringBuilder positionsList(String promotToAI) 
 	{
-		// TODO Auto-generated method stub
-	       String serverAddress = "127.0.0.1";  
-	        int port = 4000;  // Server port
-	        List<String> response = null;
-	        
 
-	    
-	        
-	        
-	        
-    
-	        return response;
-			
+	        return ConnectConvertStringToJson.serverConvertStringJsonh(promotToAI);
+	        		
 	}
 	
 	// function that return from the google API server list of places that the user can work 
@@ -127,7 +120,7 @@ public class ConnectGoogleAPIServer
 	    String promotToAI = "according to the user data give me list of positions the user can work ";
 		convetFileToText(fileLocation); 	    
 		promotToAI += fileTotext;
-		resultOFAnlyseFile = positionsList(promotToAI);
+		resultOFAnlyseFile = placesList(promotToAI);
 		return resultOFAnlyseFile;
 	}
 

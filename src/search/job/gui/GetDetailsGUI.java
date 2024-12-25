@@ -4,6 +4,8 @@ package search.job.gui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -215,14 +217,14 @@ public class GetDetailsGUI
 	{
 	   public void actionPerformed(ActionEvent e) 
 	   {
-		   
-		   // step 1 - show the user the analyse about his file data - completed 
-		   // step 2 - save the positions and the places in the excel files - 
-		   // step 3 - create a JSON file that have all the user data that can using for the failing the web page -
-		   
+		      
+		   // Check if the user not upload the CV yet  . 
+		   if(!CheckCVFileExist())
+		   {
+			   return ;
+		   }
 		   // create files for storing analysing data 
 		   StoreUserDataLocal.createAnalyseUserFiles();
-		   
 		   // showing the user the analysing data of his CV file . 
 		   String analyseFileForPostions = "";
 		   @SuppressWarnings("unused")
@@ -231,12 +233,8 @@ public class GetDetailsGUI
 		   "No, Analyse the data again"};
 		   try 
 		   {
-			   // Check if the user upload the CV . 
-			   if(CheckCVFileExist())
-			   {
-				   // Here we got analyse about the user CV from google API . 
-				   analyseFileForPostions = ConnectGoogleAPIServer.analyseUserCVData();   
-			   }
+			   // Here we got analyse about the user CV from google API . 
+			   analyseFileForPostions = ConnectGoogleAPIServer.analyseUserCVData();   
 		   }
 		   catch (IOException e1) 
 		   {
@@ -253,32 +251,29 @@ public class GetDetailsGUI
 			
 			if ( result == JOptionPane.OK_OPTION ) 
 			{
-				
-				// TODO: 1- create function that get from the Google API : where the user can work get list .
-				// 2- function that create list of positions of what the user can work .
-				// 3- Store the results inside the excel files that we created in analyse_user_data .
-				// TODO : delete the old version of storing the data . 
+
+  				// step 1+2 : 
 				List<String> positionsList = null;
 				List<String> placesList = null;
 				try {
-					 positionsList = ConnectGoogleAPIServer.positionsAnalyseUserCVData();
+					StringBuilder pList = ConnectGoogleAPIServer.positionsAnalyseUserCVData();
+					
+					String dem = ",";
+					positionsList = convertToList(pList, dem);
+					
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				try {
 					 placesList = ConnectGoogleAPIServer.placesAnalyseUserCVData();
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-
-				// file the data from the API server inside the local excel files 
-
-			
-
-
 				
+				// step 3 :
+				// file the data from the API server inside the local excel files 
+				
+	
 			}
 			
 			// Step 3- add JSON user_cv to personal_data folder 
@@ -347,6 +342,21 @@ public class GetDetailsGUI
 		
 	}
 	
+	
+	
+    public static List<String> convertToList(StringBuilder sb, String delimiter) {
+        if (sb == null || sb.length() == 0) {
+            return new ArrayList<>(); // Return an empty list if StringBuilder is null or empty
+        }
+        // Convert StringBuilder to String and split by the specified delimiter
+        String content = sb.toString();
+        String[] parts = content.split(delimiter);
+        
+        // Convert the array to a List
+        return Arrays.asList(parts);
+    }
+    
+    
 	//Get and Set method of the Email and Password (LinkedIn and Normal_Email) . 
 	public static JTextField getEmailInput() 
 	{
