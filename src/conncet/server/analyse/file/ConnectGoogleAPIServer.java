@@ -4,6 +4,7 @@ import java.io.*;
 import java.net.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
@@ -80,64 +81,74 @@ public class ConnectGoogleAPIServer
 	 }
     
 	
-	
 	// function that return from the google API server list of positions that the user can work 
 	// we send to HTTP server localhost:5000/positions_list 
 	
-	public static StringBuilder positionsAnalyseUserCVData() throws IOException 
+	public static List<String> positionsAnalyseUserCVData() throws IOException 
 	{
-		
-		StringBuilder resultOFAnlyseFile = null;
-	    String promotToAI = "give me list of positions the user can work :";
-	    ConnectGoogleAPIServer.convetFileToText(fileLocation); 	    
+			
+	    String promotToAI = "give me list of positions the user can work (write excatly the list without any answer ):";
+	    List <String> pos = new ArrayList<>();	
+		   
+	    convetFileToText(fileLocation); 	    
 	    promotToAI += fileTotext;	
-	    // The analyse 
-	    
-		System.out.println(promotToAI);
-		// resultOFAnlyseFile = ConnectConvertStringToJson.serverConvertStringJsonh(promotToAI);		
-		return resultOFAnlyseFile;
-				
+	    String promot = sanitizeString(promotToAI);
+	    StringBuilder positionsList = ConnectConvertStringToJson.positionsListForUser(promot);   
+	    pos = convertToList(positionsList); 
+	   return pos;
+		
 	}
 
-
-
-	private static StringBuilder positionsList(String promotToAI) 
-	{
-
-	        return ConnectConvertStringToJson.serverConvertStringJsonh(promotToAI);
-	        		
-	}
-	
 	// function that return from the google API server list of places that the user can work 
 	// we send to http server localhost:5000/places_list 
 
-	
 	public static List<String> placesAnalyseUserCVData() throws IOException 
 	{
 		
-	   //FileLocation = StoreUserDataLocal.getFileCVPathLoaction();
-		List<String> resultOFAnlyseFile ;
 	    String promotToAI = "according to the user data give me list of positions the user can work ";
-		convetFileToText(fileLocation); 	    
-		promotToAI += fileTotext;
-		resultOFAnlyseFile = placesList(promotToAI);
-		return resultOFAnlyseFile;
+	    List <String> pos = new ArrayList<>();	
+		   
+	    convetFileToText(fileLocation); 	    
+	    promotToAI += fileTotext;	
+	    String promot = sanitizeString(promotToAI);
+	    StringBuilder positionsList = ConnectConvertStringToJson.positionsListForUser(promot);   
+	    pos = convertToList(positionsList); 
+	   return pos;		
 	}
 
 
 
-	private static List<String> placesList(String promotToAI) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
+	  public static String sanitizeString(String inputString) {
+	        if (inputString == null) {
+	            return null;
+	        }
+	        // Remove invalid control characters
+	        return inputString.replaceAll("[\\u0000-\\u001F\\u007F-\\u009F]", "");
+	    }
 	
-	
-	
+		
+	  
+	    public static List<String> convertToList(StringBuilder sb) 
+	    {
+	        if (sb == null || sb.length() == 0) {
+	            return new ArrayList<>(); // Return an empty list if the StringBuilder is null or empty
+	        }
 
+	        // Split the StringBuilder content into an array of strings based on delimiters
+	        String[] parts = sb.toString().split("[,\n\"]-");
+
+	        // Create a list and add the non-empty trimmed elements
+	        List<String> result = new ArrayList<>();
+	        for (String part : parts) {
+	            if (!part.trim().isEmpty()) { // Skip empty strings
+	                result.add(part.trim());
+	            }
+	        }
+
+	        return result;
+	    }
 	
-	
-    
       
     
 }

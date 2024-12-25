@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import conncet.server.analyse.file.ConnectGoogleAPIServer;
+import conncet.server.analyse.file.ExcelWriter;
 import first.option.forsendcv.SendMail;
 import store.user.data.ConvertCVFileJson;
 import store.user.data.StoreUserDataLocal;
@@ -255,11 +256,10 @@ public class GetDetailsGUI
   				// step 1+2 : 
 				List<String> positionsList = null;
 				List<String> placesList = null;
-				try {
-					StringBuilder pList = ConnectGoogleAPIServer.positionsAnalyseUserCVData();
-					
-					String dem = ",";
-					positionsList = convertToList(pList, dem);
+				try
+				{
+				
+					positionsList = ConnectGoogleAPIServer.positionsAnalyseUserCVData();
 					
 				} catch (IOException e1) {
 					e1.printStackTrace();
@@ -273,7 +273,11 @@ public class GetDetailsGUI
 				// step 3 :
 				// file the data from the API server inside the local excel files 
 				
-	
+				//TDOD :should fix the issue of the converting the stringBuilder to the List <String>
+				
+				ExcelWriter.writeListToExcel(positionsList, "analyse_user_data/user_positons_list.xlsx");
+				ExcelWriter.writeListToExcel(placesList, "analyse_user_data/user_places_list.xlsx");
+
 			}
 			
 			// Step 3- add JSON user_cv to personal_data folder 
@@ -289,6 +293,7 @@ public class GetDetailsGUI
 	        {
 	        	//Convert the user CV word file to JSON file format .
 	        	//TODO : here we should fix the process still not working . 
+	        	//TODO : here should create the class again . 
 				ConvertCVFileJson.serverConvertWordToJson(file_path);
 	        }
 	        else 
@@ -344,7 +349,8 @@ public class GetDetailsGUI
 	
 	
 	
-    public static List<String> convertToList(StringBuilder sb, String delimiter) {
+    public static List<String> convertToList(StringBuilder sb, String delimiter) 
+    {
         if (sb == null || sb.length() == 0) {
             return new ArrayList<>(); // Return an empty list if StringBuilder is null or empty
         }

@@ -12,6 +12,8 @@ import java.util.List;
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
+
+// TODO : the name of the class should be change to name that the class is serving 
 public class ConnectConvertStringToJson 
 {
 	private static String fileTotext = "";
@@ -24,68 +26,64 @@ public class ConnectConvertStringToJson
 	    convetFileToText(fileLocation); 	    
 	    promotToAI += fileTotext;	
 	    String testresult = sanitizeString(promotToAI);
-	    StringBuilder res = serverConvertStringJsonh(testresult);
+	    StringBuilder positionsList = positionsListForUser(testresult);
+	     
+	   List <String> pos = new ArrayList<>();
+	   pos = convertToList( positionsList);
 	    
-	    
-	    System.out.println("before convert to list string : "+ res);
-	    
-	    System.out.println("\n after converting ");
-		List<String> positionsList = convertToList(res);
-	    
-	   for(String str : positionsList) 
+	    for(String str : pos) 
 	   {
-            System.out.println(str);
-       }
-		
+	        System.out.println(str);
+	   }
+	
 	}
 		
 
-    public static StringBuilder  serverConvertStringJsonh(String inputString) 
+    public static StringBuilder  positionsListForUser(String inputString) 
     {
         String serverUrl = "http://localhost:4000/process";
         try {
-            // Step 1: Create a URL object and open a connection
-            URL url = new URL(serverUrl);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+	            // Step 1: Create a URL object and open a connection
+	            URL url = new URL(serverUrl);
+	            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+	
+	            // Step 2: Configure the connection for POST
+	            connection.setRequestMethod("POST");
+	            connection.setRequestProperty("Content-Type", "application/json");
+	            connection.setDoOutput(true);
+	
+	            // Step 3: Create the JSON request body
+	            String jsonInputString = "{ \"inputString\": \"" + inputString + "\" }";
+	
+	            // Step 4: Send the JSON data
+	            try (OutputStream os = connection.getOutputStream()) 
+	            {
+	                byte[] input = jsonInputString.getBytes("utf-8");
+	                os.write(input, 0, input.length);
+	                System.out.println("success");
+	            }
+	
+	            // Step 5: Read the JSON response
+	            int status = connection.getResponseCode();
+	            if (status == HttpURLConnection.HTTP_OK) 
+	            {
+	               
+	            	try (BufferedReader br = new BufferedReader(
+	                        new InputStreamReader(connection.getInputStream(), "utf-8"))) {
+	                    StringBuilder response = new StringBuilder();
+	                    String responseLine;
+	                    while ((responseLine = br.readLine()) != null) {
+	                        response.append(responseLine.trim());
+	                    }
+	
+	                    return response;  
+	                }
 
-            // Step 2: Configure the connection for POST
-            connection.setRequestMethod("POST");
-            connection.setRequestProperty("Content-Type", "application/json");
-            connection.setDoOutput(true);
-
-            // Step 3: Create the JSON request body
-            String jsonInputString = "{ \"inputString\": \"" + inputString + "\" }";
-
-            // Step 4: Send the JSON data
-            try (OutputStream os = connection.getOutputStream()) 
-            {
-                byte[] input = jsonInputString.getBytes("utf-8");
-                os.write(input, 0, input.length);
-                System.out.println("success");
-            }
-
-            // Step 5: Read the JSON response
-            int status = connection.getResponseCode();
-            if (status == HttpURLConnection.HTTP_OK) 
-            {
-                try (BufferedReader br = new BufferedReader(
-                        new InputStreamReader(connection.getInputStream(), "utf-8"))) {
-                    StringBuilder response = new StringBuilder();
-                    String responseLine;
-                    while ((responseLine = br.readLine()) != null) {
-                        response.append(responseLine.trim());
-                    }
-
-                    /* 
-                    // Step 6: Save the JSON response to a local file
-                    saveJsonToFile(response.toString(), "personal_data/response.json");
-                    System.out.println("Response saved to response.json");
-                	*/
-                    return response;
-                }
-            } else {
-                System.out.println("Server responded with status code: " + status);
-            }
+	                       
+	            } else 
+	            	{
+	            		System.out.println("Server responded with status code: " + status);
+	            	}
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -154,6 +152,19 @@ public class ConnectConvertStringToJson
 	        return result;
 	    }
 	   
+	    public static List<String> convertToList(StringBuilder sb, String delimiter) {
+	        if (sb == null || sb.length() == 0) {
+	            return new ArrayList<>(); // Return an empty list if StringBuilder is null or empty
+	        }
+	        // Convert StringBuilder to String and split by the specified delimiter
+	        String content = sb.toString();
+	        String[] parts = content.split(delimiter);
+	        
+	        // Convert the array to a List
+	        return Arrays.asList(parts);
+	    }
+
+	    
 
 }
 
