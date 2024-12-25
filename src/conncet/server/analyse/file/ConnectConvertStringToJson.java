@@ -20,11 +20,16 @@ public class ConnectConvertStringToJson
 	public static void main(String[] args) throws IOException 
 	{
 	    String promotToAI = "give me list of positions the user can work (write excatly the list without any answer ):";
+	   
 	    convetFileToText(fileLocation); 	    
 	    promotToAI += fileTotext;	
 	    String testresult = sanitizeString(promotToAI);
 	    StringBuilder res = serverConvertStringJsonh(testresult);
 	    
+	    
+	    System.out.println("before convert to list string : "+ res);
+	    
+	    System.out.println("\n after converting ");
 		List<String> positionsList = convertToList(res);
 	    
 	   for(String str : positionsList) 
@@ -128,6 +133,7 @@ public class ConnectConvertStringToJson
 	    }
 	
 		
+	  
 	    public static List<String> convertToList(StringBuilder sb) 
 	    {
 	        if (sb == null || sb.length() == 0) {
@@ -135,7 +141,7 @@ public class ConnectConvertStringToJson
 	        }
 
 	        // Split the StringBuilder content into an array of strings based on delimiters
-	        String[] parts = sb.toString().split("[,\n\"]");
+	        String[] parts = sb.toString().split("[,\n\"]-");
 
 	        // Create a list and add the non-empty trimmed elements
 	        List<String> result = new ArrayList<>();
