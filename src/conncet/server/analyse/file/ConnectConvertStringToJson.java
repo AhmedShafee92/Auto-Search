@@ -26,7 +26,7 @@ public class ConnectConvertStringToJson
 	    convetFileToText(fileLocation); 	    
 	    promotToAI += fileTotext;	
 	    String positionsList = sanitizeString(promotToAI);
-	    StringBuilder sb = new StringBuilder(positionsListForUser(positionsList));
+	    StringBuilder sb = positionsListForUser(positionsList);
 
 	    System.out.println("before the spilte of the stringBuilder :");
 	    System.out.println(sb);
@@ -81,10 +81,13 @@ public class ConnectConvertStringToJson
     public static StringBuilder  positionsListForUser(String inputString) 
     {
         String serverUrl = "http://localhost:4000/process";
+        StringBuilder response = new StringBuilder();
+
         try {
 	            // Step 1: Create a URL object and open a connection
 	            URL url = new URL(serverUrl);
 	            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
 	
 	            // Step 2: Configure the connection for POST
 	            connection.setRequestMethod("POST");
@@ -108,26 +111,27 @@ public class ConnectConvertStringToJson
 	            {
 	               
 	            	try (BufferedReader br = new BufferedReader(
-	                        new InputStreamReader(connection.getInputStream(), "utf-8"))) {
-	                    StringBuilder response = new StringBuilder();
+	                        new InputStreamReader(connection.getInputStream(), "utf-8"))) 
+	            	{
 	                    String responseLine;
-	                    while ((responseLine = br.readLine()) != null) {
+	                    while ((responseLine = br.readLine()) != null) 
+	                    {
 	                        response.append(responseLine.trim());
 	                    }
 	
-	                    return response;  
-	                }
-
+	                }	
 	                       
-	            } else 
-	            	{
-	            		System.out.println("Server responded with status code: " + status);
-	            	}
+	            } 
+	            else 
+            	{
+            		System.out.println("Server responded with status code: " + status);
+            	}
 
-        } catch (IOException e) {
+        } catch (IOException e) 
+        {
             e.printStackTrace();
         }
-        return null; 
+        return response; 
     }
 
     // Method to save JSON string to a local file

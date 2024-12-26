@@ -90,8 +90,8 @@ public class ConnectGoogleAPIServer
 	    String promotToAI = "give me list of positions the user can work (write excatly the list without any answer ):";
 	    convetFileToText(fileLocation); 	    
 	    promotToAI += fileTotext;	
-	    String positionsList = sanitizeString(promotToAI);
-	    StringBuilder sb = new StringBuilder(ConnectConvertStringToJson.positionsListForUser(positionsList));
+	    String promotAfterFilter = sanitizeString(promotToAI);
+	    StringBuilder sb = ConnectConvertStringToJson.positionsListForUser(promotAfterFilter);
 
 	    System.out.println("before the spilte of the stringBuilder :");
 	    System.out.println(sb);
