@@ -21,7 +21,6 @@ import three.option.forsendcv.SearchIntoLinkedIn;
 import javax.swing.JPasswordField;
 import java.io.File;
 
-
 public class GetDetailsGUI 
 {
 	// Data Fields 
@@ -264,17 +263,15 @@ public class GetDetailsGUI
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
-				try {
+				try 
+				{
 					 placesList = ConnectGoogleAPIServer.placesAnalyseUserCVData();
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
 				
 				// step 3 :
-				// file the data from the API server inside the local excel files 
-				
-				//TDOD :should fix the issue of the converting the stringBuilder to the List <String>
-				
+				// file the data from the API server inside the local excel files 				
 				ExcelWriter.writeListToExcel(positionsList, "analyse_user_data/user_positons_list.xlsx");
 				ExcelWriter.writeListToExcel(placesList, "analyse_user_data/user_places_list.xlsx");
 

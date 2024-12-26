@@ -31,17 +31,12 @@ public class ConnectConvertStringToJson
 	    System.out.println("before the spilte of the stringBuilder :");
 	    System.out.println(sb);
 	    
+	    //TODO: Should clean the "- in the first string and the " in the last string 
 	    
 	    // Replace the literal "\n" with actual newlines
         String content = sb.toString().replace("\\n", "\n");
-	
-        
-        // TODO: should to find why the " and - dose't erase from the first and the last string in the list 
-        /*
-        content = content.replace("“", "\"").replace("”", "\"")
-                .replace("‘", "'").replace("’", "'");
-	    */
-   
+
+    
        // Split by newline (\n) to get a list of strings
         List<String> list = new ArrayList<>(Arrays.asList(content.toString().split("\n")));
 
@@ -50,31 +45,14 @@ public class ConnectConvertStringToJson
         for (String line : list) {
             cleanedList.add(line.replaceFirst("^-\\s*", "").trim());
         }
-
-      
-        
-        // Clean the first string
-        if (!cleanedList.isEmpty()) {
-            String first = cleanedList.get(0);
-            first = first.replaceFirst("^-\\s*", "").trim(); // Remove "- " prefix
-            cleanedList.set(0, first); // Update the list with the cleaned first string
-        }
-
-        // Clean the last string
-        if (cleanedList.size() > 1) {
-            String last = cleanedList.get(cleanedList.size() - 1);
-            last = last.replaceFirst("^-\\s*", "").trim(); // Remove "- " prefix
-            cleanedList.set(cleanedList.size() - 1, last); // Update the list with the cleaned last string
-        }
-        
         
         // Print each item in the cleaned list
         System.out.println("After cleaning the list of strings:");
-        for (String item : cleanedList) {
+        for (String item : cleanedList) 
+        {
             System.out.println(item);
         }
 	    
-
 	}
 		
 
@@ -125,11 +103,13 @@ public class ConnectConvertStringToJson
 	            else 
             	{
             		System.out.println("Server responded with status code: " + status);
+            		return null;
             	}
 
         } catch (IOException e) 
         {
             e.printStackTrace();
+            return null ; 
         }
         return response; 
     }
