@@ -21,21 +21,60 @@ public class ConnectConvertStringToJson
 	
 	public static void main(String[] args) throws IOException 
 	{
+		
 	    String promotToAI = "give me list of positions the user can work (write excatly the list without any answer ):";
-	   
 	    convetFileToText(fileLocation); 	    
 	    promotToAI += fileTotext;	
-	    String testresult = sanitizeString(promotToAI);
-	    StringBuilder positionsList = positionsListForUser(testresult);
-	     
-	   List <String> pos = new ArrayList<>();
-	   pos = convertToList( positionsList);
+	    String positionsList = sanitizeString(promotToAI);
+	    StringBuilder sb = new StringBuilder(positionsListForUser(positionsList));
+
+	    System.out.println("before the spilte of the stringBuilder :");
+	    System.out.println(sb);
 	    
-	    for(String str : pos) 
-	   {
-	        System.out.println(str);
-	   }
+	    
+	    // Replace the literal "\n" with actual newlines
+        String content = sb.toString().replace("\\n", "\n");
 	
+        
+        // TODO: should to find why the " and - dose't erase from the first and the last string in the list 
+        /*
+        content = content.replace("“", "\"").replace("”", "\"")
+                .replace("‘", "'").replace("’", "'");
+	    */
+   
+       // Split by newline (\n) to get a list of strings
+        List<String> list = new ArrayList<>(Arrays.asList(content.toString().split("\n")));
+
+        // Clean up the list by removing the leading "- " and trimming
+        List<String> cleanedList = new ArrayList<>();
+        for (String line : list) {
+            cleanedList.add(line.replaceFirst("^-\\s*", "").trim());
+        }
+
+      
+        
+        // Clean the first string
+        if (!cleanedList.isEmpty()) {
+            String first = cleanedList.get(0);
+            first = first.replaceFirst("^-\\s*", "").trim(); // Remove "- " prefix
+            cleanedList.set(0, first); // Update the list with the cleaned first string
+        }
+
+        // Clean the last string
+        if (cleanedList.size() > 1) {
+            String last = cleanedList.get(cleanedList.size() - 1);
+            last = last.replaceFirst("^-\\s*", "").trim(); // Remove "- " prefix
+            cleanedList.set(cleanedList.size() - 1, last); // Update the list with the cleaned last string
+        }
+        
+        
+        // Print each item in the cleaned list
+        System.out.println("After cleaning the list of strings:");
+        for (String item : cleanedList) {
+            System.out.println(item);
+        }
+	    
+
 	}
 		
 
