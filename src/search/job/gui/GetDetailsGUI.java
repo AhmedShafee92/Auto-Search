@@ -286,12 +286,10 @@ public class GetDetailsGUI
 	        File file = new File(folderName, fileName);
 
 	        // Check if the file exists
-	        if (file.exists() && file.isFile()) 
+	        if (file.exists() && file.isFile() && result == JOptionPane.OK_OPTION ) 
 	        {
-	        	//Convert the user CV word file to JSON file format .
-	        	//TODO : here we should fix the process still not working . 
-	        	//TODO : here should create the class again . 
-				ConvertCVFileJson.serverConvertWordToJson(file_path);
+	        	//TODO : here should create the process again .
+				// ConvertCVFileJson.serverConvertWordToJson(file_path);
 	        }
 	        else 
 	        {

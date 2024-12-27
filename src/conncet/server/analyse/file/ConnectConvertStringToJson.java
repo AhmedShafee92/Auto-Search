@@ -153,41 +153,6 @@ public class ConnectConvertStringToJson
 	        return inputString.replaceAll("[\\u0000-\\u001F\\u007F-\\u009F]", "");
 	    }
 	
-		
-	  
-	    public static List<String> convertToList(StringBuilder sb) 
-	    {
-	        if (sb == null || sb.length() == 0) {
-	            return new ArrayList<>(); // Return an empty list if the StringBuilder is null or empty
-	        }
-
-	        // Split the StringBuilder content into an array of strings based on delimiters
-	        String[] parts = sb.toString().split("[,\n\"]-");
-
-	        // Create a list and add the non-empty trimmed elements
-	        List<String> result = new ArrayList<>();
-	        for (String part : parts) {
-	            if (!part.trim().isEmpty()) { // Skip empty strings
-	                result.add(part.trim());
-	            }
-	        }
-
-	        return result;
-	    }
-	   
-	    public static List<String> convertToList(StringBuilder sb, String delimiter) {
-	        if (sb == null || sb.length() == 0) {
-	            return new ArrayList<>(); // Return an empty list if StringBuilder is null or empty
-	        }
-	        // Convert StringBuilder to String and split by the specified delimiter
-	        String content = sb.toString();
-	        String[] parts = content.split(delimiter);
-	        
-	        // Convert the array to a List
-	        return Arrays.asList(parts);
-	    }
-
-	    
 
 }
 
