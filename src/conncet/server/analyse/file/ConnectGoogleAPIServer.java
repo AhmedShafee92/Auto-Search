@@ -37,7 +37,7 @@ public class ConnectGoogleAPIServer
     {
     	 
         String serverAddress = "127.0.0.1";  
-        int port = 4000;  // Server port
+        int port = 5000;  // Server port
         String response = "";
         try (Socket socket = new Socket(serverAddress, port)) 
         {

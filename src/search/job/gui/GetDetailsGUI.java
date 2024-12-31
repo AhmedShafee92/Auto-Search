@@ -216,13 +216,15 @@ public class GetDetailsGUI
 	AnalysePesonalData.addActionListener(new ActionListener() 
 	{
 	   public void actionPerformed(ActionEvent e) 
-	   {
+	   { 
 		      
 		   // Check if the user not upload the CV yet  . 
+		   
 		   if(!CheckCVFileExist())
 		   {
 			   return ;
 		   }
+		   
 		   // create files for storing analysing data 
 		   StoreUserDataLocal.createAnalyseUserFiles();
 		   // showing the user the analysing data of his CV file . 
@@ -289,7 +291,8 @@ public class GetDetailsGUI
 	        if (file.exists() && file.isFile() && result == JOptionPane.OK_OPTION ) 
 	        {
 	        	//TODO : here should create the process again .
-				// ConvertCVFileJson.serverConvertWordToJson(file_path);
+				// ConnectConvertStringToJson.serverConvertWordToJson(file_path);
+	        	
 	        }
 	        else 
 	        {
