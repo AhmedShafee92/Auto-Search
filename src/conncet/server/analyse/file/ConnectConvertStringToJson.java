@@ -12,27 +12,56 @@ import java.util.List;
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
+
 
 // TODO : the name of the class should be change to name that the class is serving 
 public class ConnectConvertStringToJson 
 {
 	private static String fileTotext = "";
 	private static String fileLocation = "personal_data/user_cv.docx";
+	private static String jsonFileLocation = "personal_data/user_analyse_data.json";
 	
 	public static void main(String[] args) throws IOException 
 	{
 		
-	    String promotToAI = "give me list of positions the user can work (write excatly the list without any answer ):";
 	    convetFileToText(fileLocation); 	    
-	    promotToAI += fileTotext;	
-	    String positionsList = sanitizeString(promotToAI);
-	    StringBuilder sb = positionsListForUser(positionsList);
+	    String fileString = sanitizeString(fileTotext);
+	    StringBuilder sb = serverConvertWordToJson(fileString);
 
-	    System.out.println("before the spilte of the stringBuilder :");
+	    System.out.println("The string json file format : ");
 	    System.out.println(sb);
 	    
-	    //TODO: Should clean the "- in the first string and the " in the last string 
-	    
+	    // here we need to write the stringjson to json and then to insert the json into json file   
+	    String jsonString = sb.toString();
+
+        // Parse the JSON string to a JsonObject using Gson
+        JsonObject jsonObject = JsonParser.parseString(jsonString).getAsJsonObject();
+
+        if (isValidJson(jsonString)) 
+        {
+            System.out.println("The string is a valid JSON.");
+            // write the string to JSON file 
+            try {    
+	            	BufferedWriter writer = new BufferedWriter(new FileWriter(jsonFileLocation));
+	            	writer.write(jsonString);
+	            	writer.close();
+            } catch (IOException e) 
+            {
+                e.printStackTrace();	
+            }
+               
+        } else 
+        {
+            System.out.println("The string is NOT a valid JSON.");
+    	}
+		    
+        
+        
+        
+	/*
 	    // Replace the literal "\n" with actual newlines
         String content = sb.toString().replace("\\n", "\n");
 
@@ -52,6 +81,7 @@ public class ConnectConvertStringToJson
         {
             System.out.println(item);
         }
+     */   
 	    
 	}
 		
@@ -124,11 +154,10 @@ public class ConnectConvertStringToJson
         
     }
 
-    @SuppressWarnings("unused")
-	private StringBuilder serverConvertWordToJson(String inputString) 
+	public static StringBuilder serverConvertWordToJson(String inputString) 
     {
 
-    	  String serverUrl = "http://localhost:6000/FileCVToJson";
+    	  String serverUrl = "http://localhost:4000/FileCVToJson";
           StringBuilder response = new StringBuilder();
 
           try {
@@ -215,7 +244,17 @@ public class ConnectConvertStringToJson
 	        // Remove invalid control characters
 	        return inputString.replaceAll("[\\u0000-\\u001F\\u007F-\\u009F]", "");
 	    }
+	  
+	  public static boolean isValidJson(String json) {
+	        try {
+	            // Try to parse the string as JSON
+	            JsonParser.parseString(json);
+	            return true; // If parsing succeeds, it's valid JSON
+	        } catch (JsonSyntaxException e) {
+	            return false; // If parsing fails, it's invalid JSON
+	        }
+	    }
+	  
 	
-
 }
 
