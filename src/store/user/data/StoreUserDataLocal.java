@@ -226,6 +226,44 @@ public class StoreUserDataLocal
 	        
 			return 0; 	
 		}
+		
+		// Building file analyse user data . 
+		public static int createSensitiveUserFiles()
+		{
+			
+	        String folderName = "PrivacyData"; // Folder inside the program folder
+	        String fileName = "encrypted_personal_data.txt"; // File to check
+
+	        // Create a File object for the folder
+	        File folder = new File(folderName);
+
+	        // Check if the folder exists, if not, create it
+	        if (!folder.exists()) {
+	            if (folder.mkdir()) {
+	            } else {
+	                System.out.println("Failed to create the folder: " + folderName);
+	                return -1;
+	            }
+	        } else {
+	            System.out.println("Folder already exists: " + folderName);
+	        }
+
+	        // Create a File object for the file inside the folder
+	        File file = new File(folder, fileName);
+	        try {
+		            // Check if the file exists, if not, create it
+		            if (file.createNewFile()) {
+		            } else {
+		                System.out.println("File already exists: " + file.getPath());
+		            }
+	            } catch (IOException e1) {
+	            System.out.println("An error occurred while creating the file.");
+	            e1.printStackTrace();
+	        }
+			
+			
+			return 0;
+		}
 	
 	
 

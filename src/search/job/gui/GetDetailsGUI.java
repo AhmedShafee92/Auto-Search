@@ -116,45 +116,13 @@ public class GetDetailsGUI
 		    public void actionPerformed(ActionEvent e) 
 		    {		
 		    	
-		    	// TODO: should to change the design of the code to put the storage methods inside storage classes   
 		    		    	
-		    	// 1- save the privacy data of the user : (Email + password-Email, Email + password: LinkedIn (if exist) ). 
-		    	// 1.1- create privacy folder + create privacy file 
-		    	// insert the encrypted data to the file . 
+		    	// 1- create privacy folder + create privacy file 
+		    	// 1.1- save the privacy data of the user : (Email + password-Email, Email + password: LinkedIn (if exist)). 
+		    	// 2- insert the encrypted data to the file . 
 		    	
-		        // Specify folder and file using relative paths
-		        String folderName = "PrivacyData"; // Folder inside the program folder
-		        String fileName = "encrypted_personal_data.txt"; // File to check
-
-		        // Create a File object for the folder
-		        File folder = new File(folderName);
-
-		        // Check if the folder exists, if not, create it
-		        if (!folder.exists()) {
-		            if (folder.mkdir()) {
-		            } else {
-		                System.out.println("Failed to create the folder: " + folderName);
-		                return;
-		            }
-		        } else {
-		            System.out.println("Folder already exists: " + folderName);
-		        }
-
-		        // Create a File object for the file inside the folder
-		        File file = new File(folder, fileName);
-
-		        try {
-		            // Check if the file exists, if not, create it
-		            if (file.createNewFile()) {
-		            } else {
-		                System.out.println("File already exists: " + file.getPath());
-		            }
-		        } catch (IOException e1) {
-		            System.out.println("An error occurred while creating the file.");
-		            e1.printStackTrace();
-		        }
-		        
-		        		    	 	
+		    	StoreUserDataLocal.createSensitiveUserFiles();
+		    	 	
 		    	String emailString = null;
 		    	String password = null;
 		    	char[] passwordChars = null;
@@ -184,20 +152,16 @@ public class GetDetailsGUI
 				}
 				else
 				{	
-						
-					/* 1- Collect data where the person can work */
-					/* 2- create a local data base for the companies that fit his skills and jobs  */
-					/* 3- start send data to these companies */
 					
-					String emailLinkedinString=LinkedInEmail.getText();
+					String emailLinkedinString = LinkedInEmail.getText();
 					char[] passwordCharLinkedin = LinkedInPassword.getPassword();
 					String passwordLinkedin = new String(passwordCharLinkedin);
 
-					// Store sensitive data about User email.						
+					// Store sensitive data about User email +linkedIn						
 					StoreUserDataLocal.storeEncrptyData(emailString, password);							
-					// Store sensitive data about User linkedIn.						
 					StoreUserDataLocal.storeEncrptyData(emailLinkedinString, passwordLinkedin);
 				
+					/* 1- start send data to these companies */
 					SendMail.setFrom(emailString);
 					SendMail.setEmailPassword(password);
 					
@@ -295,10 +259,11 @@ public class GetDetailsGUI
 				 try 
 				 {
 					ConnectConvertStringToJson.serverConvertWordToJson();
-				  } catch (IOException e1) {
+				  } catch (IOException e1) 
+				  {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				}
+				  }
 	        	
 	        }
 	        else 
