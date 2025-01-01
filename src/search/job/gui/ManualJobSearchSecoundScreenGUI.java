@@ -1,6 +1,8 @@
 package search.job.gui;
 import javax.swing.JFrame;
 import first.option.forsendcv.FirstSearchOpation;
+import first.option.forsendcv.SendMail;
+import three.option.forsendcv.SearchIntoLinkedIn;
 import three.option.forsendcv.ThreeSearchOpation;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -26,6 +28,7 @@ public class ManualJobSearchSecoundScreenGUI
 		FirstSearchOpation searchOpation=new FirstSearchOpation();	
 		     searchOpation.search();
 		     frame.setVisible(false);
+		     
 			}   
 			
 		});

@@ -59,7 +59,9 @@ public class AutomationJobSearchGUI
 				
 				frame.setVisible(false);
 				showMessage();
-				//AutomatedJobSearchSecoundScreen.showScreen();
+				// AutomatedJobSearchSecoundScreen.showScreen();
+				// Here we should continue to make the automation search .
+				// Will search using the 3 option but without user action . 
 				
 			}
 		});
@@ -70,11 +72,13 @@ public class AutomationJobSearchGUI
 		/// Manual search  button action 
 		JButton manualSearchButton = new JButton("Manual Search Jobs");
 		manualSearchButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) 
+			{
 				frame.setVisible(false);
-			ManualJobSearchSecoundScreenGUI.showScreen();
-
-				 
+				// Here we just take the user to the next screen .
+				// where the user will choose which option to work with . 
+				ManualJobSearchSecoundScreenGUI.showScreen();
+		 
 			}
 		});
 		manualSearchButton.setBounds(307, 214, 157, 35);

@@ -115,12 +115,11 @@ public class GetDetailsGUI
 		{
 		    public void actionPerformed(ActionEvent e) 
 		    {		
-		    	
-		    		    	
+		    	    		    	
 		    	// 1- create privacy folder + create privacy file 
 		    	// 1.1- save the privacy data of the user : (Email + password-Email, Email + password: LinkedIn (if exist)). 
-		    	// 2- insert the encrypted data to the file . 
-		    	
+		    	// 2- insert the encrypted data to the file .
+		    	// 3- will take the user to the next GUI (to choose if our machine will continue automation or manual ).
 		    	StoreUserDataLocal.createSensitiveUserFiles();
 		    	 	
 		    	String emailString = null;
@@ -161,12 +160,6 @@ public class GetDetailsGUI
 					StoreUserDataLocal.storeEncrptyData(emailString, password);							
 					StoreUserDataLocal.storeEncrptyData(emailLinkedinString, passwordLinkedin);
 				
-					/* 1- start send data to these companies */
-					SendMail.setFrom(emailString);
-					SendMail.setEmailPassword(password);
-					
-					SearchIntoLinkedIn.setLinkedInEmailString(emailLinkedinString);
-					SearchIntoLinkedIn.setLinkedInPasswordString(passwordLinkedin);
 					// Update the data inside the send email class 
 					frame.setVisible(false);
 					AutomationJobSearchGUI.main(null);
@@ -246,7 +239,6 @@ public class GetDetailsGUI
 			}
 			
 			// Step 3- add JSON user_cv to personal_data folder 
-			String file_path = "personal_data//user_cv.docx";			
 	        String folderName = "personal_data"; // Folder inside the program folder
 	        String fileName = "user_cv.docx"; // File to check
 
