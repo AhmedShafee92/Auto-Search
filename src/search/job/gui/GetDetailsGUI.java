@@ -12,6 +12,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
+import conncet.server.analyse.file.ConnectConvertStringToJson;
 import conncet.server.analyse.file.ConnectGoogleAPIServer;
 import conncet.server.analyse.file.ExcelWriter;
 import first.option.forsendcv.SendMail;
@@ -290,8 +292,13 @@ public class GetDetailsGUI
 	        // Check if the file exists
 	        if (file.exists() && file.isFile() && result == JOptionPane.OK_OPTION ) 
 	        {
-	        	//TODO : here should create the process again .
-				// ConnectConvertStringToJson.serverConvertWordToJson(file_path);
+				 try 
+				 {
+					ConnectConvertStringToJson.serverConvertWordToJson();
+				  } catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 	        	
 	        }
 	        else 

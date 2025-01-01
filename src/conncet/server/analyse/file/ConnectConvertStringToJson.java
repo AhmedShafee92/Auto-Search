@@ -5,13 +5,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+
 
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
@@ -24,67 +25,58 @@ public class ConnectConvertStringToJson
 	private static String fileLocation = "personal_data/user_cv.docx";
 	private static String jsonFileLocation = "personal_data/user_analyse_data.json";
 	
-	public static void main(String[] args) throws IOException 
+	public static boolean serverConvertWordToJson() throws IOException 
 	{
-		
-	    convetFileToText(fileLocation); 	    
+		// The begging of the function that will put the JSON format inside the file .
+		convetFileToText(fileLocation); 	    
 	    String fileString = sanitizeString(fileTotext);
 	    StringBuilder sb = serverConvertWordToJson(fileString);
-
-	    System.out.println("The string json file format : ");
-	    System.out.println(sb);
 	    
-	    // here we need to write the stringjson to json and then to insert the json into json file   
 	    String jsonString = sb.toString();
-
         // Parse the JSON string to a JsonObject using Gson
-        JsonObject jsonObject = JsonParser.parseString(jsonString).getAsJsonObject();
+	    // JsonObject jsonObject = JsonParser.parseString(jsonString).getAsJsonObject();
 
+        // check that the string valid JSON format object 
         if (isValidJson(jsonString)) 
         {
-            System.out.println("The string is a valid JSON.");
             // write the string to JSON file 
-            try {    
-	            	BufferedWriter writer = new BufferedWriter(new FileWriter(jsonFileLocation));
-	            	writer.write(jsonString);
-	            	writer.close();
-            } catch (IOException e) 
+            JsonElement jsonElement = JsonParser.parseString(jsonString);
+            // Check if the parsed element is a JSON Object
+            if (jsonElement.isJsonObject()) 
             {
-                e.printStackTrace();	
-            }
+                JsonObject jsonObject = jsonElement.getAsJsonObject();
+                try {
+	                    // Write the JSON to a file using Gson
+	                   // Gson gson = new Gson();
+	                    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+	                    FileWriter writer = new FileWriter(jsonFileLocation);	                    
+	                    gson.toJson(jsonObject, writer);  
+	                    writer.close();	                    
+                    } catch (IOException e) 
+                	{
+                    	e.printStackTrace();
+                	}
                
-        } else 
+            }else 
+            {
+                System.out.println("NOT a valid JSON Object.");
+        		return false; 	
+
+            }
+            
+        }else 
         {
             System.out.println("The string is NOT a valid JSON.");
+    		return false; 	
+
     	}
-		    
-        
-        
-        
-	/*
-	    // Replace the literal "\n" with actual newlines
-        String content = sb.toString().replace("\\n", "\n");
-
-    
-       // Split by newline (\n) to get a list of strings
-        List<String> list = new ArrayList<>(Arrays.asList(content.toString().split("\n")));
-
-        // Clean up the list by removing the leading "- " and trimming
-        List<String> cleanedList = new ArrayList<>();
-        for (String line : list) {
-            cleanedList.add(line.replaceFirst("^-\\s*", "").trim());
-        }
-        
-        // Print each item in the cleaned list
-        System.out.println("After cleaning the list of strings:");
-        for (String item : cleanedList) 
-        {
-            System.out.println(item);
-        }
-     */   
-	    
-	}
+		      
 		
+		return true; 	
+	}
+	
+	
+	
 
     public static StringBuilder  positionsListForUser(String inputString) 
     {
@@ -210,8 +202,7 @@ public class ConnectConvertStringToJson
               e.printStackTrace();
               return null ; 
           }
-          return response; 
-  
+          return response;   
 
 	}
     
