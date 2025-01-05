@@ -5,6 +5,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import javax.mail.*;
 import javax.mail.internet.*;
+import javax.mail.search.FlagTerm;
+
 import java.io.*;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -15,6 +17,7 @@ public class EmailManagementSystem
     private static final String EXCEL_FILE = "emailDatabase.xlsx";
     private static final String FORWARD_EMAIL = "user@example.com"; // The email to forward positive emails
     private static final long DATABASE_CLEARED_INTERVAL = TimeUnit.DAYS.toMillis(75);  // 2.5 months (approx. 75 days)
+    private static final long EMAIL_INBOX_READING_INTERVAL = TimeUnit.DAYS.toMillis(1);  // (EVERYDAY days)
 
     private Map<String, String> emailDatabase = new HashMap<>();
 
@@ -65,18 +68,31 @@ public class EmailManagementSystem
 
         
         // Here we read every email after the system connecting to the email . 
-        // This the management of the main email which is belong to the company domain . 
+        // This is the management of the main email which is belong to the company domain. 
         Folder inbox = store.getFolder("INBOX");
         inbox.open(Folder.READ_WRITE);
 
         // Get new messages
-        Message[] messages = inbox.getMessages();
+        // We should read just the unread messages and then decided if to keep the 
+        // email message or to delete the message from the inbox.
+        
+        // Get unread messages (FlagTerm indicates only unread emails)
+        FlagTerm unreadFlag = new FlagTerm(new Flags(Flags.Flag.SEEN), false);
+        Message[] messages = inbox.search(unreadFlag);
+
+        // here we print the number of the email's that unread.  
+       // System.out.println("Unread Emails: " + messages.length);
+        
+        
+        
+         messages = inbox.getMessages();
         for (Message message : messages) {
             String subject = message.getSubject();
             String content = message.getContent().toString();
             String sender = ((InternetAddress) message.getFrom()[0]).getAddress();
 
-            if (isPositiveEmail(content)) {
+            if (isPositiveEmail(content)) 
+            {
                 // Forward positive email to another email
                 forwardEmail(message);
                 // Update Excel file to mark email as positive
@@ -94,11 +110,13 @@ public class EmailManagementSystem
     // Classify email as positive or negative based on content
     private boolean isPositiveEmail(String content) {
         // Simple rule: if email contains "good", "love", or "excellent", it's positive
+    	//TODO: Here we should check the content with AI model that can decide if positive or not (change the code )
         return content.contains("good") || content.contains("love") || content.contains("excellent");
     }
 
     // Forward the email to another address (for positive emails)
-    private void forwardEmail(Message message) throws Exception {
+    private void forwardEmail(Message message) throws Exception 
+    {
         Session session = Session.getDefaultInstance(System.getProperties());
         MimeMessage forwardMessage = new MimeMessage(session);
         forwardMessage.setSubject("FWD: " + message.getSubject());
