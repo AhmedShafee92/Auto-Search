@@ -21,6 +21,9 @@ public class EmailManagementSystem
 
     private Map<String, String> emailDatabase = new HashMap<>();
 
+    // this program should be in the server side which need to be in the thread that will update the process when the time 
+    // 
+    
     public static void main(String[] args) throws Exception 
     {
         EmailManagementSystem system = new EmailManagementSystem();
@@ -159,6 +162,7 @@ public class EmailManagementSystem
     }
 
     // Cleanup the database after 2.5 months (75 days)
+    // this part of the program should in the server side which need to eccute also if the user dose''t run the program 
     private void cleanupDatabase() throws IOException {
         File excelFile = new File(EXCEL_FILE);
         long lastUpdatedTime = excelFile.lastModified();
