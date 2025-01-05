@@ -27,6 +27,7 @@ public class EmailManagementSystem
     }
 
     // Load the email database from Excel
+    // TODO : not part of the management should delete this part of the code .  
     private void loadEmailDatabase() throws IOException 
     {
         FileInputStream fis = new FileInputStream(EXCEL_FILE);
@@ -42,8 +43,12 @@ public class EmailManagementSystem
         fis.close();
     }
 
-    // Process the inbox emails
-    private void processInbox() throws Exception {
+    // Process the inbox email's
+    // This the core process for the management.
+    // TODO : should fix the code that working in the best way. 
+    // Maybe should update the inbox email every day in specific time. 
+    private void processInbox() throws Exception 
+    {
         // Connect to the mail server (Gmail in this example)
         String host = "imap.gmail.com";
         String username = "your-email@gmail.com"; // Your email
@@ -58,6 +63,9 @@ public class EmailManagementSystem
         Store store = emailSession.getStore("imap");
         store.connect(username, password);
 
+        
+        // Here we read every email after the system connecting to the email . 
+        // This the management of the main email which is belong to the company domain . 
         Folder inbox = store.getFolder("INBOX");
         inbox.open(Folder.READ_WRITE);
 
