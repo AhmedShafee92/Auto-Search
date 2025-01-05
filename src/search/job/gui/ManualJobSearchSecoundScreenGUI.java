@@ -16,17 +16,23 @@ public class ManualJobSearchSecoundScreenGUI
 		  
 	public static void showScreen() 
     {
+		
 		final JFrame frame = new JFrame();
 		frame.setBounds(150, 150, 727, 467);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Manual Job Search");
 		frame.getContentPane().setLayout(null);
-		/// search option button 1
+		
+		/// search option button :
+		
 		// Here we create an two levels of email . 
-		// the one that is our control (to my company ) that will receive all the email negative and positive 
-		// and then our email will use an AI control which will send just the positive email to the costumer 
-		// and will delete  all the negative email but will update in the list of our data base 
-		// (our data base will be cleared  after 2.5 months). 
+		// The first level that is main email  which  will send and receive all the email's negative and positive 
+		// The second level is user email that will receive just positive (which be sent from the main email )
+		// The main email will delete all the negative email and update the negative result in the excel file 
+		// The same positive email will keep in the main email and will send to the second email and will update in the excel file that 
+		//result is positive (we update the line of the domain that the result was negative or positive  )
+		// (our data base will be cleared  after 2.5 months) which  the result in the excel file will be natural 
+		
 		JButton jobSearchButtonOption1 = new JButton("Search option1, Send emails");
 		jobSearchButtonOption1.addActionListener(new ActionListener() 
 		{
