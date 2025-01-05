@@ -23,14 +23,14 @@ public class ManualJobSearchSecoundScreenGUI
 		frame.setTitle("Manual Job Search");
 		frame.getContentPane().setLayout(null);
 		
-		/// search option button :
+		/// search option button 1:
 		
 		// Here we create an two levels of email . 
 		// The first level that is main email  which  will send and receive all the email's negative and positive 
 		// The second level is user email that will receive just positive (which be sent from the main email )
 		// The main email will delete all the negative email and update the negative result in the excel file 
 		// The same positive email will keep in the main email and will send to the second email and will update in the excel file that 
-		//result is positive (we update the line of the domain that the result was negative or positive  )
+		// Result is positive (we update the line of the domain that the result was negative or positive  )
 		// (our data base will be cleared  after 2.5 months) which  the result in the excel file will be natural 
 		
 		JButton jobSearchButtonOption1 = new JButton("Search option1, Send emails");
@@ -47,6 +47,7 @@ public class ManualJobSearchSecoundScreenGUI
 		});
 		jobSearchButtonOption1.setBounds(326, 75, 163, 52);
 		frame.getContentPane().add(jobSearchButtonOption1);
+		
 		/// search option button 2
 		JButton jobSearchButtonOption2 = new JButton("Search option2, LinkedIn Engine");
 		jobSearchButtonOption2.addActionListener(new ActionListener() 
@@ -59,6 +60,7 @@ public class ManualJobSearchSecoundScreenGUI
 		});
 		jobSearchButtonOption2.setBounds(326, 186, 163, 46);
 		frame.getContentPane().add(jobSearchButtonOption2);
+		
 		/// search option button 3	
 		JButton jobSearchButtonOption3 = new JButton("Search option3, Secrets");
 		jobSearchButtonOption3.addActionListener(new ActionListener() 

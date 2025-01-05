@@ -26,62 +26,64 @@ public class SendMail
 	   sendMail(email);
 	   System.out.println("emails sent successfully");
    }
-      private static void sendMail(String companyEmail) 
-      {    
-	    	// Recipient's email ID needs to be mentioned.
-	        String to = companyEmail;
-	        // Assuming you are sending email from through mail SMTP
-	        String host = "smtp.gmail.com";
-	        // Get system properties
-	        Properties properties = System.getProperties();
-	        // Setup mail server
-	        properties.put("mail.smtp.host", host);
-	        properties.put("mail.smtp.port", "465");
-	        properties.put("mail.smtp.ssl.enable", "true");
-	        properties.put("mail.smtp.auth", "true");
-	        // Get the Session object.// and pass username and password
-	        Session session = Session.getInstance(properties, new javax.mail.Authenticator() 
-	        {
-	            protected PasswordAuthentication getPasswordAuthentication() 
-	            {
-	            	return new PasswordAuthentication(from,"jjlunazaxxzqncld");
-	
+   private static void sendMail(String companyEmail) 
+   {    
+    	// Recipient's email ID needs to be mentioned.
+        String to = companyEmail;
+        // Assuming you are sending email from through mail SMTP
+        //TODO: Here should  change and use the email of the domain of our company 
+        //TODO : Create an email management that will reads the email's 
+        String host = "smtp.gmail.com";
+        // Get system properties
+        Properties properties = System.getProperties();
+        // Setup mail server
+        properties.put("mail.smtp.host", host);
+        properties.put("mail.smtp.port", "465");
+        properties.put("mail.smtp.ssl.enable", "true");
+        properties.put("mail.smtp.auth", "true");
+        // Get the Session object.// and pass user name and password
+        Session session = Session.getInstance(properties, new javax.mail.Authenticator() 
+        {
+            protected PasswordAuthentication getPasswordAuthentication() 
+            {
+            	return new PasswordAuthentication(from,"jjlunazaxxzqncld");
+
+            }
+        });
+
+  // Used to debug SMTP issues
+    session.setDebug(true);
+    try {
+	        // Create a default MimeMessage object.
+	        MimeMessage message = new MimeMessage(session);
+	        // Set From: header field of the header.
+	        message.setFrom(new InternetAddress(from));
+	        // Set To: header field of the header.
+	        message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));
+	        // Set Subject: header field
+	        message.setSubject("This is the Subject Line!");
+	        Multipart multipart = new MimeMultipart();
+	        MimeBodyPart attachmentPart = new MimeBodyPart();
+	        MimeBodyPart textPart = new MimeBodyPart();
+	        try {
+	            File f =new File(url);
+	            attachmentPart.attachFile(f);
+	            textPart.setText("This is text");
+	            multipart.addBodyPart(textPart);
+	            multipart.addBodyPart(attachmentPart);
+	        } catch (IOException e) {
+	            e.printStackTrace();
 	            }
-    });
-
-      // Used to debug SMTP issues
-        session.setDebug(true);
-        try {
-            // Create a default MimeMessage object.
-            MimeMessage message = new MimeMessage(session);
-            // Set From: header field of the header.
-            message.setFrom(new InternetAddress(from));
-            // Set To: header field of the header.
-            message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));
-            // Set Subject: header field
-            message.setSubject("This is the Subject Line!");
-            Multipart multipart = new MimeMultipart();
-            MimeBodyPart attachmentPart = new MimeBodyPart();
-            MimeBodyPart textPart = new MimeBodyPart();
-            try {
-                File f =new File(url);
-                attachmentPart.attachFile(f);
-                textPart.setText("This is text");
-                multipart.addBodyPart(textPart);
-                multipart.addBodyPart(attachmentPart);
-            } catch (IOException e) {
-                e.printStackTrace();
-                }
-            message.setContent(multipart);
-            System.out.println("sending...");
-            // Send message
-            Transport.send(message);
-            System.out.println("Sent message successfully....");
+		    message.setContent(multipart);
+		    System.out.println("sending...");
+		    // Send message
+		    Transport.send(message);
+		    System.out.println("Sent message successfully....");
         } catch (MessagingException mex) {
-            mex.printStackTrace();
-        }
-
+        mex.printStackTrace();
     }
+
+ }
    public static String getFrom() {
     		return from;
     	}

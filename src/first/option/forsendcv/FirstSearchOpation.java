@@ -15,17 +15,25 @@ public class FirstSearchOpation implements SearchJob{
 	 * }
 	 */
 	@Override
-	public void search() {
+	public void search() 
+	{
 		// TODO Auto-generated method stub	
 		 // read data indexes 
-		try {
-			result = ReadSvedDataExeclSheet.readFromIndexesFile();	  
-		  /// read data with indexes 
-		 companiesEmail = ReadFromExcel.readDataFromExcelSheet(result);		
-       /// send data that got 
-	  	SendMail.sendMails(companiesEmail);
-		//Synchronized.synchronize(companiesEmail);
-		}
+		try{
+				result = ReadSvedDataExeclSheet.readFromIndexesFile();	  
+				/// read data with indexes 
+				companiesEmail = ReadFromExcel.readDataFromExcelSheet(result);		
+				/// send data that got 
+				SendMail.sendMails(companiesEmail);
+				
+				//Synchronized.synchronize(companiesEmail);
+				// Here we sync the data base (the local storage which the excel file )
+				
+				// Management the email inbox
+				
+				
+				
+		  }
 		/*
 		 * catch (IOException e) { // TODO Auto-generated catch block
 		 * e.printStackTrace(); }
