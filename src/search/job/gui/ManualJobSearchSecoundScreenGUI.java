@@ -18,11 +18,14 @@ public class ManualJobSearchSecoundScreenGUI
     {
 		
 		final JFrame frame = new JFrame();
-		frame.setBounds(150, 150, 727, 467);
+		frame.setBounds(150, 150, 727, 467); 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Manual Job Search");
 		frame.getContentPane().setLayout(null);
 		
+		// This process should run in the server side, which will run after the user pressing the button 
+		// and will work in the near future. 
+		// will change the code to JS(javascript) or keep in java. 
 		/// search option button 1:
 		
 		// Here we create an two levels of email . 
@@ -54,7 +57,7 @@ public class ManualJobSearchSecoundScreenGUI
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-			
+			// This process should be in the server side also the data (The storage) that this process will use  should be in t
 			//search type2
 			}
 		});

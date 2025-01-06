@@ -57,7 +57,7 @@ public class AutomationJobSearchGUI
 			public void actionPerformed(ActionEvent e) 
 			{
 				// TODO : this process will be fully in the server side 
-				// can't run the process in the client side the custumer should't keep their system of 
+				// can't run the process in the client side the costumer should't keep their system of 
 				// device run .
 				frame.setVisible(false);
 				showMessage();
@@ -76,6 +76,7 @@ public class AutomationJobSearchGUI
 		manualSearchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{
+				// should do nothing ,just to show the next frame .   
 				frame.setVisible(false);
 				// Here we just take the user to the next screen .
 				// where the user will choose which option to work with . 

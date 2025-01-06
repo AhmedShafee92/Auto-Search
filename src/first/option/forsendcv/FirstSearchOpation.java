@@ -17,9 +17,10 @@ public class FirstSearchOpation implements SearchJob{
 	@Override
 	public void search() 
 	{
-		// TODO Auto-generated method stub	
-		 // read data indexes 
 		try{
+			
+				// This peace of code will be in the server side 
+				// So the DATA that storage should be in the server side . 
 				result = ReadSvedDataExeclSheet.readFromIndexesFile();	  
 				/// read data with indexes 
 				companiesEmail = ReadFromExcel.readDataFromExcelSheet(result);		
@@ -30,7 +31,6 @@ public class FirstSearchOpation implements SearchJob{
 				// Here we sync the data base (the local storage which the excel file )
 				
 				// Management the email inbox
-				
 				
 				
 		  }
