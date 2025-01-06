@@ -56,7 +56,9 @@ public class AutomationJobSearchGUI
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				
+				// TODO : this process will be fully in the server side 
+				// can't run the process in the client side the custumer should't keep their system of 
+				// device run .
 				frame.setVisible(false);
 				showMessage();
 				// AutomatedJobSearchSecoundScreen.showScreen();

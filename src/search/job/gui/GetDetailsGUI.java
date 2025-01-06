@@ -22,11 +22,12 @@ import java.io.File;
 
 public class GetDetailsGUI 
 {
-	// TODO: change the GUI to simple GUI which to hide the unused button and show the most used buttons 
-	// like the search , and in the begging the analysing and upload the CV 
-	// maybe in the future will be good design for very simple APP . 
+	// TODO: Change the GUI to simple GUI which to hide the unused button and show the most used buttons. 
+	// Like the search , and in the begging the analysing and upload the CV.
+	// Maybe in the future will be good design for very simple APP. 
 	
-	//TODO: check the RESTful API  to connect with the server side 
+	//TODO: check the RESTful API  to connect with the server side.
+	
 	// Data Fields 
 	private static JTextField LinkedInEmail = null;
 	private static JPasswordField LinkedInPassword = null;
@@ -164,7 +165,7 @@ public class GetDetailsGUI
 					// Update the data inside the send email class 
 					frame.setVisible(false);
 					AutomationJobSearchGUI.main(null);
-						
+					
 				}
 	    	}
 	});
@@ -178,8 +179,7 @@ public class GetDetailsGUI
 	   public void actionPerformed(ActionEvent e) 
 	   { 
 		      
-		   // Check if the user not upload the CV yet  . 
-		   
+		   // Check if the user not upload the CV yet .
 		   if(!CheckCVFileExist())
 		   {
 			   return ;
@@ -271,7 +271,8 @@ public class GetDetailsGUI
 	frame.getContentPane().add(AnalysePesonalData);	
 	
 	JButton btnNewButton = new JButton("Personal Data");
-	btnNewButton.addActionListener(new ActionListener() {
+	btnNewButton.addActionListener(new ActionListener() 
+	{
 		public void actionPerformed(ActionEvent e) 
 		{
 			// Here will show the user the summary of the analysing that we created 
