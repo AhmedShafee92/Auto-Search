@@ -11,6 +11,7 @@ import java.io.*;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+//TODO:this program should put in the server side 
 public class EmailManagementSystem 
 {
 

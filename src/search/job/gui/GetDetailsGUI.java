@@ -16,15 +16,17 @@ import javax.swing.JTextField;
 import conncet.server.analyse.file.ConnectConvertStringToJson;
 import conncet.server.analyse.file.ConnectGoogleAPIServer;
 import conncet.server.analyse.file.ExcelWriter;
-import first.option.forsendcv.SendMail;
-import store.user.data.ConvertCVFileJson;
 import store.user.data.StoreUserDataLocal;
-import three.option.forsendcv.SearchIntoLinkedIn;
 import javax.swing.JPasswordField;
 import java.io.File;
 
 public class GetDetailsGUI 
 {
+	// TODO: change the GUI to simple GUI which to hide the unused button and show the most used buttons 
+	// like the search , and in the begging the analysing and upload the CV 
+	// maybe in the future will be good design for very simple APP . 
+	
+	//TODO: check the RESTful API  to connect with the server side 
 	// Data Fields 
 	private static JTextField LinkedInEmail = null;
 	private static JPasswordField LinkedInPassword = null;
