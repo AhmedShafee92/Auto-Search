@@ -30,11 +30,11 @@ public class ManualJobSearchSecoundScreenGUI
 		
 		// Here we create an two levels of email . 
 		// The first level that is main email  which  will send and receive all the email's negative and positive 
-		// The second level is user email that will receive just positive (which be sent from the main email )
-		// The main email will delete all the negative email and update the negative result in the excel file 
-		// The same positive email will keep in the main email and will send to the second email and will update in the excel file that 
-		// Result is positive (we update the line of the domain that the result was negative or positive  )
-		// (our data base will be cleared  after 2.5 months) which  the result in the excel file will be natural 
+		// The second level is user email that will receive just positive (which be sent from the main email ) .
+		// The main email will delete all the negative email and update the negative result in the excel file .
+		// The same positive email will keep in the main email and will send to the second email and will update in the excel file that .  
+		// Result is positive (we update the line of the domain that the result was negative or positive  ) . 
+		// (our data base will be cleared  after 2.5 months) which  the result in the excel file will be natural.
 		
 		JButton jobSearchButtonOption1 = new JButton("Search option1, Send emails");
 		jobSearchButtonOption1.addActionListener(new ActionListener() 

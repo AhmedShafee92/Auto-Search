@@ -25,6 +25,8 @@ public class GetDetailsGUI
 	// TODO: Change the GUI to simple GUI which to hide the unused button and show the most used buttons. 
 	// Like the search , and in the begging the analysing and upload the CV.
 	// Maybe in the future will be good design for very simple APP. 
+	// Should add login APP that will be the only frame in the local side .
+	// all the other firms should be in the server side . 
 	
 	//TODO: check the RESTful API  to connect with the server side.
 	
