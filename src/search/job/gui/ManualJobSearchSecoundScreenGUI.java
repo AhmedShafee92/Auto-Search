@@ -42,7 +42,7 @@ public class ManualJobSearchSecoundScreenGUI
 		{
 		    public void actionPerformed(ActionEvent e) 
 		    {	
-		    	FirstSearchOpation searchOpation=new FirstSearchOpation();	
+		    	 FirstSearchOpation searchOpation=new FirstSearchOpation();	
 			     searchOpation.search();
 			     frame.setVisible(false);
 			     

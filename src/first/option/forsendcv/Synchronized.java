@@ -15,7 +15,7 @@ public static void synchronize(String[] names) throws IOException {
 private static void saveNewIndexes(String[] names) throws IOException
 {
 	 
-	int[] indexes=ReadSvedDataExeclSheet.readFromIndexesFile();
+	int[] indexes=ReadSavedDataExeclSheet.readFromIndexesFile();
 	
 	//UpdateCompaniesStatus.updateStatusCompanies();
 	
@@ -26,7 +26,7 @@ private static void saveNewIndexes(String[] names) throws IOException
 private static void saveNewStatus(String[] names) throws IOException
 {
 	
-	int[] result=ReadSvedDataExeclSheet.readFromIndexesFile();
+	int[] result=ReadSavedDataExeclSheet.readFromIndexesFile();
 	int startIndex=result[1];
 	int endIndex=result[1]+names.length;
 	UpdateCompaniesStatus.updateCompaiesStatus(startIndex, endIndex);

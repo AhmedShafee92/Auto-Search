@@ -22,7 +22,8 @@ public class FirstSearchOpation implements SearchJob
 			
 				// This peace of code will be in the server side 
 				// So the DATA that storage should be in the server side.
-				result = ReadSvedDataExeclSheet.readFromIndexesFile();	  
+			
+				result = ReadSavedDataExeclSheet.readFromIndexesFile();	  
 				/// read data with indexes 
 				companiesEmail = ReadFromExcel.readDataFromExcelSheet(result);		
 				/// send data that got 
@@ -30,7 +31,7 @@ public class FirstSearchOpation implements SearchJob
 				
 				//Synchronized.synchronize(companiesEmail);
 				// Here we sync the data base (the local storage which the excel file) .
-				// Management the email inbox .
+				// Management the email inbox.
 						
 		  }
 		/*

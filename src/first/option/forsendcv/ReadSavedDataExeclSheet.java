@@ -8,7 +8,7 @@ import java.io.IOException;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class ReadSvedDataExeclSheet {
+public class ReadSavedDataExeclSheet {
 		
 private static final String fileLocation="C:\\AutomationSearchJoB\\SearchOption1\\Email_List_Indexes.xlsx";	
 public static int[] readFromIndexesFile() throws IOException
