@@ -1,7 +1,8 @@
 package first.option.forsendcv;
 import search.SearchJob;
 
-public class FirstSearchOpation implements SearchJob{
+public class FirstSearchOpation implements SearchJob
+{
 	  int[] result = null;
 	String[] companiesEmail = null;
 	/*
@@ -20,7 +21,7 @@ public class FirstSearchOpation implements SearchJob{
 		try{
 			
 				// This peace of code will be in the server side 
-				// So the DATA that storage should be in the server side . 
+				// So the DATA that storage should be in the server side.
 				result = ReadSvedDataExeclSheet.readFromIndexesFile();	  
 				/// read data with indexes 
 				companiesEmail = ReadFromExcel.readDataFromExcelSheet(result);		
@@ -28,11 +29,9 @@ public class FirstSearchOpation implements SearchJob{
 				SendMail.sendMails(companiesEmail);
 				
 				//Synchronized.synchronize(companiesEmail);
-				// Here we sync the data base (the local storage which the excel file )
-				
-				// Management the email inbox
-				
-				
+				// Here we sync the data base (the local storage which the excel file) .
+				// Management the email inbox .
+						
 		  }
 		/*
 		 * catch (IOException e) { // TODO Auto-generated catch block

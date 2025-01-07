@@ -26,7 +26,7 @@ public class GetDetailsGUI
 	// Like the search , and in the begging the analysing and upload the CV.
 	// Maybe in the future will be good design for very simple APP. 
 	// Should add login APP that will be the only frame in the local side .
-	// all the other firms should be in the server side . 
+	// All the other firms should be in the server side . 
 	
 	//TODO: check the RESTful API  to connect with the server side.
 	
@@ -83,7 +83,6 @@ public class GetDetailsGUI
 		frame.getContentPane().add(attachButton);
 		
 		//Fields Email and Email_password
-		
 		JLabel insertEmail = new JLabel(" LinkedIn_Email");
 		insertEmail.setBounds(203,217,94,30);
 		frame.getContentPane().add(insertEmail);	
@@ -95,7 +94,6 @@ public class GetDetailsGUI
 		LinkedInPassword = new JPasswordField();
 		
 		//Fields LinkedIn and  LinkedIn_password 
-
 		LinkedInPassword.setBounds(365, 158, 160, 30);
 		frame.getContentPane().add(LinkedInPassword);
 		
@@ -113,8 +111,7 @@ public class GetDetailsGUI
 		
 		frame.getContentPane().add(PasswordUser);
 		
-		//Submit button 
-		
+		//Submit button 	
 		startSearchingButton = new JButton("Start Searching");
 		startSearchingButton.addActionListener(new ActionListener()
 		{
@@ -155,7 +152,6 @@ public class GetDetailsGUI
 				}
 				else
 				{	
-					
 					String emailLinkedinString = LinkedInEmail.getText();
 					char[] passwordCharLinkedin = LinkedInPassword.getPassword();
 					String passwordLinkedin = new String(passwordCharLinkedin);
@@ -166,8 +162,7 @@ public class GetDetailsGUI
 		
 					// Update the data inside the send email class 
 					frame.setVisible(false);
-					AutomationJobSearchGUI.main(null);
-					
+					AutomationJobSearchGUI.main(null);	
 				}
 	    	}
 	});
@@ -244,10 +239,8 @@ public class GetDetailsGUI
 			// Step 3- add JSON user_cv to personal_data folder 
 	        String folderName = "personal_data"; // Folder inside the program folder
 	        String fileName = "user_cv.docx"; // File to check
-
 	        // Build the relative path
 	        File file = new File(folderName, fileName);
-
 	        // Check if the file exists
 	        if (file.exists() && file.isFile() && result == JOptionPane.OK_OPTION ) 
 	        {
@@ -265,8 +258,7 @@ public class GetDetailsGUI
 	        {
 	            System.out.println("The file '" + fileName + "' does not exist in the folder: " + folderName);
 	        }
-						
-		    
+						    
 		}
 	  });
 	AnalysePesonalData.setBounds(234,348,146,58);	
