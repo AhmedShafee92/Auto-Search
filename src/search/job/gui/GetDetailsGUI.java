@@ -175,8 +175,7 @@ public class GetDetailsGUI
 	AnalysePesonalData.addActionListener(new ActionListener() 
 	{
 	   public void actionPerformed(ActionEvent e) 
-	   { 
-		   
+	   { 		   
 		   // TODO : All the files that the analysing button create should be in the server side 
 		   // The server should access the data  when the user is not connected to the system 
 		   // Should create every file also in the server except the CV.
@@ -242,19 +241,12 @@ public class GetDetailsGUI
 				ExcelWriter.writeListToExcelLocal(placesList, "analyse_user_data/user_places_list.xlsx");
 				
 				//TODO: fill the data from the API server inside the server (cloud) excel files . 				
- 
 				
 				/*
 				 * Send JSON that content in string (the string content an array list of the data that we need).
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
-				 * 
 				 * */
-				
-
+				ExcelWriter.writeListToExcelSerevr(placesList,positionsList);
+			
 			}
 			
 			// Step 3- add JSON user_cv to personal_data folder 
