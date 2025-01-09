@@ -5,18 +5,14 @@ import java.net.URL;
 public class StoreUserDataServer 
 {
 
-    public static void createAnalyseUserFiles() {
+    public static void createAnalyseUserFiles() 
+    {
         try {
-            // Create a URL object pointing to the server's endpoint
-            URL url = new URL("http://localhost:8000/storage_first_stage");
+            URL url = new URL("http://localhost:8000/storage_first_stage_analysing");
 
             // Open a connection to the server
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            
-            // Set the request method to GET
-            connection.setRequestMethod("GET");
-            
-            // Get the response code (200 means OK)
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();            
+            connection.setRequestMethod("GET");            
             int responseCode = connection.getResponseCode();
             
             // Print the response code to the console
@@ -35,6 +31,13 @@ public class StoreUserDataServer
             e.printStackTrace();
         }
     }
+    
+    
+    
+    
+    
+    
+    
 	
 	
 }

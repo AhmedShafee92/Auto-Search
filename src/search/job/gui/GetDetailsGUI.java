@@ -30,8 +30,7 @@ public class GetDetailsGUI
 	// Should add login APP that will be the only frame in the local side .
 	// All the other firms should be in the server side . 
 	
-	//TODO: check the RESTful API  to connect with the server side.
-	
+
 	// Data Fields 
 	private static JTextField LinkedInEmail = null;
 	private static JPasswordField LinkedInPassword = null;
@@ -181,18 +180,18 @@ public class GetDetailsGUI
 		   // TODO : All the files that the analysing button create should be in the server side 
 		   // The server should access the data  when the user is not connected to the system 
 		   // Should create every file also in the server except the CV.
-		   
+		    
 		   // Check if the user not upload the CV yet .
 		   if(!CheckCVFileExist())
 		   {
 			   return ;
 		   }
 		   
-		   // create files for storing analysing data 
+		   // create files for storing analysing data in the local and server (cloud) .
 		   StoreUserDataLocal.createAnalyseUserFiles();
 		   StoreUserDataServer.createAnalyseUserFiles();
 		   
-		   // showing the user the analysing data of his CV file . 
+		   // Showing the user the analysing data of his CV file . 
 		   String analyseFileForPostions = "";
 		   @SuppressWarnings("unused")
 		   String personalUserData = "";
@@ -239,8 +238,22 @@ public class GetDetailsGUI
 				
 				// step 3 :
 				// file the data from the API server inside the local excel files 				
-				ExcelWriter.writeListToExcel(positionsList, "analyse_user_data/user_positons_list.xlsx");
-				ExcelWriter.writeListToExcel(placesList, "analyse_user_data/user_places_list.xlsx");
+				ExcelWriter.writeListToExcelLocal(positionsList, "analyse_user_data/user_positons_list.xlsx");
+				ExcelWriter.writeListToExcelLocal(placesList, "analyse_user_data/user_places_list.xlsx");
+				
+				//TODO: fill the data from the API server inside the server (cloud) excel files . 				
+ 
+				
+				/*
+				 * Send JSON that content in string (the string content an array list of the data that we need).
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * */
+				
 
 			}
 			

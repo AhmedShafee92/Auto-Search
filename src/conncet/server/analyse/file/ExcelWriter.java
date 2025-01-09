@@ -8,7 +8,8 @@ import java.util.List;
 
 public class ExcelWriter {
 
-    public static void writeListToExcel(List<String> dataList, String fileName) {
+    public static void writeListToExcelLocal(List<String> dataList, String fileName) 
+    {
         // Create a new workbook and sheet
         Workbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet("Data");
@@ -35,5 +36,34 @@ public class ExcelWriter {
             }
         }
     }
+    
+    private void writeListToExcelSerevr() 
+    {
+		// TODO Auto-generated method stub
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+
+	}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 }
