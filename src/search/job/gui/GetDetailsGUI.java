@@ -176,10 +176,7 @@ public class GetDetailsGUI
 	{
 	   public void actionPerformed(ActionEvent e) 
 	   { 		   
-		   // TODO : All the files that the analysing button create should be in the server side 
-		   // The server should access the data  when the user is not connected to the system 
-		   // Should create every file also in the server except the CV.
-		    
+		
 		   // Check if the user not upload the CV yet .
 		   if(!CheckCVFileExist())
 		   {

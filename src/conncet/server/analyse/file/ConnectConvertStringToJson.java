@@ -77,13 +77,33 @@ public class ConnectConvertStringToJson
 	
 	
 	
+	static public void saveAnalyseJsonFile() 
+	{
+		// TODO Auto-generated method stub
+		// send the JSON file from the client to the cloud and save the file in the server.
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
+	}
+	
+	
     public static StringBuilder  positionsListForUser(String inputString) 
     {
         String serverUrl = "http://localhost:4000/process";
         StringBuilder response = new StringBuilder();
 
         try {
+       
 	            // Step 1: Create a URL object and open a connection
 	            URL url = new URL(serverUrl);
 	            HttpURLConnection connection = (HttpURLConnection) url.openConnection();

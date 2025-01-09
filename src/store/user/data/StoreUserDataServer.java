@@ -33,12 +33,6 @@ public class StoreUserDataServer
     }
     
     
-    
-    
-    
-    
-    
-	
 	
 }
 
