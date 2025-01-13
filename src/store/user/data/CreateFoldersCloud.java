@@ -10,15 +10,14 @@ public class CreateFoldersCloud
 	public static boolean createFoldersCloud() 
 	{
 		// TODO Auto-generated method stub
-		if (createPersonalUserData() &&
-		createAnalyseUserData() &&
-		createPrivacyUserData() )
+		if (createPersonalUserData())
 		{
 			// Success to create the folders 
 			return true;
 		}
 		
 		// success to create all the folders 
+		System.err.println("failde to create the storage folders ");
 		return false ;
 		
 	}
@@ -27,77 +26,8 @@ public class CreateFoldersCloud
 	{
 		
         try {
-            @SuppressWarnings("deprecation")
-			URL url = new URL("http://localhost:8000/create-personal-user-data");
-
-            // Open a connection to the server
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();            
-            connection.setRequestMethod("GET");            
-            int responseCode = connection.getResponseCode();
-      
-            // If the response code is 200 (OK), the server will execute the process
-            if (responseCode == HttpURLConnection.HTTP_OK) {
-            	// success do nothing 
-            } else 
-            {
-            	// Print the response code to the console
-            	System.out.println("Response Code: " + responseCode);
-                System.out.println("Request failed. Response Code: " + responseCode);
-                return false ;
-            }
-
-            // Close the connection
-            connection.disconnect();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false ;
-        }
-
-		return true; 
-	}
-	
-	
-	private static boolean createAnalyseUserData() 
-	{
-
-        try {
-            @SuppressWarnings("deprecation")
-			URL url = new URL("http://localhost:8000/create-analyse-user-data");
-
-            // Open a connection to the server
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();            
-            connection.setRequestMethod("GET");            
-            int responseCode = connection.getResponseCode();
-      
-            // If the response code is 200 (OK), the server will execute the process
-            if (responseCode == HttpURLConnection.HTTP_OK) {
-            	// success do nothing 
-            } else 
-            {
-            	// Print the response code to the console
-            	System.out.println("Response Code: " + responseCode);
-                System.out.println("Request failed. Response Code: " + responseCode);
-                return false ;
-            }
-
-            // Close the connection
-            connection.disconnect();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false ;
-        }
-
-		return true; 		
-		
-	}
-	
-	
-	private static boolean createPrivacyUserData() 
-	{
-
-        try{
 	            @SuppressWarnings("deprecation")
-				URL url = new URL("http://localhost:8000/create-privacy-user-data");
+				URL url = new URL("http://localhost:8000/create-personal-user-data-folders");
 	
 	            // Open a connection to the server
 	            HttpURLConnection connection = (HttpURLConnection) url.openConnection();            
@@ -114,17 +44,16 @@ public class CreateFoldersCloud
 	                System.out.println("Request failed. Response Code: " + responseCode);
 	                return false ;
 	            }
-
-	        // Close the connection
-	        connection.disconnect();
-        } catch (Exception e) {
+	
+	            // Close the connection
+	            connection.disconnect();
+        	} catch (Exception e) {
             e.printStackTrace();
             return false ;
         }
 
-		return true;
-		
+		return true; 
 	}
-	
+		
 	
 }
