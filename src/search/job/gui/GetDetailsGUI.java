@@ -241,7 +241,7 @@ public class GetDetailsGUI
 				
 				/*
 				 * Send JSON that content in string (the string content an array list of the data that we need).
-				 * */
+				 */
 				ExcelWriter.writeListToExcelSerevr(placesList,positionsList);
 			
 			}
@@ -257,7 +257,9 @@ public class GetDetailsGUI
 				 try 
 				 {
 					ConnectConvertStringToJson.serverConvertWordToJson();
-				  } catch (IOException e1) 
+					// ConnectConvertStringToJson.UploadJsonFileCloud();
+					
+				 }catch (IOException e1) 
 				  {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

@@ -5,17 +5,16 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
-
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
+import java.nio.charset.StandardCharsets;
+
 
 
 // TODO : the name of the class should be change to name that the class is serving 
@@ -24,6 +23,65 @@ public class ConnectConvertStringToJson
 	private static String fileTotext = "";
 	private static String fileLocation = "personal_data/user_cv.docx";
 	private static String jsonFileLocation = "personal_data/user_analyse_data.json";
+	
+	
+	public static void main(String[] args) 
+	{
+        try {
+        	   
+        		FileReader fileReader = new FileReader(jsonFileLocation);
+               
+               // Use JsonParser to parse the file into a JsonObject
+               JsonObject jsonObject = JsonParser.parseReader(fileReader).getAsJsonObject();
+               
+               String jsonInputString = jsonObject.toString();
+               
+               
+	            // URL of the server endpoint
+	            String serverUrl = "http://localhost:8000/upload-json";
+	
+	            // Create the JSON string (you can modify this as needed)
+	
+	            // Create a URL object and open a connection
+	            URL url = new URL(serverUrl);
+	            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+	
+	            // Configure the connection for POST
+	            connection.setRequestMethod("POST");
+	            connection.setRequestProperty("Content-Type", "application/json");
+	            connection.setDoOutput(true);
+	
+	            // Send the JSON data
+	            try (OutputStream os = connection.getOutputStream()) {
+	                byte[] input = jsonInputString.getBytes(StandardCharsets.UTF_8);
+	                os.write(input, 0, input.length);
+	                System.out.println("JSON data sent successfully.");
+            }
+
+            // Read the response from the server
+            int status = connection.getResponseCode();
+            if (status == HttpURLConnection.HTTP_OK) {
+				
+                try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8))) {
+                    String responseLine;
+                    StringBuilder response = new StringBuilder();
+                    while ((responseLine = br.readLine()) != null) {
+                        response.append(responseLine.trim());
+                    }
+                    System.out.println("Server response: " + response.toString());
+                }
+            } else {
+                System.out.println("Server responded with status code: " + status);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		
+    }
+	
+
+
 	
 	public static boolean serverConvertWordToJson() throws IOException 
 	{
