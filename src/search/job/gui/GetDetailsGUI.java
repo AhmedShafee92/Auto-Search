@@ -30,6 +30,7 @@ public class GetDetailsGUI
 	// Should add login APP that will be the only frame in the local side .
 	// All the other firms should be in the server side . 
 	
+	// TODO : will transfer the files storage from the local to the cloud (duplicated).  
 
 	// Data Fields 
 	private static JTextField LinkedInEmail = null;
