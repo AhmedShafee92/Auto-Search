@@ -95,28 +95,28 @@ public class CreateFoldersCloud
 	private static boolean createPrivacyUserData() 
 	{
 
-        try {
-            @SuppressWarnings("deprecation")
-			URL url = new URL("http://localhost:8000/create-analyse-user-data");
+        try{
+	            @SuppressWarnings("deprecation")
+				URL url = new URL("http://localhost:8000/create-privacy-user-data");
+	
+	            // Open a connection to the server
+	            HttpURLConnection connection = (HttpURLConnection) url.openConnection();            
+	            connection.setRequestMethod("GET");            
+	            int responseCode = connection.getResponseCode();
+	      
+	            // If the response code is 200 (OK), the server will execute the process
+	            if (responseCode == HttpURLConnection.HTTP_OK) {
+	            	// success do nothing 
+	            } else 
+	            {
+	            	// Print the response code to the console
+	            	System.out.println("Response Code: " + responseCode);
+	                System.out.println("Request failed. Response Code: " + responseCode);
+	                return false ;
+	            }
 
-            // Open a connection to the server
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();            
-            connection.setRequestMethod("GET");            
-            int responseCode = connection.getResponseCode();
-      
-            // If the response code is 200 (OK), the server will execute the process
-            if (responseCode == HttpURLConnection.HTTP_OK) {
-            	// success do nothing 
-            } else 
-            {
-            	// Print the response code to the console
-            	System.out.println("Response Code: " + responseCode);
-                System.out.println("Request failed. Response Code: " + responseCode);
-                return false ;
-            }
-
-            // Close the connection
-            connection.disconnect();
+	        // Close the connection
+	        connection.disconnect();
         } catch (Exception e) {
             e.printStackTrace();
             return false ;
@@ -125,15 +125,6 @@ public class CreateFoldersCloud
 		return true;
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 }

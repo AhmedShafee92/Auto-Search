@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import conncet.server.analyse.file.ConnectConvertStringToJson;
 import conncet.server.analyse.file.ConnectGoogleAPIServer;
 import conncet.server.analyse.file.ExcelWriter;
+import store.user.data.CreateFoldersCloud;
 import store.user.data.StoreUserDataLocal;
 import store.user.data.StoreUserDataServer;
 
@@ -30,7 +31,6 @@ public class GetDetailsGUI
 	// Should add login APP that will be the only frame in the local side .
 	// All the other firms should be in the server side . 
 	
-	// TODO : will transfer the files storage from the local to the cloud (duplicated).  
 
 	// Data Fields 
 	private static JTextField LinkedInEmail = null;
@@ -176,8 +176,11 @@ public class GetDetailsGUI
 	AnalysePesonalData.addActionListener(new ActionListener() 
 	{
 	   public void actionPerformed(ActionEvent e) 
-	   { 		   
-		
+	   { 
+			// TODO : should check if the creating the folders in the cloud success . 
+		   //create folders in the cloud 
+		   CreateFoldersCloud.createFoldersCloud();
+
 		   // Check if the user not upload the CV yet .
 		   if(!CheckCVFileExist())
 		   {
@@ -187,6 +190,9 @@ public class GetDetailsGUI
 		   // create files for storing analysing data in the local and server (cloud) .
 		   StoreUserDataLocal.createAnalyseUserFiles();
 		   StoreUserDataServer.createAnalyseUserFiles();
+		   
+		   // Here we will create all the needed folders in the cloud 
+		   // : 1-user_analyse_data, 2- user_personal_data 3- use_privacy_data 4- (maybe in the future will add the options search )
 		   
 		   // Showing the user the analysing data of his CV file . 
 		   String analyseFileForPostions = "";
