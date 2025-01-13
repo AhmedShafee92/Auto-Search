@@ -233,15 +233,10 @@ public class GetDetailsGUI
 				}
 				
 				// step 3 :
-				// file the data from the API server inside the local excel files 				
+				// file the data from the API server inside the local excel files . 				
 				ExcelWriter.writeListToExcelLocal(positionsList, "analyse_user_data/user_positons_list.xlsx");
 				ExcelWriter.writeListToExcelLocal(placesList, "analyse_user_data/user_places_list.xlsx");
-				
-				//TODO: fill the data from the API server inside the server (cloud) excel files . 				
-				
-				/*
-				 * Send JSON that content in string (the string content an array list of the data that we need).
-				 */
+				// Save the data of the analysing process inside the excel file . 				
 				ExcelWriter.writeListToExcelSerevr(placesList,positionsList);
 			
 			}
