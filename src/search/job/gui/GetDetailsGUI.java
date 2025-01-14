@@ -118,11 +118,12 @@ public class GetDetailsGUI
 		{
 		    public void actionPerformed(ActionEvent e) 
 		    {		
-		    	//TODO :     		    	
-		    	// 1- create privacy file and insert the encrypted data to the privacy_user_data folder. 
-		    	// 2- Show the user the next page GUI .
-		    	StoreUserDataLocal.createSensitiveUserFiles();
-		    	 	
+
+		    	// This functions add the sensitive data of the user in the cloud 
+		    	// before start the search  we should save the sensitive data and all other data that the system will 
+		    	// use in the cloud which will give the system the option to work without the user local storage .
+		    	
+		    	StoreUserDataLocal.createSensitiveUserFiles();	 	
 		    	String emailString = null;
 		    	String password = null;
 		    	char[] passwordChars = null;
@@ -261,7 +262,6 @@ public class GetDetailsGUI
 					
 				 }catch (IOException e1) 
 				  {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				  }
 				 

@@ -8,7 +8,7 @@ public class CreateFoldersCloud
 	public static void main(String[] args) {
 		createFoldersCloud();
 	}
-	//TODO :should add the options folders that have the search engines 
+
 	public static boolean createFoldersCloud() 
 	{
 		if (createUserDataStorageFolders())

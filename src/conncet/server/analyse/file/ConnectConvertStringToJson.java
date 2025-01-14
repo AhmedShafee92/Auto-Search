@@ -21,7 +21,6 @@ public class ConnectConvertStringToJson
 	private static String fileLocation = "personal_data/user_cv.docx";
 	private static String jsonFileLocation = "personal_data/user_analyse_data.json";
 	
-	// TODO: change the main to the function that upload the JSON file to the cloud .
 	public static void uploadJsonFileCloud() 
 	{
 		
