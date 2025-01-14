@@ -15,33 +15,24 @@ import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 import java.nio.charset.StandardCharsets;
 
-
-
-// TODO : the name of the class should be change to name that the class is serving 
 public class ConnectConvertStringToJson 
 {
 	private static String fileTotext = "";
 	private static String fileLocation = "personal_data/user_cv.docx";
 	private static String jsonFileLocation = "personal_data/user_analyse_data.json";
 	
-	
-	public static void main(String[] args) 
+	// TODO: change the main to the function that upload the JSON file to the cloud .
+	public static void uploadJsonFileCloud() 
 	{
+		
         try {
         	   
-        		FileReader fileReader = new FileReader(jsonFileLocation);
-               
+        		FileReader fileReader = new FileReader(jsonFileLocation);            
                // Use JsonParser to parse the file into a JsonObject
-               JsonObject jsonObject = JsonParser.parseReader(fileReader).getAsJsonObject();
-               
+               JsonObject jsonObject = JsonParser.parseReader(fileReader).getAsJsonObject();      
                String jsonInputString = jsonObject.toString();
-               
-               
-	            // URL of the server endpoint
+                 
 	            String serverUrl = "http://localhost:8000/upload-json";
-	
-	            // Create the JSON string (you can modify this as needed)
-	
 	            // Create a URL object and open a connection
 	            URL url = new URL(serverUrl);
 	            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -56,11 +47,11 @@ public class ConnectConvertStringToJson
 	                byte[] input = jsonInputString.getBytes(StandardCharsets.UTF_8);
 	                os.write(input, 0, input.length);
 	                System.out.println("JSON data sent successfully.");
-            }
+	            	}
 
-            // Read the response from the server
-            int status = connection.getResponseCode();
-            if (status == HttpURLConnection.HTTP_OK) {
+	            // Read the response from the server
+	            int status = connection.getResponseCode();
+	            if (status == HttpURLConnection.HTTP_OK) {
 				
                 try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8))) {
                     String responseLine;
@@ -81,11 +72,8 @@ public class ConnectConvertStringToJson
     }
 	
 
-
-	
 	public static boolean serverConvertWordToJson() throws IOException 
 	{
-		// The begging of the function that will put the JSON format inside the file .
 		convetFileToText(fileLocation); 	    
 	    String fileString = sanitizeString(fileTotext);
 	    StringBuilder sb = serverConvertWordToJson(fileString);

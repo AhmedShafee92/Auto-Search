@@ -31,7 +31,6 @@ public class GetDetailsGUI
 	// Should add login APP that will be the only frame in the local side .
 	// All the other firms should be in the server side . 
 	
-
 	// Data Fields 
 	private static JTextField LinkedInEmail = null;
 	private static JPasswordField LinkedInPassword = null;
@@ -177,10 +176,10 @@ public class GetDetailsGUI
 	{
 	   public void actionPerformed(ActionEvent e) 
 	   { 
-			//TODO : should check if the creating the folders in the cloud success . 
-		   //create folders in the cloud 
+		   	   
+		   // Here we will create all the needed folders in the cloud :
+		   // 1-user_analyse_data, 2- user_personal_data 3- user_privacy_data 
 		   CreateFoldersCloud.createFoldersCloud();
-
 		   // Check if the user not upload the CV yet .
 		   if(!CheckCVFileExist())
 		   {
@@ -191,16 +190,15 @@ public class GetDetailsGUI
 		   StoreUserDataLocal.createAnalyseUserFiles();
 		   StoreUserDataServer.createAnalyseUserFiles();
 		   
-		   // Here we will create all the needed folders in the cloud 
-		   // : 1-user_analyse_data, 2- user_personal_data 3- use_privacy_data 4- (maybe in the future will add the options search )
-		   
-		   // Showing the user the analysing data of his CV file . 
+		  
+		   // Showing the user analysing data of his CV file . 
 		   String analyseFileForPostions = "";
 		   @SuppressWarnings("unused")
 		   String personalUserData = "";
 		   Object[] options = {"Yes, Save The Data",
 		   "No, Analyse the data again"};
 		   try 
+		   
 		   {
 			   // Here we got analyse about the user CV from google API . 
 			   analyseFileForPostions = ConnectGoogleAPIServer.analyseUserCVData();   
@@ -266,7 +264,8 @@ public class GetDetailsGUI
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				  }
-	        	
+				 
+				ConnectConvertStringToJson.uploadJsonFileCloud();
 	        }
 	        else 
 	        {
