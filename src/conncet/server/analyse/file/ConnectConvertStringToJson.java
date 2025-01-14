@@ -46,7 +46,6 @@ public class ConnectConvertStringToJson
 	            try (OutputStream os = connection.getOutputStream()) {
 	                byte[] input = jsonInputString.getBytes(StandardCharsets.UTF_8);
 	                os.write(input, 0, input.length);
-	                System.out.println("JSON data sent successfully.");
 	            	}
 
 	            // Read the response from the server
@@ -121,28 +120,7 @@ public class ConnectConvertStringToJson
 		return true; 	
 	}
 	
-	
-	
-	static public void saveAnalyseJsonFile() 
-	{
-		// TODO Auto-generated method stub
-		// send the JSON file from the client to the cloud and save the file in the server.
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-
-	}
-	
-	
     public static StringBuilder  positionsListForUser(String inputString) 
     {
         String serverUrl = "http://localhost:4000/process";

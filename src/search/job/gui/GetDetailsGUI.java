@@ -118,9 +118,9 @@ public class GetDetailsGUI
 		{
 		    public void actionPerformed(ActionEvent e) 
 		    {		
-		    	    		    	
-		    	// 1- create privacy folder + create privacy file and insert the encrypted . 
-		    	// 2-Show the user the next page GUI .
+		    	//TODO :     		    	
+		    	// 1- create privacy file and insert the encrypted data to the privacy_user_data folder. 
+		    	// 2- Show the user the next page GUI .
 		    	StoreUserDataLocal.createSensitiveUserFiles();
 		    	 	
 		    	String emailString = null;
