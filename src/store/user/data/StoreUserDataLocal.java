@@ -238,8 +238,10 @@ public class StoreUserDataLocal
 	        File folder = new File(folderName);
 
 	        // Check if the folder exists, if not, create it
-	        if (!folder.exists()) {
+	        if (!folder.exists()) 
+	        {
 	            if (folder.mkdir()) {
+	            	// Do nothing 
 	            } else {
 	                System.out.println("Failed to create the folder: " + folderName);
 	                return -1;

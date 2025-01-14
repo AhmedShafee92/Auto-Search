@@ -33,6 +33,20 @@ public class StoreUserDataServer
     }
     
     
+    private void reateSensitiveUserFiles() 
+    {
+	
+    	// create the sensitive file in the cloud and store the sensitive data into the file 
+    	// send post method with encrypted data inside the JSON file 
+    	
+    	
+    	
+    	
+
+	}    
+    
+    
+    
 	
 }
 
