@@ -177,7 +177,7 @@ public class GetDetailsGUI
 	{
 	   public void actionPerformed(ActionEvent e) 
 	   { 
-			// TODO : should check if the creating the folders in the cloud success . 
+			//TODO : should check if the creating the folders in the cloud success . 
 		   //create folders in the cloud 
 		   CreateFoldersCloud.createFoldersCloud();
 

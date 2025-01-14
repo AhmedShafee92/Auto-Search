@@ -27,7 +27,7 @@ public class CreateFoldersCloud
 		
         try {
 	            @SuppressWarnings("deprecation")
-				URL url = new URL("http://localhost:8000/create-personal-user-data-folders");
+				URL url = new URL("http://localhost:8000/create-user-data-folders");
 	
 	            // Open a connection to the server
 	            HttpURLConnection connection = (HttpURLConnection) url.openConnection();            
