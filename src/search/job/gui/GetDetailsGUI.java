@@ -123,7 +123,6 @@ public class GetDetailsGUI
 		    	// before start the search  we should save the sensitive data and all other data that the system will 
 		    	// use in the cloud which will give the system the option to work without the user local storage .
 		    	StoreUserDataLocal.createSensitiveUserFiles();	 	
-		    	StoreUserDataServer.createSensitiveUserFiles();
 		    	
 		    	String emailString = null;
 		    	String password = null;
@@ -163,6 +162,11 @@ public class GetDetailsGUI
 					// Store sensitive data about User email +linkedIn						
 					StoreUserDataLocal.storeEncrptyData(emailString, password);							
 					StoreUserDataLocal.storeEncrptyData(emailLinkedinString, passwordLinkedin);
+					
+					// Store the sensitive data in the cloud 
+			    	StoreUserDataServer.createSensitiveUserFiles(emailString,password);
+			    	// TODO : should store the rest of the sensitive data in the cloud . 
+			    	
 					// Update the data inside the send email class 
 					frame.setVisible(false);
 					AutomationJobSearchGUI.main(null);
