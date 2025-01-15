@@ -33,7 +33,7 @@ public class StoreUserDataServer
     }
     
     
-    private void reateSensitiveUserFiles() 
+    public static void createSensitiveUserFiles() 
     {
 	
     	// create the sensitive file in the cloud and store the sensitive data into the file 
