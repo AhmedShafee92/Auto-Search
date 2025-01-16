@@ -3,18 +3,8 @@ import search.SearchJob;
 
 public class FirstSearchOpation implements SearchJob
 {
-	  int[] result = null;
+	int[] result = null;
 	String[] companiesEmail = null;
-	/*
-	 * private static void sendEmailsTocompanies(int numberCompaniesWantToSend)
-	 * throws Exception {
-	 * 
-	 * ///read number of companies we want to send /// send email to the number of
-	 * companies we get
-	 * 
-	 * 
-	 * }
-	 */
 	@Override
 	public void search() 
 	{
