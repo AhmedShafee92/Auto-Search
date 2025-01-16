@@ -166,6 +166,7 @@ public class GetDetailsGUI
 					// Store the sensitive data in the cloud 
 			    	StoreUserDataServer.createSensitiveUserFiles(emailString,password);
 			    	// TODO : should store the rest of the sensitive data in the cloud . 
+			    	// the linkedinEmail and password 
 			    	
 					// Update the data inside the send email class 
 					frame.setVisible(false);

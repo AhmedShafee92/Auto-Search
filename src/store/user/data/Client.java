@@ -13,13 +13,10 @@ import java.security.SecureRandom;
 
 public class Client 
 {
-    public static void main(String[] args) 
+    public static void createSensitiveUserFiles(String userEmail,  String userPassword) 
     {
         try {
-	            // User email and password
-	            String userEmail = "user@example.com";
-	            String userPassword = "userPassword123";
-	
+	           
 	            // Generate AES key (256 bits, 32 bytes) and IV (128 bits, 16 bytes)
 	            SecretKey key = KeyGenerator.getInstance("AES").generateKey();  // Generates a 256-bit key
 	            byte[] iv = new byte[16];
