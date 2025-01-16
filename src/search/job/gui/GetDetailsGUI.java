@@ -118,10 +118,7 @@ public class GetDetailsGUI
 		{
 		    public void actionPerformed(ActionEvent e) 
 		    {		
-
-		    	// This functions add the sensitive data of the user in the cloud 
-		    	// before start the search  we should save the sensitive data and all other data that the system will 
-		    	// use in the cloud which will give the system the option to work without the user local storage .
+		    	
 		    	StoreUserDataLocal.createSensitiveUserFiles();	 	
 		    	
 		    	String emailString = null;
@@ -165,8 +162,7 @@ public class GetDetailsGUI
 					
 					// Store the sensitive data in the cloud 
 			    	StoreUserDataServer.StoreUserEmailData(emailString,password); 	
-			    	// TODO : should store the rest of the sensitive data in the cloud . 
-			    	// the linkedinEmail and password 
+					// Store the sensitive data in the cloud 
 			    	StoreUserDataServer.StoreUserLinkedINData(emailString,password);
 					// Update the data inside the send email class 
 					frame.setVisible(false);
