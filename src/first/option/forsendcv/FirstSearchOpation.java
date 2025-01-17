@@ -8,6 +8,8 @@ public class FirstSearchOpation implements SearchJob
 {
 	int[] result = null;
 	String[] companiesEmail = null;
+	
+	@Override
 	public void search() 
 	{
 	
@@ -37,6 +39,7 @@ public class FirstSearchOpation implements SearchJob
 		
 	}
 	
+	@Override
 	public void stopSearch() 
 	{
 

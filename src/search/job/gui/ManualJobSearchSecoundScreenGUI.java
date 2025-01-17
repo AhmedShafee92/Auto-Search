@@ -41,7 +41,6 @@ public class ManualJobSearchSecoundScreenGUI
 	
         // Create the "Go" button
         JButton jobSearchButtonOption1 = new JButton("Go- Search Option 1-Emails");
-
         // Add an ActionListener to the button
         jobSearchButtonOption1.addActionListener(new ActionListener() 
         {

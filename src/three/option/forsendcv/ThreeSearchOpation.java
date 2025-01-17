@@ -35,6 +35,11 @@ public void search() {
 			e.printStackTrace();
 		}	
    }
+@Override
+public void stopSearch() {
+	// TODO Auto-generated method stub
+	
+}
 	
 
 }

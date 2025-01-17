@@ -9,6 +9,12 @@ public class SecondSearchOpation implements SearchJob {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void stopSearch() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 }
