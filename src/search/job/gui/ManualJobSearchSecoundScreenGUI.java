@@ -35,18 +35,41 @@ public class ManualJobSearchSecoundScreenGUI
 		// to be good process should the user - update the positive result in the weekly excel file 
 		// and the system will update he result . 
 		
-		JButton jobSearchButtonOption1 = new JButton("Search option1, Send emails");
-		jobSearchButtonOption1.addActionListener(new ActionListener() 
-		{
-		    public void actionPerformed(ActionEvent e) 
-		    {	
-		    	 FirstSearchOpation searchOpation=new FirstSearchOpation();	
-			     searchOpation.search();
-			     frame.setVisible(false);
-			     
-			}   
-			
-		});
+		// for the prototype will use normal ( gmail email ) as first level of process and the email of the user . 
+		// for full version will use the emails of the domain (for every customer will a have an email )
+		
+	
+        // Create the "Go" button
+        JButton jobSearchButtonOption1 = new JButton("Go- Search Option 1-Emails");
+
+        // Add an ActionListener to the button
+        jobSearchButtonOption1.addActionListener(new ActionListener() 
+        {
+            @Override
+            public void actionPerformed(ActionEvent e) 
+            {
+                // Check the current text on the button
+	    	 	FirstSearchOpation searchOpation=new FirstSearchOpation();	
+                if (jobSearchButtonOption1.getText().equals("Go- Search Option 1")) 
+                {
+                    // Change the text to "Stop"
+                    jobSearchButtonOption1.setText("Go- Search Option 1");
+                    // Perform action for "Go" button
+                    System.out.println("Action: Start searching...");
+                    //searchOpation.search();
+                       
+                } 
+                else 
+                {
+                    // Change the text back to "Go"
+                    jobSearchButtonOption1.setText("Stop- Search Option 1");
+                    // Perform action for "Stop" button
+                    System.out.println("Action: Stop searching...");
+   		    	 	//searchOpation.stopSearch();
+                
+                }
+            }
+        });
 		jobSearchButtonOption1.setBounds(326, 75, 163, 52);
 		frame.getContentPane().add(jobSearchButtonOption1);
 		
