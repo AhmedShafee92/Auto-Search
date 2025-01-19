@@ -21,6 +21,10 @@ public class ConnectConvertStringToJson
 	private static String fileLocation = "personal_data/user_cv.docx";
 	private static String jsonFileLocation = "personal_data/user_analyse_data.json";
 	
+	public static void main(String[] args) {
+		
+	}
+	
 	public static void uploadJsonFileCloud() 
 	{
 		
@@ -42,10 +46,11 @@ public class ConnectConvertStringToJson
 	            connection.setDoOutput(true);
 	
 	            // Send the JSON data
-	            try (OutputStream os = connection.getOutputStream()) {
+	            try (OutputStream os = connection.getOutputStream()) 
+	            {
 	                byte[] input = jsonInputString.getBytes(StandardCharsets.UTF_8);
 	                os.write(input, 0, input.length);
-	            	}
+	            }
 
 	            // Read the response from the server
 	            int status = connection.getResponseCode();
@@ -114,8 +119,7 @@ public class ConnectConvertStringToJson
     		return false; 	
 
     	}
-		      
-		
+
 		return true; 	
 	}
 	
@@ -194,13 +198,11 @@ public class ConnectConvertStringToJson
 
     	  String serverUrl = "http://localhost:4000/FileCVToJson";
           StringBuilder response = new StringBuilder();
-
           try {
   	            // Step 1: Create a URL object and open a connection
   	            URL url = new URL(serverUrl);
   	            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-  	
+	
   	            // Step 2: Configure the connection for POST
   	            connection.setRequestMethod("POST");
   	            connection.setRequestProperty("Content-Type", "application/json");

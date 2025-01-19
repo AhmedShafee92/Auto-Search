@@ -48,8 +48,7 @@ public class GetDetailsGUI
 	
 	//Implementation of Main Function .
 	private static void showScreen() 
-    {
-		
+    {	
 		//Data Area 
 		final JFrame frame = new JFrame();
 		JLabel uploadCV = null;
@@ -99,7 +98,7 @@ public class GetDetailsGUI
 		frame.getContentPane().add(LinkedInPassword);
 		
 		
-		JLabel lblNewLabel = new JLabel(" Password");
+		JLabel lblNewLabel = new JLabel("Password");
 		lblNewLabel.setBounds(205, 154, 114, 37);
 		frame.getContentPane().add(lblNewLabel);	
 		EmailUser = new JTextField();
@@ -179,8 +178,7 @@ public class GetDetailsGUI
 	AnalysePesonalData.addActionListener(new ActionListener() 
 	{
 	   public void actionPerformed(ActionEvent e) 
-	   {
-		   
+	   {  
 		   // Here we will create all the needed folders in the cloud :
 		   // 1-user_analyse_data, 2- user_personal_data 3- user_privacy_data .
 		   CreateFoldersCloud.createFoldersCloud();
@@ -193,23 +191,22 @@ public class GetDetailsGUI
 		   // create files for storing analysing data in the local and server (cloud) .
 		   StoreUserDataLocal.createAnalyseUserFiles();
 		   StoreUserDataServer.createAnalyseUserFiles();
-		   
-		  
 		   // Showing the user analysing data of his CV file . 
 		   String analyseFileForPostions = "";
 		   @SuppressWarnings("unused")
 		   String personalUserData = "";
 		   Object[] options = {"Yes, Save The Data",
 		   "No, Analyse the data again"};
-		   try{
-			   // Here we got analyse about the user CV from google API . 
+		   try
+		   {
+			   	// Here we got analyse about the user CV from google API . 
 			   analyseFileForPostions = ConnectGoogleAPIServer.analyseUserCVData();   
-		   }
+	   	   }
 		   catch (IOException e1) 
 		   {
 			   e1.printStackTrace();
 		   }
-		   // Ask the user if accepted the AI analysing of his CV file 
+		   // Ask the user if accepted the AI analysing of his CV file . 
 			int result = JOptionPane.showOptionDialog(frame,analyseFileForPostions,
 			"A Silly Question",
 			JOptionPane.YES_NO_CANCEL_OPTION,
@@ -226,7 +223,6 @@ public class GetDetailsGUI
 				List<String> placesList = null;
 				try
 				{
-				
 					positionsList = ConnectGoogleAPIServer.positionsAnalyseUserCVData();
 					
 				} catch (IOException e1) {
@@ -244,9 +240,13 @@ public class GetDetailsGUI
 				ExcelWriter.writeListToExcelLocal(positionsList, "analyse_user_data/user_positons_list.xlsx");
 				ExcelWriter.writeListToExcelLocal(placesList, "analyse_user_data/user_places_list.xlsx");
 				// Save the data of the analysing process inside the excel file . 				
-				ExcelWriter.writeListToExcelSerevr(placesList,positionsList);
+			//	ExcelWriter.writeListToExcelSerevr(placesList,positionsList);
 			
-			}
+			}else
+			{
+				// finish the process . 
+				return ;
+			}	
 			
 			// Step 3- add JSON user_cv to personal_data folder 
 	        String folderName = "personal_data"; // Folder inside the program folder
@@ -254,7 +254,7 @@ public class GetDetailsGUI
 	        // Build the relative path
 	        File file = new File(folderName, fileName);
 	        // Check if the file exists
-	        if (file.exists() && file.isFile() && result == JOptionPane.OK_OPTION ) 
+	        if (file.exists() && file.isFile()) 
 	        {
 				 try 
 				 {
@@ -266,7 +266,7 @@ public class GetDetailsGUI
 					e1.printStackTrace();
 				  }
 				 
-				ConnectConvertStringToJson.uploadJsonFileCloud();
+			//	ConnectConvertStringToJson.uploadJsonFileCloud();
 	        }
 	        else 
 	        {
