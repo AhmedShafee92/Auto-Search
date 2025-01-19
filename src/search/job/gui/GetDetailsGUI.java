@@ -179,10 +179,10 @@ public class GetDetailsGUI
 	AnalysePesonalData.addActionListener(new ActionListener() 
 	{
 	   public void actionPerformed(ActionEvent e) 
-	   { 
-		   	   
+	   {
+		   
 		   // Here we will create all the needed folders in the cloud :
-		   // 1-user_analyse_data, 2- user_personal_data 3- user_privacy_data 
+		   // 1-user_analyse_data, 2- user_personal_data 3- user_privacy_data .
 		   CreateFoldersCloud.createFoldersCloud();
 		   // Check if the user not upload the CV yet .
 		   if(!CheckCVFileExist())
@@ -201,9 +201,7 @@ public class GetDetailsGUI
 		   String personalUserData = "";
 		   Object[] options = {"Yes, Save The Data",
 		   "No, Analyse the data again"};
-		   try 
-		   
-		   {
+		   try{
 			   // Here we got analyse about the user CV from google API . 
 			   analyseFileForPostions = ConnectGoogleAPIServer.analyseUserCVData();   
 		   }

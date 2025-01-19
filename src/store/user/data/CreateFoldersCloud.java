@@ -35,11 +35,12 @@ public class CreateFoldersCloud
 	            int responseCode = connection.getResponseCode();
 	      
 	            // If the response code is 200 (OK), the server will execute the process
-	            if (responseCode == HttpURLConnection.HTTP_OK) {
+	            if (responseCode == HttpURLConnection.HTTP_OK) 
+	            {
 	            	// success do nothing 
 	            } else 
 	            {
-	            	// Print the response code to the console
+	            	// If the response failed 	
 	            	System.out.println("Response Code: " + responseCode);
 	                System.out.println("Request failed. Response Code: " + responseCode);
 	                return false ;
