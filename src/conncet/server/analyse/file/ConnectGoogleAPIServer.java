@@ -13,7 +13,8 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
 public class ConnectGoogleAPIServer
 {
-	
+	// TODO :should update the " fileLocation " that get the data from the place that store the 
+	// user file , which would be changed if the user change the user file when the program still running 
 	//Data Area 
 	private static String fileTotext = "";
 	private static String fileLocation = "personal_data/user_cv.docx";
@@ -111,8 +112,7 @@ public class ConnectGoogleAPIServer
 		
 
 	// function that return from the google API server list of places that the user can work 
-	// we send to http server localhost:4000/process 
-
+	// we send to http server localhost:4000/process .
 	public static List<String> placesAnalyseUserCVData() throws IOException 
 	{
 		
@@ -137,35 +137,34 @@ public class ConnectGoogleAPIServer
         return cleanedList;	
 	}
 
-
-	  public static String sanitizeString(String inputString) {
-	        if (inputString == null) {
-	            return null;
-	        }
-	        // Remove invalid control characters
-	        return inputString.replaceAll("[\\u0000-\\u001F\\u007F-\\u009F]", "");
+	public static String sanitizeString(String inputString) 
+	{
+	    if (inputString == null) {
+	        return null;
 	    }
-	
-	    public static List<String> convertToList(StringBuilder sb) 
-	    {
-	        if (sb == null || sb.length() == 0) {
-	            return new ArrayList<>(); // Return an empty list if the StringBuilder is null or empty
-	        }
+	    // Remove invalid control characters
+	    return inputString.replaceAll("[\\u0000-\\u001F\\u007F-\\u009F]", "");
+	}
+		
+    public static List<String> convertToList(StringBuilder sb) 
+    {
+        if (sb == null || sb.length() == 0) {
+            return new ArrayList<>(); // Return an empty list if the StringBuilder is null or empty
+        }
 
-	        // Split the StringBuilder content into an array of strings based on delimiters
-	        String[] parts = sb.toString().split("[,\n\"]-");
+        // Split the StringBuilder content into an array of strings based on delimiters
+        String[] parts = sb.toString().split("[,\n\"]-");
 
-	        // Create a list and add the non-empty trimmed elements
-	        List<String> result = new ArrayList<>();
-	        for (String part : parts) {
-	            if (!part.trim().isEmpty()) { // Skip empty strings
-	                result.add(part.trim());
-	            }
-	        }
+        // Create a list and add the non-empty trimmed elements
+        List<String> result = new ArrayList<>();
+        for (String part : parts) {
+            if (!part.trim().isEmpty()) { // Skip empty strings
+                result.add(part.trim());
+            }
+        }
 
-	        return result;
-	    }
+        return result;
+    }
 	
       
-    
 }

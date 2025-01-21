@@ -28,8 +28,8 @@ public class GetDetailsGUI
 	// TODO: Change the GUI to simple GUI which to hide the unused button and show the most used buttons. 
 	// Like the search , and in the begging the analysing and upload the CV.
 	// Maybe in the future will be good design for very simple APP. 
-	// Should add login APP that will be the only frame in the local side .
-	// All the other firms should be in the server side . 
+	// Should add login APP that will be the only frame in the local side.
+	// All the other firms should be in the server side. 
 	
 	// Data Fields 
 	private static JTextField LinkedInEmail = null;
@@ -241,7 +241,7 @@ public class GetDetailsGUI
 				ExcelWriter.writeListToExcelLocal(positionsList, "analyse_user_data/user_positons_list.xlsx");
 				ExcelWriter.writeListToExcelLocal(placesList, "analyse_user_data/user_places_list.xlsx");
 				// Save the data of the analysing process inside the excel file . 				
-			//	ExcelWriter.writeListToExcelSerevr(placesList,positionsList);
+				ExcelWriter.writeListToExcelSerevr(placesList,positionsList);
 			
 			}else
 			{
@@ -260,14 +260,13 @@ public class GetDetailsGUI
 				 try 
 				 {
 					ConnectConvertStringToJson.serverConvertWordToJson();
-					// ConnectConvertStringToJson.UploadJsonFileCloud();
 					
 				 }catch (IOException e1) 
 				  {
 					e1.printStackTrace();
 				  }
 				 
-			//	ConnectConvertStringToJson.uploadJsonFileCloud();
+			ConnectConvertStringToJson.uploadJsonFileCloud();
 	        }
 	        else 
 	        {
