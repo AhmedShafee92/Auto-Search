@@ -190,6 +190,7 @@ public class GetDetailsGUI
 		   
 		   // create files for storing analysing data in the local and server (cloud) .
 		   StoreUserDataLocal.createAnalyseUserFiles();
+
 		   StoreUserDataServer.createAnalyseUserFiles();
 		   // Showing the user analysing data of his CV file . 
 		   String analyseFileForPostions = "";
