@@ -158,7 +158,7 @@ public class StoreUserDataLocal
 	            }
 	        }
 			
-	        
+	        //TODO : should replace this two files with the summary if the analysing user data CV .
 	        String positons_file = folderName + File.separator + "user_positons_list.xlsx";
 	        String places_work_file = folderName + File.separator + "user_places_list.xlsx";
 	        

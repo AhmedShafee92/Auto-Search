@@ -25,13 +25,10 @@ import java.io.File;
 
 public class GetDetailsGUI 
 {
-	// TODO: Change the GUI to simple GUI which to hide the unused button and show the most used buttons. 
-	// Like the search , and in the begging the analysing and upload the CV.
-	// Maybe in the future will be good design for very simple APP. 
-	// Should add login APP that will be the only frame in the local side.
-	// All the other firms should be in the server side. 
 	
-	// Data Fields 
+	//TODO :change the GUI to more striped and simple .
+	
+	// Data Fields .
 	private static JTextField LinkedInEmail = null;
 	private static JPasswordField LinkedInPassword = null;
 	private static JTextField EmailUser = null;
@@ -46,13 +43,11 @@ public class GetDetailsGUI
 		showScreen();
 	}		
 	
-	//Implementation of Main Function .
 	private static void showScreen() 
     {	
 		//Data Area 
 		final JFrame frame = new JFrame();
-		JLabel uploadCV = null;
-		
+		JLabel uploadCV = null;		
 		frame.setBounds(150, 150, 727, 467);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Insert Your Detials");
@@ -74,7 +69,7 @@ public class GetDetailsGUI
 		{
 			public void actionPerformed(ActionEvent e) 
 			{  
-				
+				// Store user CV inside the path: "user_cv/personal_file" .
 				StoreUserDataLocal.storeCVUserLocal();
 			}
 		
@@ -179,18 +174,31 @@ public class GetDetailsGUI
 	{
 	   public void actionPerformed(ActionEvent e) 
 	   {  
-		   // Here we will create all the needed folders in the cloud :
-		   // 1-user_analyse_data, 2- user_personal_data 3- user_privacy_data .
+		
+			/*
+			 * Step1: 
+			 * Create folders in the cloud : 1-user_analyse_data, 2- user_personal_data 3-
+			 * user_privacy_data .
+			 */
 		   CreateFoldersCloud.createFoldersCloud();
 		   // Check if the user not upload the CV yet .
 		   if(!CheckCVFileExist())
 		   {
 			   return ;
 		   }
-		   
-		   // create files for storing analysing data in the local and server (cloud) .
+		  
+			/*
+			 * Step2: 
+			 * create files for storing analysing data in the Local Machine and the CLOUD .
+			 * The Positions Excel File, The Places Excel File .
+			 */
+		
+		   /*
+			 * TODO : in the local machine of the user storage should keep just analysing
+			 * file that have the summary of data not the whole analysing files .
+			 * 
+			 */
 		   StoreUserDataLocal.createAnalyseUserFiles();
-
 		   StoreUserDataServer.createAnalyseUserFiles();
 		   // Showing the user analysing data of his CV file . 
 		   String analyseFileForPostions = "";
