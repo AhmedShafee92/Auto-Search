@@ -22,8 +22,12 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 public class StoreUserDataLocal 
 {
 	//Data Area 
-
-			
+	private StoreUserDataLocal() 
+	{
+		// TODO Auto-generated constructor stub
+		storeCVUserLocal();			
+	}
+		
 	// 1- create copy CV File and personal_data folder . 
 	// 2 - add CV File to personal_data folder. 
 	public static void storeCVUserLocal()
@@ -142,7 +146,7 @@ public class StoreUserDataLocal
 
 
 	// Building file analyse user data . 
-		public static int createAnalyseUserFiles()
+		private static int createAnalyseUserFolder()
 		{
 			
 			// Inside the folder : 1- excel file -list places  2- excel file -list positions.
@@ -157,73 +161,7 @@ public class StoreUserDataLocal
 	                return 1;
 	            }
 	        }
-			
-	        //TODO : should replace this two files with the summary if the analysing user data CV .
-	        String positons_file = folderName + File.separator + "user_positons_list.xlsx";
-	        String places_work_file = folderName + File.separator + "user_places_list.xlsx";
-	        
-	        //Check if the excel files is exist 
-	        File file = new File(positons_file);
-	        // Check if the file exists and is a file
-	        if (file.exists() && file.isFile()) 
-	        {
-	        	return 0;
-	        } 
-	        
-	        
-	        { 
-		        // Create a workbook (HSSFWorkbook for .xls or XSSFWorkbook for .xlsx)
-		        Workbook workbook = new XSSFWorkbook();
-		        // Create a sheet in the workbook
-		        Sheet sheet = workbook.createSheet("Sheet1");
-		        // Create a header row
-		        Row headerRow = sheet.createRow(0);
-		        Cell headerCell1 = headerRow.createCell(0);
-		        headerCell1.setCellValue("Positions");
-		 
-		        // Write the workbook to a file
-		        try (FileOutputStream outputStream = new FileOutputStream(positons_file)) {
-		            workbook.write(outputStream);
-		        } catch (IOException e) {
-		            System.out.println("Error writing Excel file.");
-		            e.printStackTrace();
-		        } finally {
-		            // Close the workbook
-		            try {
-		                workbook.close();
-		            } catch (IOException e) {
-		                e.printStackTrace();
-		            }
-		        }
-	        }
-	               
-	        { 
-		        // Create a workbook (HSSFWorkbook for .xls or XSSFWorkbook for .xlsx)
-		        Workbook workbook = new XSSFWorkbook();
-		        // Create a sheet in the workbook
-		        Sheet sheet = workbook.createSheet("Sheet1");
-		        // Create a header row
-		        Row headerRow = sheet.createRow(0);
-		        Cell headerCell1 = headerRow.createCell(0);
-		        headerCell1.setCellValue("Places");
-		 
-		        // Write the workbook to a file
-		        try (FileOutputStream outputStream = new FileOutputStream(places_work_file)) {
-		            workbook.write(outputStream);
-		        } catch (IOException e) {
-		            System.out.println("Error writing Excel file.");
-		            e.printStackTrace();
-		        } finally {
-		            // Close the workbook
-		            try {
-		                workbook.close();
-		            } catch (IOException e) {
-		                e.printStackTrace();
-		            }
-		        }
-	        }
-	        
-	        
+			  
 			return 0; 	
 		}
 		

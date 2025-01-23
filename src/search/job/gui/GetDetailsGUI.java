@@ -175,19 +175,21 @@ public class GetDetailsGUI
 	   public void actionPerformed(ActionEvent e) 
 	   {  
 		
-			/*
-			 * Step1: 
-			 * Create folders in the cloud : 1-user_analyse_data, 2- user_personal_data 3-
-			 * user_privacy_data .
-			 */
-		   CreateFoldersCloud.createFoldersCloud();
 		   // Check if the user not upload the CV yet .
 		   if(!CheckCVFileExist())
 		   {
 			   return ;
 		   }
-		  
-			/*
+
+		   /*
+		    * Step1: 
+		    * Create folders in the cloud : 1-user_analyse_data, 2- user_personal_data 3-
+		    * user_privacy_data .
+		    */
+		   
+		   CreateFoldersCloud.createFoldersCloud();  
+			
+		   /*
 			 * Step2: 
 			 * create files for storing analysing data in the Local Machine and the CLOUD .
 			 * The Positions Excel File, The Places Excel File .
@@ -198,7 +200,6 @@ public class GetDetailsGUI
 			 * file that have the summary of data not the whole analysing files .
 			 * 
 			 */
-		   StoreUserDataLocal.createAnalyseUserFiles();
 		   StoreUserDataServer.createAnalyseUserFiles();
 		   // Showing the user analysing data of his CV file . 
 		   String analyseFileForPostions = "";
@@ -244,10 +245,7 @@ public class GetDetailsGUI
 					e1.printStackTrace();
 				}
 				
-				// step 3 :
-				// file the data from the API server inside the local excel files . 				
-				ExcelWriter.writeListToExcelLocal(positionsList, "analyse_user_data/user_positons_list.xlsx");
-				ExcelWriter.writeListToExcelLocal(placesList, "analyse_user_data/user_places_list.xlsx");
+				// step 3 :				
 				// Save the data of the analysing process inside the excel file . 				
 				ExcelWriter.writeListToExcelSerevr(placesList,positionsList);
 			
