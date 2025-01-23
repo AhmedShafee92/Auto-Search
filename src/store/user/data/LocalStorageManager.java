@@ -1,5 +1,4 @@
 package store.user.data;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -12,8 +11,7 @@ public class LocalStorageManager
 
     private static final String BASE_STORAGE_DIR = "AppStorage";
 
-    public static Path getUserStorage(String userId) 
-    {
+    public static Path getUserStorage(String userId) {
         Path userPath = Paths.get(System.getProperty("user.dir"), BASE_STORAGE_DIR, userId);
         Path personalDataPath = userPath.resolve("personal_data");
         Path analyseDataPath = userPath.resolve("analyse_data");
@@ -65,8 +63,7 @@ public class LocalStorageManager
         }
     }
 
-    public static void main(String[] args) 
-    {
+    public static void main(String[] args) {
         // Example usage
         String userId = "user123";
 

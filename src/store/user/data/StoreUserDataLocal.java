@@ -32,6 +32,21 @@ public class StoreUserDataLocal
    static Path projectDir = Paths.get(System.getProperty("user.dir"), BASE_STORAGE_DIR);
    static Path personalDataPath = projectDir.resolve("personal_data");
    static Path analyseDataPath = projectDir.resolve("analyse_data");
+   
+	// 1- create copy CV File and personal_data folder . 
+	// 2 - add CV File to personal_data folder. 
+	public static void storeCVUserLocal()
+	{
+		// create word file and folder and put the word file inside the folder . 
+		initializeStorage();
+		// createFolder();
+		// This function show the user option to upload file and stored this file inside local machine . 
+	   Path presonal_user_cv = createWordFile(personalDataPath);
+	    @SuppressWarnings("unused")
+		Path analyse_user_cv = createJsonFile(analyseDataPath); 
+	    storeWordFileData(presonal_user_cv);
+	}	
+   
 
     /**
      * Initializes the base storage directory in the project directory.
@@ -64,9 +79,7 @@ public class StoreUserDataLocal
 	        System.err.println("Error creating directories: " + e.getMessage());
 	        return ;
 	    }
-	    
-        createWordFile(personalDataPath);
-	    createJsonFile(analyseDataPath);
+
 	    
     }
 	
@@ -78,16 +91,6 @@ public class StoreUserDataLocal
 		storeCVUserLocal();			
 	}
 		
-	// 1- create copy CV File and personal_data folder . 
-	// 2 - add CV File to personal_data folder. 
-	public static void storeCVUserLocal()
-	{
-		// create word file and folder and put the word file inside the folder . 
-		initializeStorage();
-		// createFolder();
-		// This function show the user option to upload file and stored this file inside local machine . 
-		storeWordFileData(personalDataPath);
-	}	
 	private static void createFolder()
 	{	    
 	    
@@ -279,8 +282,9 @@ public class StoreUserDataLocal
 		}
 	
 		
-	  private static void createJsonFile(Path directoryPath) 
+	  private static Path createJsonFile(Path directoryPath) 
 	  {
+		  Path jsonFilePath = directoryPath.resolve("data.json");
 	        try {
 	            // Ensure the directory exists
 	            if (!Files.exists(directoryPath)) {
@@ -288,12 +292,11 @@ public class StoreUserDataLocal
 	            }
 
 	            // Define the JSON file name and path
-	            Path jsonFilePath = directoryPath.resolve("data.json");
 
 	            // Check if the file already exists
 	            if (Files.exists(jsonFilePath)) {
 	                System.out.println("The file 'data.json' already exists at: " + jsonFilePath);
-	                return;
+	                return null;
 	            }
 
 	            // Create the JSON content
@@ -308,22 +311,26 @@ public class StoreUserDataLocal
 	        } catch (IOException e) {
 	            System.err.println("Error creating JSON file: " + e.getMessage());
 	        }
+	        
+	        return jsonFilePath;
 	    }
 	
-	   private static void createWordFile(Path directoryPath) {
-	        try {
+	   private static Path createWordFile(Path directoryPath) {
+		   // Define the Word file name and path
+           Path wordFilePath = directoryPath.resolve("user_cv.docx");
+		   
+		   try {
 	            // Ensure the directory exists
 	            if (!Files.exists(directoryPath)) {
 	                Files.createDirectories(directoryPath); // Create the directory if it doesn't exist
 	            }
 
-	            // Define the Word file name and path
-	            Path wordFilePath = directoryPath.resolve("document.docx");
+	          
 
 	            // Check if the file already exists
 	            if (Files.exists(wordFilePath)) {
 	                System.out.println("The file 'document.docx' already exists at: " + wordFilePath);
-	                return;
+	                return null;
 	            }
 
 	            // Create a new Word document
@@ -344,6 +351,7 @@ public class StoreUserDataLocal
 	        } catch (IOException e) {
 	            System.err.println("Error creating Word file: " + e.getMessage());
 	        }
+	        return wordFilePath;
 	    }
 
 	  			
