@@ -15,127 +15,103 @@ import javax.swing.JFrame;
 
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 
+public class StoreUserDataLocal {
 
-public class StoreUserDataLocal 
-{
+	// Base directory name for the storage within the project directory
+	// Data paths for the storage of the user .
+	private static final String BASE_STORAGE_DIR = "AppStorage";
+	static Path projectDir = Paths.get(System.getProperty("user.dir"), BASE_STORAGE_DIR);
+	static Path personalDataPath = projectDir.resolve("personal_data");
+	static Path analyseDataPath = projectDir.resolve("analyse_data");
+	static final String personalDataPahtCV = "AppStorage/personal_data/user_cv.docx ";
+	static final String analyseDataPathJson = "AppStorage/analyse_data/user_analyse_data.json";
 	
-    // Base directory name for the storage within the project directory
-    private static final String BASE_STORAGE_DIR = "AppStorage";
-    // Parameter Area 
-   static Path projectDir = Paths.get(System.getProperty("user.dir"), BASE_STORAGE_DIR);
-   static Path personalDataPath = projectDir.resolve("personal_data");
-   static Path analyseDataPath = projectDir.resolve("analyse_data");
-   
-	// 1- create copy CV File and personal_data folder . 
-	// 2 - add CV File to personal_data folder. 
-	public static void storeCVUserLocal()
+	// 1- create copy CV File and personal_data folder .
+	// 2 - add CV File to personal_data folder.
+	public static void storeCVUserLocal() 
 	{
-		// create word file and folder and put the word file inside the folder . 
+		// create word file and folder and put the word file inside the folder .
 		initializeStorage();
 		// createFolder();
-		// This function show the user option to upload file and stored this file inside local machine . 
-	   Path presonal_user_cv = createWordFile(personalDataPath);
-	    @SuppressWarnings("unused")
-		Path analyse_user_cv = createJsonFile(analyseDataPath); 
-	    storeWordFileData(presonal_user_cv);
-	}	
-   
+		// This function show the user option to upload file and stored this file inside
+		// local machine .
+		 createWordFile(personalDataPath);
+		createJsonFile(analyseDataPath);		
+		storeWordFileData();
+	}
 
-    /**
-     * Initializes the base storage directory in the project directory.
-     */
-    public static void initializeStorage() 
-    {
-        try {
-            // Create the storage directory if it doesn't exist
-            if (!Files.exists(projectDir)) {
-                Files.createDirectories(projectDir);
-            } else {
-            	// nothing to do (already the folder exist)
-            }
-        } catch (Exception e) {
-            System.err.println("Error creating storage directory: " + e.getMessage());
-            return ;
-        }
-        
-	    try {
-	        if (!Files.exists(projectDir)) {
-	            Files.createDirectories(projectDir);
-	        }
-	        if (!Files.exists(personalDataPath)) {
-	            Files.createDirectories(personalDataPath);
-	        }
-	        if (!Files.exists(analyseDataPath)) {
-	            Files.createDirectories(analyseDataPath);
-	        }
-	    } catch (IOException e) {
-	        System.err.println("Error creating directories: " + e.getMessage());
-	        return ;
-	    }
+	/**
+	 * Initializes the base storage directory in the project directory.
+	 */
+	public static void initializeStorage() {
+		try {
+			// Create the storage directory if it doesn't exist
+			if (!Files.exists(projectDir)) {
+				Files.createDirectories(projectDir);
+			} else {
+				// nothing to do (already the folder exist)
+			}
+		} catch (Exception e) {
+			System.err.println("Error creating storage directory: " + e.getMessage());
+			return;
+		}
 
-	    
-    }
-	
+		try {
 
-	//Data Area 
-	private StoreUserDataLocal() 
-	{
+			if (!Files.exists(personalDataPath)) {
+				Files.createDirectories(personalDataPath);
+			}
+			if (!Files.exists(analyseDataPath)) {
+				Files.createDirectories(analyseDataPath);
+			}
+		} catch (IOException e) {
+			System.err.println("Error creating directories: " + e.getMessage());
+			return;
+		}
+
+	}
+
+	// Data Area
+	private StoreUserDataLocal() {
 		// TODO Auto-generated constructor stub
-		storeCVUserLocal();			
+		storeCVUserLocal();
 	}
-		
-	private static void createFolder()
-	{	    
-	    
-        // Define the folder path and Word file name
-        String folderPath = "personal_user_data";
-        String wordFileName = "user_cv.docx";
 
-        // Create the folder if it doesn't exist
-        File folder = new File(folderPath);
-        if (!folder.exists()) {
-            if (folder.mkdir()) {
-            } else {
-                System.out.println("Failed to create folder: " + folderPath);
-                return;
-            }
-        }
-        // Define the full path for the Word file
-        String wordFilePath = folderPath + File.separator + wordFileName;
-        // Create the Word file
-        createWordFile(wordFilePath);
-    }
+	/*
+	 * private static void createFolder() {
+	 * 
+	 * // Define the folder path and Word file name String folderPath =
+	 * "personal_user_data"; String wordFileName = "user_cv.docx";
+	 * 
+	 * // Create the folder if it doesn't exist File folder = new File(folderPath);
+	 * if (!folder.exists()) { if (folder.mkdir()) { } else {
+	 * System.out.println("Failed to create folder: " + folderPath); return; } } //
+	 * Define the full path for the Word file String wordFilePath = folderPath +
+	 * File.separator + wordFileName; // Create the Word file
+	 * createWordFile(wordFilePath); }
+	 */
 
-    private static void createWordFile(String filePath) 
-    {    
-        // Check if the word file is exist 
-        File file = new File(filePath);
-    	if (file.exists() && file.isFile())
-    	{
-    		 return ;
-    	}
-        // Create an empty Word document
-        try (XWPFDocument document = new XWPFDocument();
-             FileOutputStream fileOut = new FileOutputStream(filePath)) {
-            // Write the empty document to the file
-            document.write(fileOut);
-        } catch (IOException e) {
-            System.out.println("Error creating Word file: " + filePath);
-            e.printStackTrace();
-        }
-                      
-	}
-    
-    
+	/*
+	 * private static void createWordFile(String filePath) { // Check if the word
+	 * file is exist File file = new File(filePath); if (file.exists() &&
+	 * file.isFile()) { return; } // Create an empty Word document try (XWPFDocument
+	 * document = new XWPFDocument(); FileOutputStream fileOut = new
+	 * FileOutputStream(filePath)) { // Write the empty document to the file
+	 * document.write(fileOut); } catch (IOException e) {
+	 * System.out.println("Error creating Word file: " + filePath);
+	 * e.printStackTrace(); }
+	 * 
+	 * }
+	 */
+
 	// Here we save the CV file of the user.
-	private static void storeWordFileData(Path desPath) 
+	private static void storeWordFileData() 
 	{
 		// Create a JFrame for the file dialog
 		JFrame frame = new JFrame();
@@ -144,217 +120,220 @@ public class StoreUserDataLocal
 		fileDialog.setVisible(true);
 		// Get the selected file path
 		String filePath = fileDialog.getDirectory() + fileDialog.getFile();
-        Path pathSource = Path.of(filePath);
- 
-		// Here we save the word file that the user insert inside the personal_data/cv_user.docs
-		copyFile(pathSource,desPath);
-	}
-    
-    
-	// Here we save the data in encrypted way 
-	 public static void storeEncrptyData(String email,String password) 
-	 {
-		
-	     // Encrypt the data using base64
-	     String encryptedEmail = Base64.getEncoder().encodeToString(email.getBytes());
-	     String encryptedPassword = Base64.getEncoder().encodeToString(password.getBytes());
-	
-	     // Store the encrypted data ץ
-	     String filePath = "PrivacyData/encrypted_personal_data.txt";
-	     try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-	         writer.write(encryptedEmail);
-	         writer.newLine();
-	         writer.write(encryptedPassword);
-	         writer.newLine();
-	     } catch (IOException e) {
-	         e.printStackTrace();
-	     }
-			 
-	}
-	    
-
-	      
-	private static void copyFile(String source,String desc) 
-	{
-		
-		  File sourceFile = new File(source);
-	      File destinationFile = new File(desc);
-	      try {
-		          InputStream in = new FileInputStream(sourceFile);
-		          OutputStream out = new FileOutputStream(destinationFile);
-		          byte[] buffer = new byte[1024];
-		          int length;
-		          while ((length = in.read(buffer)) > 0) {
-		              out.write(buffer, 0, length);
-		          }
-		          in.close();
-		          out.close();
-		          System.out.println("File copied from " + sourceFile + " to " + destinationFile);
-	          } 
-	      catch (IOException e) 
-	      {
-	          System.out.println("Error copying file: " + e.getMessage());
-	      }
-		
-	}
-
-
-	 private static void copyFile(Path sourcePath, Path destinationPath) {
-	        File sourceFile = sourcePath.toFile();
-	        File destinationFile = destinationPath.toFile();
-
-	        try (InputStream in = new FileInputStream(sourceFile);
-	             OutputStream out = new FileOutputStream(destinationFile)) {
-
-	            byte[] buffer = new byte[1024];
-	            int length;
-
-	            while ((length = in.read(buffer)) > 0) {
-	                out.write(buffer, 0, length);
-	            }
-
-	            System.out.println("File copied from " + sourceFile + " to " + destinationFile);
-
-	        } catch (IOException e) {
-	            System.out.println("Error copying file: " + e.getMessage());
-	        }
-	    }
-
-	
-	// Building file analyse user data . 
-		private static int createAnalyseUserFolder()
-		{
 			
-			// Inside the folder : 1- excel file -list places  2- excel file -list positions.
-			String folderName = "analyse_user_data"; 
-	        File folder = new File(folderName);
-	        // Check if the folder exists, if not, create it
-	        if (!folder.exists()) 
-	        {
-	            if (folder.mkdir()) {
-	            } else {
-	                System.out.println("Failed to create the folder: " + folderName);
-	                return 1;
-	            }
-	        }
-			  
-			return 0; 	
+		// Here we save the word file that the user insert inside the
+		// personal_data/cv_user.docs
+		copyFile(filePath,personalDataPahtCV);
+		
+	}
+
+	// Here we save the data in encrypted way
+	public static void storeEncrptyData(String email, String password) {
+
+		// Encrypt the data using base64
+		String encryptedEmail = Base64.getEncoder().encodeToString(email.getBytes());
+		String encryptedPassword = Base64.getEncoder().encodeToString(password.getBytes());
+
+		// Store the encrypted data ץ
+		String filePath = "PrivacyData/encrypted_personal_data.txt";
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+			writer.write(encryptedEmail);
+			writer.newLine();
+			writer.write(encryptedPassword);
+			writer.newLine();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		
-		// Building file analyse user data . 
-		public static int createSensitiveUserFiles()
-		{
-			
-	        String folderName = "PrivacyData"; // Folder inside the program folder
-	        String fileName = "encrypted_personal_data.txt"; // File to check
 
-	        // Create a File object for the folder
-	        File folder = new File(folderName);
+	}
 
-	        // Check if the folder exists, if not, create it
-	        if (!folder.exists()) 
-	        {
-	            if (folder.mkdir()) {
-	            	// Do nothing 
-	            } else {
-	                System.out.println("Failed to create the folder: " + folderName);
-	                return -1;
-	            }
-	        } else {
-	            System.out.println("Folder already exists: " + folderName);
-	        }
-
-	        // Create a File object for the file inside the folder
-	        File file = new File(folder, fileName);
-	        try {
-		            // Check if the file exists, if not, create it
-		            if (file.createNewFile()) {
-		            } else {
-		                System.out.println("File already exists: " + file.getPath());
-		            }
-	            } catch (IOException e1) {
-	            System.out.println("An error occurred while creating the file.");
-	            e1.printStackTrace();
-	        }
-			
-			
-			return 0;
-		}
 	
-		
-	  private static Path createJsonFile(Path directoryPath) 
+	
+	  private static void copyFile(String source,String desc) 
 	  {
-		  Path jsonFilePath = directoryPath.resolve("data.json");
-	        try {
-	            // Ensure the directory exists
-	            if (!Files.exists(directoryPath)) {
-	                Files.createDirectories(directoryPath); // Create the directory if it doesn't exist
-	            }
+	  
+		  File sourceFile = new File(source); 
+		  File destinationFile = new File(desc);
+		  try 
+		  { 
+			  
+			  InputStream in = new FileInputStream(sourceFile); 
+			  OutputStream out =new FileOutputStream(destinationFile);
+			  byte[] buffer = new byte[1024]; 
+			  int length; 
+			  while ((length = in.read(buffer)) > 0) 
+			  { 
+				  out.write(buffer, 0,length); 
+			  } 
+			  
+			  in.close(); out.close(); 
+		  	  System.out.println("File copied from " +sourceFile + " to " + destinationFile); 
+			  
+		  } catch (IOException e) 
+		  {
+				  System.out.println("Error copying file: " + e.getMessage()); 
+		  }
+	  
+	  }
+	 
 
-	            // Define the JSON file name and path
+	/*
+	 * private static void copyFile(Path sourcePath) { File sourceFile =
+	 * sourcePath.toFile(); Path test = presonal_user_cv; System.out.println(test);
+	 * File destinationFile = presonal_user_cv.toFile();
+	 * 
+	 * try (InputStream in = new FileInputStream(sourceFile); OutputStream out = new
+	 * FileOutputStream(destinationFile)) {
+	 * 
+	 * byte[] buffer = new byte[1024]; int length;
+	 * 
+	 * while ((length = in.read(buffer)) > 0) { out.write(buffer, 0, length); }
+	 * 
+	 * 
+	 * } catch (IOException e) { System.out.println("Error copying file: " +
+	 * e.getMessage()); }
+	 * 
+	 * }
+	 */
+	 
 
-	            // Check if the file already exists
-	            if (Files.exists(jsonFilePath)) {
-	                System.out.println("The file 'data.json' already exists at: " + jsonFilePath);
-	                return null;
-	            }
+	// Building file analyse user data .
+	private static int createAnalyseUserFolder() {
 
-	            // Create the JSON content
-	            String jsonContent = "{\n    \"key\": \"value\",\n    \"example\": 123\n}";
+		// Inside the folder : 1- excel file -list places 2- excel file -list positions.
+		String folderName = "analyse_user_data";
+		File folder = new File(folderName);
+		// Check if the folder exists, if not, create it
+		if (!folder.exists()) {
+			if (folder.mkdir()) {
+			} else {
+				System.out.println("Failed to create the folder: " + folderName);
+				return 1;
+			}
+		}
 
-	            // Write the content to the file
-	            try (FileWriter fileWriter = new FileWriter(jsonFilePath.toFile())) {
-	                fileWriter.write(jsonContent);
-	                System.out.println("JSON file created at: " + jsonFilePath);
-	            }
+		return 0;
+	}
 
-	        } catch (IOException e) {
-	            System.err.println("Error creating JSON file: " + e.getMessage());
-	        }
-	        
-	        return jsonFilePath;
-	    }
+	// Building file analyse user data .
+	public static int createSensitiveUserFiles() {
+
+		String folderName = "PrivacyData"; // Folder inside the program folder
+		String fileName = "encrypted_personal_data.txt"; // File to check
+
+		// Create a File object for the folder
+		File folder = new File(folderName);
+
+		// Check if the folder exists, if not, create it
+		if (!folder.exists()) {
+			if (folder.mkdir()) {
+				// Do nothing
+			} else {
+				System.out.println("Failed to create the folder: " + folderName);
+				return -1;
+			}
+		} else {
+			System.out.println("Folder already exists: " + folderName);
+		}
+
+		// Create a File object for the file inside the folder
+		File file = new File(folder, fileName);
+		try {
+			// Check if the file exists, if not, create it
+			if (file.createNewFile()) {
+			} else {
+				System.out.println("File already exists: " + file.getPath());
+			}
+		} catch (IOException e1) {
+			System.out.println("An error occurred while creating the file.");
+			e1.printStackTrace();
+		}
+
+		return 0;
+	}
+
+	private static Path createJsonFile(Path directoryPath) {
+		Path jsonFilePath = directoryPath.resolve("user_analyse_data.json");
+		try {
+			// Ensure the directory exists
+			if (!Files.exists(directoryPath)) {
+				Files.createDirectories(directoryPath); // Create the directory if it doesn't exist
+			}
+
+			// Check if the JSON file already exists
+			if (Files.exists(jsonFilePath)) {
+				return null;
+			}
+
+			// Create an empty JSON file
+			Files.createFile(jsonFilePath);
+
+		} catch (IOException e) {
+			System.err.println("Error creating JSON file: " + e.getMessage());
+		}
+
+		return jsonFilePath;
+	}
+
+	private static Path createWordFile(Path directoryPath) 
+	{
+		// Define the Word file name and path
+		Path wordFilePath = directoryPath.resolve("user_cv.docx");
+
+		try {
+			// Ensure the directory exists
+			if (!Files.exists(directoryPath)) {
+				Files.createDirectories(directoryPath); // Create the directory if it doesn't exist
+			}
+
+			// Check if the file already exists
+			if (Files.exists(wordFilePath)) {
+				return null;
+			}
+
+			// Create an empty Word document
+			try (XWPFDocument document = new XWPFDocument();
+					FileOutputStream out = new FileOutputStream(wordFilePath.toFile())) {
+				document.write(out); // Write the empty document to the file
+			}
+
+		} catch (IOException e) {
+			System.err.println("Error creating Word file: " + e.getMessage());
+		}
+
+		return wordFilePath;
+	}
+
+	public static boolean CheckCVFileExist() 
+	{
+		return isPathExist(personalDataPath);
+	}
+
+	// Function to check if a path exists
+	public static boolean isPathExist(Path path) {
+		return Files.exists(path);
+	}
 	
-	   private static Path createWordFile(Path directoryPath) {
-		   // Define the Word file name and path
-           Path wordFilePath = directoryPath.resolve("user_cv.docx");
-		   
-		   try {
-	            // Ensure the directory exists
-	            if (!Files.exists(directoryPath)) {
-	                Files.createDirectories(directoryPath); // Create the directory if it doesn't exist
-	            }
-
-	          
-
-	            // Check if the file already exists
-	            if (Files.exists(wordFilePath)) {
-	                System.out.println("The file 'document.docx' already exists at: " + wordFilePath);
-	                return null;
-	            }
-
-	            // Create a new Word document
-	            try (XWPFDocument document = new XWPFDocument()) {
-	                // Add a paragraph
-	                XWPFParagraph paragraph = document.createParagraph();
-	                XWPFRun run = paragraph.createRun();
-	                run.setText("This is a sample Word document created using Apache POI.");
-	                run.setFontSize(12);
-
-	                // Write the document to the file
-	                try (FileOutputStream out = new FileOutputStream(wordFilePath.toFile())) {
-	                    document.write(out);
-	                    System.out.println("Word file created at: " + wordFilePath);
-	                }
-	            }
-
-	        } catch (IOException e) {
-	            System.err.println("Error creating Word file: " + e.getMessage());
-	        }
-	        return wordFilePath;
-	    }
-
-	  			
-
-
+	
+    public static boolean isWordFileCVEmpty() 
+    {
+        try (FileInputStream fis = new FileInputStream(personalDataPahtCV)) 
+        {
+            // Load the Word document (docx)
+            XWPFDocument document = new XWPFDocument(fis);
+            
+            // Check if the document has any paragraphs (this is a basic check)
+            if (document.getParagraphs().isEmpty()) {
+                return true;  // The document is empty
+            }
+            
+            // Optionally, check for tables, headers, etc. if needed
+            return false;  // The document is not empty
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;  // In case of error, assume file is not empty
+        }
+    }
+	
+	
 }

@@ -5,9 +5,6 @@ import java.net.URL;
 
 public class CreateFoldersCloud 
 {
-	public static void main(String[] args) {
-		createFoldersCloud();
-	}
 
 	public static boolean createFoldersCloud() 
 	{

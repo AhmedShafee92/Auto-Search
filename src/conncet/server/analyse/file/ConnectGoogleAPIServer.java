@@ -13,11 +13,9 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
 public class ConnectGoogleAPIServer
 {
-	// TODO :should update the " fileLocation " that get the data from the place that store the 
-	// user file , which would be changed if the user change the user file when the program still running 
-	//Data Area 
+	// TODO :should change the hard path to function that get the file_location 
 	private static String fileTotext = "";
-	private static String fileLocation = "personal_data/user_cv.docx";
+	private static String fileLocation = "AppStorage/personal_data/user_cv.docx";
 		
 	//Implementation Method 
 	public static String analyseUserCVData() throws IOException 
@@ -102,7 +100,8 @@ public class ConnectGoogleAPIServer
 
         // Clean up the list by removing the leading "- " and trimming
         List<String> cleanedList = new ArrayList<>();
-        for (String line : list) {
+        for (String line : list) 
+        {
             cleanedList.add(line.replaceFirst("^-\\s*", "").trim());
         }
 	    
@@ -112,7 +111,7 @@ public class ConnectGoogleAPIServer
 		
 
 	// function that return from the google API server list of places that the user can work 
-	// we send to http server localhost:4000/process .
+	// we send to HTTP server localhost:4000/process .
 	public static List<String> placesAnalyseUserCVData() throws IOException 
 	{
 		

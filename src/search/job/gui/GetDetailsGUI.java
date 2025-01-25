@@ -27,7 +27,6 @@ public class GetDetailsGUI
 {
 	
 	//TODO :change the GUI to more striped and simple .
-	
 	// Data Fields .
 	private static JTextField LinkedInEmail = null;
 	private static JPasswordField LinkedInPassword = null;
@@ -173,10 +172,11 @@ public class GetDetailsGUI
 	AnalysePesonalData.addActionListener(new ActionListener() 
 	{
 	   public void actionPerformed(ActionEvent e) 
-	   {  
+	   {   
 		
-		   // Check if the user not upload the CV yet .
-		   if(!CheckCVFileExist())
+		   // before  start analysing should check if the data is exist . 
+		   // Check if the user upload the CV and not empty .
+		   if(!StoreUserDataLocal.CheckCVFileExist() || StoreUserDataLocal.isWordFileCVEmpty())
 		   {
 			   return ;
 		   }
@@ -185,21 +185,13 @@ public class GetDetailsGUI
 		    * Step1: 
 		    * Create folders in the cloud : 1-user_analyse_data, 2- user_personal_data 3-
 		    * user_privacy_data .
-		    */
-		   
-		   CreateFoldersCloud.createFoldersCloud();  
-			
+		    */		   
+		   CreateFoldersCloud.createFoldersCloud();  	   
 		   /*
 			 * Step2: 
 			 * create files for storing analysing data in the Local Machine and the CLOUD .
 			 * The Positions Excel File, The Places Excel File .
-			 */
-		
-		   /*
-			 * TODO : in the local machine of the user storage should keep just analysing
-			 * file that have the summary of data not the whole analysing files .
-			 * 
-			 */
+			*/	 
 		   StoreUserDataServer.createAnalyseUserFiles();
 		   // Showing the user analysing data of his CV file . 
 		   String analyseFileForPostions = "";
@@ -265,14 +257,12 @@ public class GetDetailsGUI
 	        {
 				 try 
 				 {
-					ConnectConvertStringToJson.serverConvertWordToJson();
-					
+					ConnectConvertStringToJson.serverConvertWordToJson();	
 				 }catch (IOException e1) 
-				  {
+				 {
 					e1.printStackTrace();
-				  }
-				 
-			ConnectConvertStringToJson.uploadJsonFileCloud();
+				 } 
+				 ConnectConvertStringToJson.uploadJsonFileCloud();
 	        }
 	        else 
 	        {
@@ -309,23 +299,7 @@ public class GetDetailsGUI
 	frame.setVisible(true);
 	
  }
-	
-	private static boolean CheckCVFileExist()
-	{
-	      // Specify the file path to check
-        String filePath = "personal_data/user_cv.docx";
-        // Create a File object
-        File file = new File(filePath);
-        // Check if the file exists
-        if (file.exists()) {
-            return true;
-        } else {
-            return false ;
-        }
-		
-	}
-	
-	
+
 	
     public static List<String> convertToList(StringBuilder sb, String delimiter) 
     {

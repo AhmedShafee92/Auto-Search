@@ -18,8 +18,8 @@ import java.nio.charset.StandardCharsets;
 public class ConnectConvertStringToJson 
 {
 	private static String fileTotext = "";
-	private static String fileLocation = "personal_data/user_cv.docx";
-	private static String jsonFileLocation = "personal_data/user_analyse_data.json";
+	private static String fileLocation = "AppStorage/personal_data/user_cv.docx";
+	private static String jsonFileLocation = "AppStorage/personal_data/user_analyse_data.json";
 	
 	public static void main(String[] args) {
 		
@@ -128,7 +128,6 @@ public class ConnectConvertStringToJson
     {
         String serverUrl = "http://localhost:4000/process";
         StringBuilder response = new StringBuilder();
-
         try {
        
 	            // Step 1: Create a URL object and open a connection
