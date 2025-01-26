@@ -246,7 +246,7 @@ public class GetDetailsGUI
 				return ;
 			}	
 			
-			// Step 4- add JSON user_cv to personal_data folder 
+			// Step 4- add analyse_user_data.json to analyse_data folder 
 	        String folderName = "AppStorage/analyse_data"; // Folder inside the program folder
 	        String fileName = "user_analyse_data.json"; // File to check
 	        // Build the relative path

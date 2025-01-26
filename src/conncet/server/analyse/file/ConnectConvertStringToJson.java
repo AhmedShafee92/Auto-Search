@@ -266,7 +266,7 @@ public class ConnectConvertStringToJson
 	public static StringBuilder serverConvertWordToJson(String inputString) 
     {
 
-    	  String serverUrl = "http://localhost:4000/process";
+    	  String serverUrl = "http://localhost:4000/serverConvertWordToJson";
           StringBuilder response = new StringBuilder();
           try {
   	            // Step 1: Create a URL object and open a connection
