@@ -252,7 +252,8 @@ public class StoreUserDataLocal {
 		return 0;
 	}
 
-	private static Path createJsonFile(Path directoryPath) {
+	private static Path createJsonFile(Path directoryPath) 
+	{
 		Path jsonFilePath = directoryPath.resolve("user_analyse_data.json");
 		try {
 			// Ensure the directory exists
@@ -279,7 +280,6 @@ public class StoreUserDataLocal {
 	{
 		// Define the Word file name and path
 		Path wordFilePath = directoryPath.resolve("user_cv.docx");
-
 		try {
 			// Ensure the directory exists
 			if (!Files.exists(directoryPath)) {

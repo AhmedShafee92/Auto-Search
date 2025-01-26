@@ -32,6 +32,7 @@ public class ConnectGoogleAPIServer
 	}
 	
 	
+	// sending to AI API to analysing user data (text - data ). 
     private static String AnalyseText(String message) 
     {
     	 
@@ -118,8 +119,8 @@ public class ConnectGoogleAPIServer
 	    String promotToAI = "give me list of places the user can work (write excatly the list without any answer ):";
 	    convetFileToText(fileLocation); 	    
 	    promotToAI += fileTotext;	
-	    String positionsList = sanitizeString(promotToAI);
-	    StringBuilder serverResponse = ConnectConvertStringToJson.positionsListForUser(positionsList);
+	    String placessList = sanitizeString(promotToAI);
+	    StringBuilder serverResponse = ConnectConvertStringToJson.placesListForUser(placessList);
 
 	    // Replace the literal "\n" with actual newlines
         String content = serverResponse.toString().replace("\\n", "\n");

@@ -247,8 +247,8 @@ public class GetDetailsGUI
 			}	
 			
 			// Step 4- add JSON user_cv to personal_data folder 
-	        String folderName = "AppStorage/personal_data"; // Folder inside the program folder
-	        String fileName = "user_cv.docx"; // File to check
+	        String folderName = "AppStorage/analyse_data"; // Folder inside the program folder
+	        String fileName = "user_analyse_data.json"; // File to check
 	        // Build the relative path
 	        File file = new File(folderName, fileName);
 	        // Check if the file exists

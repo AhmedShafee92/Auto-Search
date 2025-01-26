@@ -19,9 +19,19 @@ public class ConnectConvertStringToJson
 {
 	private static String fileTotext = "";
 	private static String fileLocation = "AppStorage/personal_data/user_cv.docx";
-	private static String jsonFileLocation = "AppStorage/personal_data/user_analyse_data.json";
+	private static String jsonFileLocation = "AppStorage/analyse_data/user_analyse_data.json";
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
+	
+		
+		try {
+			serverConvertWordToJson();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 	}
 	
@@ -79,8 +89,7 @@ public class ConnectConvertStringToJson
 	{
 		convetFileToText(fileLocation); 	    
 	    String fileString = sanitizeString(fileTotext);
-	    StringBuilder sb = serverConvertWordToJson(fileString);
-	    
+	    StringBuilder sb = serverConvertWordToJson(fileString);	    
 	    String jsonString = sb.toString();
         // Parse the JSON string to a JsonObject using Gson
 	    // JsonObject jsonObject = JsonParser.parseString(jsonString).getAsJsonObject();
@@ -182,6 +191,68 @@ public class ConnectConvertStringToJson
         return response; 
     }
 
+    
+    
+    public static StringBuilder  placesListForUser(String inputString) 
+    {
+        String serverUrl = "http://localhost:4000/process";
+        StringBuilder response = new StringBuilder();
+        try {
+       
+	            // Step 1: Create a URL object and open a connection
+	            URL url = new URL(serverUrl);
+	            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+	
+	            // Step 2: Configure the connection for POST
+	            connection.setRequestMethod("POST");
+	            connection.setRequestProperty("Content-Type", "application/json");
+	            connection.setDoOutput(true);
+	
+	            // Step 3: Create the JSON request body
+	            String jsonInputString = "{ \"inputString\": \"" + inputString + "\" }";
+	
+	            // Step 4: Send the JSON data
+	            try (OutputStream os = connection.getOutputStream()) 
+	            {
+	                byte[] input = jsonInputString.getBytes("utf-8");
+	                os.write(input, 0, input.length);
+	                System.out.println("success");
+	            }
+	
+	            // Step 5: Read the JSON response
+	            int status = connection.getResponseCode();
+	            if (status == HttpURLConnection.HTTP_OK) 
+	            {
+	               
+	            	try (BufferedReader br = new BufferedReader(
+	                        new InputStreamReader(connection.getInputStream(), "utf-8"))) 
+	            	{
+	                    String responseLine;
+	                    while ((responseLine = br.readLine()) != null) 
+	                    {
+	                        response.append(responseLine.trim());
+	                    }
+	
+	                }	
+	                       
+	            } 
+	            else 
+            	{
+            		System.out.println("Server responded with status code: " + status);
+            		return null;
+            	}
+
+        } catch (IOException e) 
+        {
+            e.printStackTrace();
+            return null ; 
+        }
+        return response; 
+    }
+    
+    
+    
     // Method to save JSON string to a local file
     @SuppressWarnings("unused")
 	private static void saveJsonToFile(String jsonString, String fileName) throws IOException 
@@ -195,7 +266,7 @@ public class ConnectConvertStringToJson
 	public static StringBuilder serverConvertWordToJson(String inputString) 
     {
 
-    	  String serverUrl = "http://localhost:4000/FileCVToJson";
+    	  String serverUrl = "http://localhost:4000/process";
           StringBuilder response = new StringBuilder();
           try {
   	            // Step 1: Create a URL object and open a connection

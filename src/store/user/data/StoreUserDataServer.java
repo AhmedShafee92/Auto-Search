@@ -17,7 +17,6 @@ public class StoreUserDataServer
     {
         try {
 	            URL url = new URL("http://localhost:8000/storage_first_stage_analysing");
-	
 	            // Open a connection to the server
 	            HttpURLConnection connection = (HttpURLConnection) url.openConnection();            
 	            connection.setRequestMethod("GET");            
