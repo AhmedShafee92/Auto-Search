@@ -266,7 +266,7 @@ public class ConnectConvertStringToJson
 	public static StringBuilder serverConvertWordToJson(String inputString) 
     {
 
-    	  String serverUrl = "http://localhost:4000/serverConvertWordToJson";
+    	  String serverUrl = "http://localhost:4000/FileCVToJson";
           StringBuilder response = new StringBuilder();
           try {
   	            // Step 1: Create a URL object and open a connection
