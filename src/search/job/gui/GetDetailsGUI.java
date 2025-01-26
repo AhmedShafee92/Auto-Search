@@ -254,6 +254,7 @@ public class GetDetailsGUI
 	        // Check if the file exists
 	        if (file.exists() && file.isFile()) 
 	        {
+	        	// Save the user data as JSON file in the local machine 
 				 try 
 				 {
 					ConnectConvertStringToJson.serverConvertWordToJson();	
@@ -261,6 +262,7 @@ public class GetDetailsGUI
 				 {
 					e1.printStackTrace();
 				 } 
+				 // Here we upload the JSON File to the cloud 
 				 ConnectConvertStringToJson.uploadJsonFileCloud();
 	        }
 	        else 
