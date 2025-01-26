@@ -21,16 +21,6 @@ public class ConnectConvertStringToJson
 	private static String fileLocation = "AppStorage/personal_data/user_cv.docx";
 	private static String jsonFileLocation = "AppStorage/analyse_data/user_analyse_data.json";
 	
-	public static void main(String[] args) 
-	{
-	
-
-			uploadJsonFileCloud();
-	
-		
-		
-	}
-	
 	public static void uploadJsonFileCloud() 
 	{
 		
