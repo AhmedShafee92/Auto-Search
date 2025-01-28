@@ -38,6 +38,16 @@ public class ManualJobSearchSecoundScreenGUI
 		// for the prototype will use normal ( gmail email ) as first level of process and the email of the user . 
 		// for full version will use the emails of the domain (for every customer will a have an email )
 		
+		
+		
+		
+		// The first search engine opt1 has three process :
+		// 1- send the email from the main domain (include reading the data from the storage in the cloud )
+		// 2- update the storage of the domain 
+		//3- manage the main email (include sending back the positive email to the user domain )
+		// and deleting all the result of the inbox in the main email .
+		
+		
 	
         // Create the "Go" button
         JButton jobSearchButtonOption1 = new JButton("Go- Search Option 1-Emails");
