@@ -45,7 +45,7 @@ public class ManualJobSearchSecoundScreenGUI
 		// 1- send the email from the main domain (include reading the data from the storage in the cloud )
 		// 2- update the storage of the domain 
 		//3- manage the main email (include sending back the positive email to the user domain )
-		// and deleting all the result of the inbox in the main email .
+		// and deleting all the result of the INBOX in the main email after updating .
 		
 		
 	
