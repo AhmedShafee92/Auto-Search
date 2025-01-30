@@ -2,6 +2,7 @@ package store.user.data;
 
 //Libraries 
 import java.awt.FileDialog;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,6 +22,11 @@ import java.nio.file.Paths;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 
+import java.io.*;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class StoreUserDataLocal {
 
 	// Base directory name for the storage within the project directory
@@ -32,6 +38,10 @@ public class StoreUserDataLocal {
 	static final String personalDataPahtCV = "AppStorage/personal_data/user_cv.docx ";
 	static final String analyseDataPathJson = "AppStorage/analyse_data/user_analyse_data.json";
 	
+	public static void main(String[] args) {
+		createSensitiveUserFiles();
+	}
+	
 	// 1- create copy CV File and personal_data folder .
 	// 2 - add CV File to personal_data folder.
 	public static void storeCVUserLocal() 
@@ -41,7 +51,7 @@ public class StoreUserDataLocal {
 		// createFolder();
 		// This function show the user option to upload file and stored this file inside
 		// local machine .
-		 createWordFile(personalDataPath);
+		createWordFile(personalDataPath);
 		createJsonFile(analyseDataPath);		
 		storeWordFileData();
 	}
@@ -49,36 +59,40 @@ public class StoreUserDataLocal {
 	/**
 	 * Initializes the base storage directory in the project directory.
 	 */
-	public static void initializeStorage() {
+	public static void initializeStorage() 
+	{
 		try {
-			// Create the storage directory if it doesn't exist
-			if (!Files.exists(projectDir)) {
-				Files.createDirectories(projectDir);
-			} else {
-				// nothing to do (already the folder exist)
+				// Create the storage directory if it doesn't exist
+				if (!Files.exists(projectDir)) {
+					Files.createDirectories(projectDir);
+				} else {
+					// nothing to do (folder exist)
+				}
+			} catch (Exception e) 
+			{
+				System.err.println("Error creating storage directory: " + e.getMessage());
+				return;
 			}
-		} catch (Exception e) {
-			System.err.println("Error creating storage directory: " + e.getMessage());
-			return;
-		}
 
 		try {
 
-			if (!Files.exists(personalDataPath)) {
-				Files.createDirectories(personalDataPath);
+				if (!Files.exists(personalDataPath)) {
+					Files.createDirectories(personalDataPath);
+				}
+				if (!Files.exists(analyseDataPath)) {
+					Files.createDirectories(analyseDataPath);
 			}
-			if (!Files.exists(analyseDataPath)) {
-				Files.createDirectories(analyseDataPath);
+			} catch (IOException e) 	
+			{
+				System.err.println("Error creating directories: " + e.getMessage());
+				return;
 			}
-		} catch (IOException e) {
-			System.err.println("Error creating directories: " + e.getMessage());
-			return;
-		}
 
 	}
 
 	// Data Area
-	private StoreUserDataLocal() {
+	private StoreUserDataLocal() 
+	{
 		// TODO Auto-generated constructor stub
 		storeCVUserLocal();
 	}
@@ -135,7 +149,7 @@ public class StoreUserDataLocal {
 		String encryptedPassword = Base64.getEncoder().encodeToString(password.getBytes());
 
 		// Store the encrypted data ץ
-		String filePath = "PrivacyData/encrypted_personal_data.txt";
+		String filePath = "AppStorage/privacy_data/user_credentials.json";
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
 			writer.write(encryptedEmail);
 			writer.newLine();
@@ -216,39 +230,28 @@ public class StoreUserDataLocal {
 	}
 
 	// Building file analyse user data .
-	public static int createSensitiveUserFiles() {
-
-		String folderName = "PrivacyData"; // Folder inside the program folder
-		String fileName = "encrypted_personal_data.txt"; // File to check
-
-		// Create a File object for the folder
-		File folder = new File(folderName);
-
-		// Check if the folder exists, if not, create it
-		if (!folder.exists()) {
-			if (folder.mkdir()) {
-				// Do nothing
-			} else {
-				System.out.println("Failed to create the folder: " + folderName);
-				return -1;
-			}
-		} else {
-			System.out.println("Folder already exists: " + folderName);
-		}
-
-		// Create a File object for the file inside the folder
-		File file = new File(folder, fileName);
-		try {
-			// Check if the file exists, if not, create it
-			if (file.createNewFile()) {
-			} else {
-				System.out.println("File already exists: " + file.getPath());
-			}
-		} catch (IOException e1) {
-			System.out.println("An error occurred while creating the file.");
-			e1.printStackTrace();
-		}
-
+	public static int createSensitiveUserFiles() 
+	{
+		
+	    // Define directory structure
+	     final String BASE_DIR = "AppStorage";
+	     final String PRIVACY_DIR = "privacy_data";
+	     final String CREDENTIALS_FILE = "user_credentials.json";
+	     
+	     // Full path to credentials file
+	     final String FULL_PATH = Paths.get(BASE_DIR, PRIVACY_DIR, CREDENTIALS_FILE).toString();
+	     {
+	         // Create directories if they don't exist
+	         try {
+	             Path path = Paths.get(BASE_DIR, PRIVACY_DIR);
+	             Files.createDirectories(path);
+	         } catch (IOException e) {
+	             System.err.println("Failed to create directories: " + e.getMessage());
+	             return -1;
+	         }
+	     }
+	      
+	    
 		return 0;
 	}
 
@@ -335,5 +338,6 @@ public class StoreUserDataLocal {
         }
     }
 	
+    
 	
 }

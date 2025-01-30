@@ -19,6 +19,7 @@ import conncet.server.analyse.file.ExcelWriter;
 import store.user.data.CreateFoldersCloud;
 import store.user.data.StoreUserDataLocal;
 import store.user.data.StoreUserDataServer;
+import store.user.data.UserManager;
 
 import javax.swing.JPasswordField;
 import java.io.File;
@@ -145,14 +146,21 @@ public class GetDetailsGUI
 				else
 				{
 					
-					String emailLinkedinString = LinkedInEmail.getText();
 					char[] passwordCharLinkedin = LinkedInPassword.getPassword();
+
+					String emailLinkedinString = LinkedInEmail.getText();
 					String passwordLinkedin = new String(passwordCharLinkedin);
 
+					/*
+					 * StoreUserDataLocal.storeEncrptyData(emailString, password);
+					 * StoreUserDataLocal.storeEncrptyData(emailLinkedinString, passwordLinkedin);
+					 */
+
 					// Store sensitive data about User email +linkedIn						
-					StoreUserDataLocal.storeEncrptyData(emailString, password);							
-					StoreUserDataLocal.storeEncrptyData(emailLinkedinString, passwordLinkedin);
-					
+					UserManager.storeEncrptyData("email_credentials", emailString, password);
+					UserManager.storeEncrptyData("LinkedIn_credentials", emailLinkedinString, passwordLinkedin);
+
+	
 					// Store the sensitive data in the cloud 
 			    	StoreUserDataServer.StoreUserEmailData(emailString,password); 	
 					// Store the sensitive data in the cloud 
