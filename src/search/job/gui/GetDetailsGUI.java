@@ -150,7 +150,8 @@ public class GetDetailsGUI
 
 					String emailLinkedinString = LinkedInEmail.getText();
 					String passwordLinkedin = new String(passwordCharLinkedin);
-
+					
+					//TODO : should delete this comment below. 	
 					/*
 					 * StoreUserDataLocal.storeEncrptyData(emailString, password);
 					 * StoreUserDataLocal.storeEncrptyData(emailLinkedinString, passwordLinkedin);
