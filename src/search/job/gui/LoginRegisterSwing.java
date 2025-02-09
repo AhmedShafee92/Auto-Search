@@ -6,8 +6,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import org.json.JSONObject;
 
-public class LoginRegisterSwing {
-    public static void main(String[] args) {
+public class LoginRegisterSwing 
+{
+    public static void main(String[] args) 
+    {
         System.out.println("Application started.");
         SwingUtilities.invokeLater(LoginRegisterSwing::new);
     }
@@ -15,6 +17,8 @@ public class LoginRegisterSwing {
     /**
      * @wbp.parser.entryPoint
      */
+    
+    // Add controller for every button - which move to the MVC code style 
     public LoginRegisterSwing() 
     {
         System.out.println("Initializing GUI components.");
