@@ -38,6 +38,7 @@ public class GetDetailsGUI
 	private static JButton attachButton = null;
 	
 	//Main Function for run the frame to start working. 
+	
 	public static void main(String[] args)	
 	{		
 		showScreen();
