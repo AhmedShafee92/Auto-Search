@@ -1,4 +1,4 @@
- package controller;
+package controller;
 
 import model.MainModel;
 import view.MainView;

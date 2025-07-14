@@ -1,20 +1,18 @@
+// File: src/model/UserModel.java
 package model;
 
 import java.util.HashMap;
 
 public class UserModel {
-    // Simulate a database with a HashMap
-    private static HashMap<String, String> userDB = new HashMap<>();
+    private static final HashMap<String, String> users = new HashMap<>();
 
-    // Sign up
-    public static boolean register(String email, String password) {
-        if (userDB.containsKey(email)) return false; // already registered
-        userDB.put(email, password);
-        return true;
+    public static boolean login(String email, String password) {
+        return users.containsKey(email) && users.get(email).equals(password);
     }
 
-    // Sign in
-    public static boolean login(String email, String password) {
-        return userDB.containsKey(email) && userDB.get(email).equals(password);
+    public static boolean register(String email, String password) {
+        if (users.containsKey(email)) return false;
+        users.put(email, password);
+        return true;
     }
 }

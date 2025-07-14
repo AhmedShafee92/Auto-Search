@@ -3,8 +3,7 @@ package view;
 import javax.swing.*;
 import java.awt.*;
 
-public class MainView extends JPanel 
-{
+public class MainView extends JPanel {
     public JTextField linkedInEmail = new JTextField();
     public JPasswordField linkedInPassword = new JPasswordField();
     public JTextField emailUser = new JTextField();
@@ -15,8 +14,7 @@ public class MainView extends JPanel
     public JButton attachCVButton = new JButton("Attach File");
     public JButton viewPersonalDataButton = new JButton("Personal Data");
 
-    public MainView() 
-    {
+    public MainView() {
         setLayout(null);
         setPreferredSize(new Dimension(727, 467));
 

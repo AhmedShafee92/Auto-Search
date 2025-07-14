@@ -1,62 +1,49 @@
+// File: src/controller/AuthController.java
 package controller;
 
 import model.UserModel;
 import view.AuthView;
-import view.MainView;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AuthController {
-    private final JFrame frame;
+    private final MainFrame mainFrame;
     private final AuthView view;
 
-    public AuthController() {
-        view = new AuthView();
-        frame = new JFrame("Authentication");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setContentPane(view);
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-
+    public AuthController(MainFrame frame) {
+        this.mainFrame = frame;
+        this.view = frame.getAuthView();
         initListeners();
     }
 
     private void initListeners() {
         view.loginButton.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 String email = view.emailField.getText();
                 String password = new String(view.passwordField.getPassword());
 
                 if (UserModel.login(email, password)) {
-                    JOptionPane.showMessageDialog(frame, "Login Successful!");
-                    goToMainFrame();
+                    JOptionPane.showMessageDialog(null, "Login Successful!");
+                    mainFrame.showScreen(MainFrame.MAIN);
                 } else {
-                    JOptionPane.showMessageDialog(frame, "Invalid credentials!");
+                    JOptionPane.showMessageDialog(null, "Invalid credentials!");
                 }
             }
         });
 
         view.registerButton.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 String email = view.emailField.getText();
                 String password = new String(view.passwordField.getPassword());
 
                 if (UserModel.register(email, password)) {
-                    JOptionPane.showMessageDialog(frame, "Registration Successful! Please log in.");
+                    JOptionPane.showMessageDialog(null, "Registration Successful!");
                 } else {
-                    JOptionPane.showMessageDialog(frame, "User already exists.");
+                    JOptionPane.showMessageDialog(null, "User already exists.");
                 }
             }
         });
-    }
-
-    private void goToMainFrame() {
-        frame.setVisible(false); // Hide login
-        new MainView();          // Show main app
     }
 }
