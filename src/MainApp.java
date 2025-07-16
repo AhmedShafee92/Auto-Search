@@ -1,11 +1,11 @@
+import controller.AuthController;
 import controller.MainController;
-import model.MainModel;
-import view.MainView;
+import controller.MainFrame;
 
 public class MainApp {
     public static void main(String[] args) {
-        MainModel model = new MainModel();
-        MainView view = new MainView();
-        new MainController(model, view);
+        MainFrame mainFrame = new MainFrame();
+        new AuthController(mainFrame);
+        new MainController(mainFrame.getMainView());  // ✅ Must be initialized
     }
 }

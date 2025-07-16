@@ -33,9 +33,10 @@ public class MainModel {
         StoreUserDataServer.StoreUserLinkedINData(linkedinEmail, linkedinPassword);
     }
 
-    public void analyseData(JFrame frame) {
-        CreateFoldersCloud.createFoldersCloud();
-        StoreUserDataServer.createAnalyseUserFiles();
+    public void analyseData(JFrame frame) 
+    {
+       // CreateFoldersCloud.createFoldersCloud();
+       // StoreUserDataServer.createAnalyseUserFiles();
 
         try {
             String result = ConnectGoogleAPIServer.analyseUserCVData();
@@ -48,15 +49,15 @@ public class MainModel {
                     "Yes, Save");
 
             if (decision == JOptionPane.OK_OPTION) {
-                List<String> positions = ConnectGoogleAPIServer.positionsAnalyseUserCVData();
-                List<String> places = ConnectGoogleAPIServer.placesAnalyseUserCVData();
+            //    List<String> positions = ConnectGoogleAPIServer.positionsAnalyseUserCVData();
+              //  List<String> places = ConnectGoogleAPIServer.placesAnalyseUserCVData();
 
-                ExcelWriter.writeListToExcelSerevr(places, positions);
+            //    ExcelWriter.writeListToExcelSerevr(places, positions);
 
                 File json = new File("AppStorage/analyse_data", "user_analyse_data.json");
                 if (json.exists()) {
-                    ConnectConvertStringToJson.serverConvertWordToJson();
-                    ConnectConvertStringToJson.uploadJsonFileCloud();
+                //    ConnectConvertStringToJson.serverConvertWordToJson();
+                  //  ConnectConvertStringToJson.uploadJsonFileCloud();
                 }
             }
         } catch (IOException e) {

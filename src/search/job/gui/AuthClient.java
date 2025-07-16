@@ -2,6 +2,10 @@
 package search.job.gui;
 
 import javax.swing.*;
+
+import controller.MainController;
+import view.MainView;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
@@ -13,9 +17,8 @@ import java.nio.charset.StandardCharsets;
 import java.io.InputStream;
 import java.io.IOException;
 
-
-
-public class AuthClient extends JFrame {
+public class AuthClient extends JFrame 
+{
 
     private final JTextField usernameField;
     private final JPasswordField passwordField;
@@ -63,19 +66,22 @@ public class AuthClient extends JFrame {
         signInButton.addActionListener(this::onSignIn);
     }
 
-    private void onSignUp(ActionEvent e) {
+    private void onSignUp(ActionEvent e) 
+    {
         String username = usernameField.getText();
         String password = new String(passwordField.getPassword());
         sendMessageToServer("/signup", username, password);
     }
 
-    private void onSignIn(ActionEvent e) {
+    private void onSignIn(ActionEvent e) 
+    {
         String username = usernameField.getText();
         String password = new String(passwordField.getPassword());
         sendMessageToServer("/signin", username, password);
     }
 
-    private void sendMessageToServer(String endpoint, String username, String password) {
+    private void sendMessageToServer(String endpoint, String username, String password) 
+    {
         messageArea.setText("");
 
         if (username.isEmpty() || password.isEmpty()) {
@@ -145,6 +151,8 @@ public class AuthClient extends JFrame {
                     // ✅ Switch to dashboard if login was successful
                     if (endpoint.equals("/signin") && finalDisplayMessage.equals("Sign-in successful!")) {
                         showDashboard(username);
+                       // dispose();
+                        
                     }
                 });
 
@@ -161,11 +169,17 @@ public class AuthClient extends JFrame {
     }
 
     private void showDashboard(String username) {
-        DashboardPanel dashboard = new DashboardPanel(username);
-        setContentPane(dashboard);
-        revalidate(); // Refresh the UI
+        MainView mainView = new MainView();
+        new MainController(mainView); // ✅ hook up controller to enable button logic
+        setContentPane(mainView);
+        setExtendedState(JFrame.MAXIMIZED_BOTH); // ✅ maximize window
+        revalidate();
         repaint();
     }
+
+    
+    
+    
     private String escapeJsonString(String text) {
         if (text == null || text.isEmpty()) {
             return "";
@@ -208,7 +222,9 @@ public class AuthClient extends JFrame {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+    {
         SwingUtilities.invokeLater(() -> new AuthClient().setVisible(true));
     }
+    
 }

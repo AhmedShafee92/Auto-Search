@@ -44,7 +44,7 @@ public class GetDetailsGUI
 		showScreen();
 	}		
 	
-	private static void showScreen() 
+	public static void showScreen() 
     {	
 		//Data Area 
 		final JFrame frame = new JFrame();

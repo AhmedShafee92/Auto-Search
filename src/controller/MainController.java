@@ -12,6 +12,15 @@ public class MainController {
     private final MainView view;
     private final JFrame frame;
 
+    
+    
+    public MainController(MainView view) {
+        this.model = new MainModel();
+		this.view = view;
+		this.frame = new JFrame();
+        initListeners();
+    }
+
     public MainController(MainModel model, MainView view) {
         this.model = model;
         this.view = view;
