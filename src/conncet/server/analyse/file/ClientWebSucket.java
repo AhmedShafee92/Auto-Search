@@ -6,7 +6,7 @@ import java.net.*;
 public class ClientWebSucket {
     public static void main(String[] args) {
         String serverAddress = "127.0.0.1"; // Updated host
-        int port = 4000; // Updated port
+        int port = 5000; // Updated port
 
         try (Socket socket = new Socket(serverAddress, port);
              BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
