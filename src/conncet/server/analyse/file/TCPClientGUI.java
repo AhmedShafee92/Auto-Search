@@ -6,38 +6,49 @@ import java.awt.event.ActionEvent;
 import java.io.*;
 import java.net.Socket;
 
+// TODO: should delete this file , will not be usage . 
 public class TCPClientGUI extends JFrame {
 
     private JTextField inputField;
     private JTextArea responseArea;
     private JButton sendButton;
+    private JButton clearButton; // New clear button
 
     public TCPClientGUI() {
         setTitle("AI Chat Client");
-        setSize(500, 400);
+        setSize(500, 450);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
         // GUI components
         inputField = new JTextField();
         sendButton = new JButton("Send");
+        clearButton = new JButton("Clear"); // Initialize clear button
         responseArea = new JTextArea();
         responseArea.setEditable(false);
         responseArea.setLineWrap(true);
 
-        // Layout
-        JPanel panel = new JPanel(new BorderLayout());
-        panel.add(inputField, BorderLayout.CENTER);
-        panel.add(sendButton, BorderLayout.EAST);
+        // Top panel with input and send
+        JPanel topPanel = new JPanel(new BorderLayout());
+        topPanel.add(inputField, BorderLayout.CENTER);
+        topPanel.add(sendButton, BorderLayout.EAST);
 
-        add(panel, BorderLayout.NORTH);
+        // Bottom panel with clear button
+        JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        bottomPanel.add(clearButton);
+
+        add(topPanel, BorderLayout.NORTH);
         add(new JScrollPane(responseArea), BorderLayout.CENTER);
+        add(bottomPanel, BorderLayout.SOUTH);
 
         // Send button action
         sendButton.addActionListener((ActionEvent e) -> sendMessage());
 
         // Enter key listener
         inputField.addActionListener((ActionEvent e) -> sendMessage());
+
+        // Clear button action
+        clearButton.addActionListener((ActionEvent e) -> responseArea.setText(""));
     }
 
     private void sendMessage() {
