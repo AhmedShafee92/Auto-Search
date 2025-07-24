@@ -5,10 +5,13 @@ import java.net.URL;
 public class TestServerConnection {
 
     public static void main(String[] args) {
-    	String jsonInput ="hiii this is the client , we tset the connection with the srever ";
-    	String urlString = "http://localhost:3000/analyse_text";    	
-    	String jsonInputString = "{\"text\": \"" + jsonInput + "\"}";
+    	String username ="admin";
+    	String password = "admin";
+    	String urlString = "http://localhost:3000/api/signup";    	
     	
+  
+
+    	String jsonInput = "{\"username\": \"" + username + "\", \"password\": \"" + password + "\"}";    	
         try {
 
             URL url = new URL(urlString);
@@ -17,13 +20,12 @@ public class TestServerConnection {
             // Request setup
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json");
-            //conn.setRequestProperty("Accept", "application/json");
             conn.setDoOutput(true);
             conn.setDoInput(true);
             // Send JSON body
             try (OutputStream os = conn.getOutputStream()) 
             {
-                byte[] input = jsonInputString.getBytes("utf-8");    
+                byte[] input = jsonInput.getBytes("utf-8");    
                 os.write(input, 0, input.length);
             }
 

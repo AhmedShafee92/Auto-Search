@@ -11,15 +11,20 @@ public class HttpClientHelper
     {
         URL url = new URL(urlString);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
         conn.setRequestMethod("POST");
-        conn.setRequestProperty("Content-Type", "application/json; utf-8");
+        conn.setRequestProperty("Content-Type", "application/json");
         conn.setDoOutput(true);
-
+        conn.setDoInput(true);
+        
         try (OutputStream os = conn.getOutputStream()) 
         {
             byte[] input = jsonInput.getBytes("utf-8");
             os.write(input, 0, input.length);
+        } catch (IOException e) 
+        {
+            e.printStackTrace();
+            return null;
+
         }
 
         int code = conn.getResponseCode();
@@ -32,6 +37,11 @@ public class HttpClientHelper
             while ((responseLine = br.readLine()) != null)
                 response.append(responseLine.trim());
             return response.toString();
+        } 
+        catch (IOException e) 
+        {
+            e.printStackTrace();
+            return null;
         }
     }
     
