@@ -1,55 +1,58 @@
 package controller;
 
-import view.AutomationView;
+import model.UserModel;
+import view.AuthView;
+import view.MainView;
+
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class AutomationController {
-    private final AutomationView view;
-    private final JFrame frame;
 
-    public AutomationController() {
-        view = new AutomationView();
-        frame = new JFrame("Automation Job Search");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setContentPane(view);
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
+    private AuthView authView;
+    private JFrame mainFrame;
 
-        initListeners();
+    public AutomationController(AuthView authView, JFrame mainFrame) {
+        this.authView = authView;
+        this.mainFrame = mainFrame;
+
+        initController();
     }
 
-    private void initListeners() {
-        view.automatedSearchButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                frame.setVisible(false);
-                showMessage();
-
-                // TODO: Replace with automation logic or next screen controller
-                // e.g., new AutomatedJobSearchController();
-            }
-        });
-
-        view.manualSearchButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                frame.setVisible(false);
-
-                // TODO: Replace with manual search controller
-                // e.g., new ManualJobSearchController();
-
-                // Temporary call:
-                showMessage("Manual search screen will open (not implemented yet)");
-            }
-        });
+    private void initController() {
+        authView.loginButton.addActionListener(e -> handleLogin());
+        authView.registerButton.addActionListener(e -> handleSignup());
     }
 
-    private void showMessage() {
-        showMessage("Congratulations! Now we continue the process.\nBe ready for interviews.");
+    private void handleLogin() {
+        String email = authView.emailField.getText();
+        String password = new String(authView.passwordField.getPassword());
+
+        if (UserModel.login(email, password)) {
+            JOptionPane.showMessageDialog(authView, "Login Successful!");
+            showMainView();
+        } else {
+            JOptionPane.showMessageDialog(authView, "Login Failed!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
-    private void showMessage(String message) {
-        JOptionPane.showMessageDialog(frame, message);
+    private void handleSignup() 
+    {
+        String email = authView.emailField.getText();
+        String password = new String(authView.passwordField.getPassword());
+
+        if (UserModel.signup(email, password)) 
+        {
+            JOptionPane.showMessageDialog(authView, "Sign-Up Successful!");
+            showMainView();
+        } else 
+        {
+            JOptionPane.showMessageDialog(authView, "Sign-Up Failed!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void showMainView() {
+        MainView mainView = new MainView();
+        mainFrame.setContentPane(mainView);
+        mainFrame.revalidate();
     }
 }

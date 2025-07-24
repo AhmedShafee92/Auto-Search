@@ -14,7 +14,7 @@ public class AuthView extends JPanel {
         setLayout(null);
         setPreferredSize(new Dimension(400, 300));
 
-        JLabel titleLabel = new JLabel("Login / Register", SwingConstants.CENTER);
+        JLabel titleLabel = new JLabel("Login / signup", SwingConstants.CENTER);
         titleLabel.setBounds(100, 20, 200, 30);
         add(titleLabel);
 

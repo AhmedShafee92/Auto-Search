@@ -17,25 +17,26 @@ public class TestHttpConnectionServer
         try {
             // Create a JSON request body
             String jsonInputString = "{\"text\": \"" + textToAnalyze + "\"}";
-
             // Open a connection to the server
             URL url = new URL(serverUrl);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
+            
             // Configure the connection
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type", "application/json");
             connection.setDoOutput(true);
 
             // Send the JSON data
-            try (OutputStream os = connection.getOutputStream()) {
+            try (OutputStream os = connection.getOutputStream()) 
+            {
                 byte[] input = jsonInputString.getBytes("utf-8");
                 os.write(input, 0, input.length);
             }
 
             // Read the response from the server
             int statusCode = connection.getResponseCode();
-            if (statusCode == HttpURLConnection.HTTP_OK) {
+            if (statusCode == HttpURLConnection.HTTP_OK) 
+            {
                 try (BufferedReader br = new BufferedReader(
                         new InputStreamReader(connection.getInputStream(), "utf-8"))) {
                     StringBuilder response = new StringBuilder();
