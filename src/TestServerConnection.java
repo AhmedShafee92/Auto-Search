@@ -7,7 +7,7 @@ public class TestServerConnection {
     public static void main(String[] args) {
     	String username ="admin";
     	String password = "admin";
-    	String urlString = "http://localhost:3000/api/signup";    	
+    	String urlString = "http://localhost:3000/api/login";    	
     	
   
 

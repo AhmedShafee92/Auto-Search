@@ -20,15 +20,10 @@ public class HttpClientHelper
         {
             byte[] input = jsonInput.getBytes("utf-8");
             os.write(input, 0, input.length);
-        } catch (IOException e) 
-        {
-            e.printStackTrace();
-            return null;
+        } 
 
-        }
-
-        int code = conn.getResponseCode();
-        InputStream is = (code == 200) ? conn.getInputStream() : conn.getErrorStream();
+        int status = conn.getResponseCode();
+        InputStream is = (status < 400) ? conn.getInputStream() : conn.getErrorStream();
 
         try (BufferedReader br = new BufferedReader(new InputStreamReader(is, "utf-8"))) 
         {
@@ -36,13 +31,11 @@ public class HttpClientHelper
             String responseLine;
             while ((responseLine = br.readLine()) != null)
                 response.append(responseLine.trim());
+            	System.out.println(response.toString());
+            	
             return response.toString();
         } 
-        catch (IOException e) 
-        {
-            e.printStackTrace();
-            return null;
-        }
+     
     }
     
 }

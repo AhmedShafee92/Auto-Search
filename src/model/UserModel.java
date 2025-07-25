@@ -5,7 +5,7 @@ import org.json.JSONObject;   // You need org.json library for this
 
 public class UserModel {
 
-    public static boolean signup(String email, String password) 
+    public static boolean signup(String username, String password) 
     {
         String url = "http://localhost:3000/api/signup"; // Adjust as needed
 
@@ -14,7 +14,7 @@ public class UserModel {
 		 * json.put("password", password);
 		 */
         
-        String json = String.format("{\"username\":\"%s\", \"password\":\"%s\"}", email, password);
+        String json = String.format("{\"username\":\"%s\", \"password\":\"%s\"}", username, password);
         try {
             String response = HttpClientHelper.sendPost(url, json);
             System.out.println("Signup response: " + response);
@@ -26,12 +26,12 @@ public class UserModel {
         }
     }
 
-    public static boolean login(String email, String password) 
+    public static boolean login(String username, String password) 
     {
         String url = "http://localhost:3000/api/login";
 
         JSONObject json = new JSONObject();
-        json.put("email", email);
+        json.put("username", username);
         json.put("password", password);
 
         try {
