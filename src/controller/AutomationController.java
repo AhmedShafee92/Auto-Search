@@ -35,21 +35,25 @@ public class AutomationController {
         }
     }
 
-    private void handleSignup() 
-    {
+    private void handleSignup() {
         String email = authView.emailField.getText();
         String password = new String(authView.passwordField.getPassword());
 
-        if (UserModel.signup(email, password)) 
-        {
+        String response = UserModel.signup(email, password);
+
+        if (response.equals("success")) {
             JOptionPane.showMessageDialog(authView, "Sign-Up Successful!");
             showMainView();
-        } else 
-        {
-            JOptionPane.showMessageDialog(authView, "Sign-Up Failed!", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (response.equals("exists")) {
+            JOptionPane.showMessageDialog(authView, "User already exists!", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(authView, "Sign-Up Failed!\n" + response, "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
+    
+    
+    
     private void showMainView() {
         MainView mainView = new MainView();
         mainFrame.setContentPane(mainView);
