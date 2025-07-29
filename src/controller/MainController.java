@@ -7,21 +7,24 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainController {
+public class MainController 
+{
     private final MainModel model;
     private final MainView view;
     private final JFrame frame;
 
     
     
-    public MainController(MainView view) {
+    public MainController(MainView view) 
+    {
         this.model = new MainModel();
 		this.view = view;
 		this.frame = new JFrame();
         initListeners();
     }
 
-    public MainController(MainModel model, MainView view) {
+    public MainController(MainModel model, MainView view) 
+    {
         this.model = model;
         this.view = view;
 
@@ -35,22 +38,11 @@ public class MainController {
         initListeners();
     }
 
-    private void initListeners() {
+    private void initListeners() 
+    {
         view.attachCVButton.addActionListener(e -> model.attachCV());
 
         view.startSearchingButton.addActionListener(e -> {
-            String email = view.emailUser.getText();
-            String password = String.valueOf(view.passwordUser.getPassword());
-            String linkedInEmail = view.linkedInEmail.getText();
-            String linkedInPassword = String.valueOf(view.linkedInPassword.getPassword());
-
-            if (email.isEmpty() || password.isEmpty()) {
-                JOptionPane.showMessageDialog(frame, "Please enter all fields");
-                return;
-            }
-
-            model.storeCredentials(email, password, linkedInEmail, linkedInPassword);
-
             frame.setVisible(false);
             // Replace this with your new GUI frame
             JOptionPane.showMessageDialog(null, "Proceeding to next screen...");
@@ -69,4 +61,10 @@ public class MainController {
             JOptionPane.showMessageDialog(frame, "Soon Available!")
         );
     }
+    
+    
+    
+    
+    
+    
 }

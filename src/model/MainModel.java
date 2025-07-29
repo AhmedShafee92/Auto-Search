@@ -23,16 +23,6 @@ public class MainModel {
         return StoreUserDataLocal.CheckCVFileExist() && !StoreUserDataLocal.isWordFileCVEmpty();
     }
 
-    public void storeCredentials(String email, String password, String linkedinEmail, String linkedinPassword) {
-        StoreUserDataLocal.createSensitiveUserFiles();
-
-        UserManager.storeEncrptyData("email_credentials", email, password);
-        UserManager.storeEncrptyData("LinkedIn_credentials", linkedinEmail, linkedinPassword);
-
-        StoreUserDataServer.StoreUserEmailData(email, password);
-        StoreUserDataServer.StoreUserLinkedINData(linkedinEmail, linkedinPassword);
-    }
-
     public void analyseData(JFrame frame) 
     {
        // CreateFoldersCloud.createFoldersCloud();

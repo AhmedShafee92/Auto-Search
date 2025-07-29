@@ -1,62 +1,73 @@
 package view;
+import controller.AutomationController;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class MainView extends JPanel {
-    public JTextField linkedInEmail = new JTextField();
-    public JPasswordField linkedInPassword = new JPasswordField();
-    public JTextField emailUser = new JTextField();
-    public JPasswordField passwordUser = new JPasswordField();
+	
+    public JButton attachCVButton = new JButton("Attach CV");
+    public JLabel attachTipLabel = new JLabel("Please attach your CV before analyzing or searching.");
+    public JButton analysePersonalDataButton = new JButton("Analyse Data (Start Here)");
+    public JButton startSearchingButton = new JButton("Search Jobs");
+    public JButton viewPersonalDataButton = new JButton("View Personal Data");
 
-    public JButton startSearchingButton = new JButton("Start Searching");
-    public JButton analysePersonalDataButton = new JButton("Analyzing Data");
-    public JButton attachCVButton = new JButton("Attach File");
-    public JButton viewPersonalDataButton = new JButton("Personal Data");
-
+    
     public MainView() {
-        setLayout(null);
-        setPreferredSize(new Dimension(727, 467));
+        setLayout(new GridBagLayout());
+        setPreferredSize(new Dimension(500, 400));
 
-        JLabel lblLinkedInEmail = new JLabel("LinkedIn_Email");
-        lblLinkedInEmail.setBounds(203, 217, 94, 30);
-        add(lblLinkedInEmail);
-        linkedInEmail.setBounds(365, 101, 160, 30);
-        add(linkedInEmail);
+        // Row 0 - Attach CV
+        GridBagConstraints gbc0 = new GridBagConstraints();
+        gbc0.gridx = 0;
+        gbc0.gridy = 0;
+        gbc0.insets = new Insets(10, 20, 10, 20);
+        gbc0.fill = GridBagConstraints.HORIZONTAL;
+        add(attachCVButton, gbc0);
 
-        JLabel lblPassword = new JLabel("Password");
-        lblPassword.setBounds(205, 154, 114, 37);
-        add(lblPassword);
-        linkedInPassword.setBounds(365, 158, 160, 30);
-        add(linkedInPassword);
+        // Row 1 - Attach Tip Label
+        GridBagConstraints gbc1 = new GridBagConstraints();
+        gbc1.gridx = 0;
+        gbc1.gridy = 1;
+        gbc1.insets = new Insets(0, 20, 20, 20);
+        gbc1.fill = GridBagConstraints.HORIZONTAL;
+        attachTipLabel.setForeground(Color.GRAY);
+        attachTipLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        add(attachTipLabel, gbc1);
 
-        JLabel lblEmail = new JLabel("Email");
-        lblEmail.setBounds(219, 97, 100, 30);
-        add(lblEmail);
-        emailUser.setBounds(365, 219, 160, 28);
-        add(emailUser);
+        // Row 2 - Analyse Button
+        GridBagConstraints gbc2 = new GridBagConstraints();
+        gbc2.gridx = 0;
+        gbc2.gridy = 2;
+        gbc2.insets = new Insets(10, 20, 10, 20);
+        gbc2.fill = GridBagConstraints.HORIZONTAL;
+        analysePersonalDataButton.setBackground(Color.decode("#4CAF50")); // green
+        analysePersonalDataButton.setForeground(Color.WHITE);
+        add(analysePersonalDataButton, gbc2);
 
-        passwordUser.setBounds(365, 264, 160, 30);
-        add(passwordUser);
+        // Row 3 - Search Button
+        GridBagConstraints gbc3 = new GridBagConstraints();
+        gbc3.gridx = 0;
+        gbc3.gridy = 3;
+        gbc3.insets = new Insets(10, 20, 10, 20);
+        gbc3.fill = GridBagConstraints.HORIZONTAL;
+        startSearchingButton.setBackground(Color.decode("#2196F3")); // blue
+        startSearchingButton.setForeground(Color.WHITE);
+        add(startSearchingButton, gbc3);
 
-        JLabel lblLinkedinPassword = new JLabel("LinkedIn_Password");
-        lblLinkedinPassword.setBounds(203, 257, 94, 34);
-        add(lblLinkedinPassword);
-
-        JLabel uploadCV = new JLabel("Upload Your CV");
-        uploadCV.setBounds(49, 301, 100, 37);
-        add(uploadCV);
-
-        attachCVButton.setBounds(172, 301, 94, 37);
-        add(attachCVButton);
-
-        startSearchingButton.setBounds(437, 348, 146, 58);
-        add(startSearchingButton);
-
-        analysePersonalDataButton.setBounds(234, 348, 146, 58);
-        add(analysePersonalDataButton);
-
-        viewPersonalDataButton.setBounds(48, 353, 114, 49);
-        add(viewPersonalDataButton);
+        // Row 4 - View Personal Data
+        GridBagConstraints gbc4 = new GridBagConstraints();
+        gbc4.gridx = 0;
+        gbc4.gridy = 4;
+        gbc4.insets = new Insets(10, 20, 10, 20);
+        gbc4.fill = GridBagConstraints.HORIZONTAL;
+        viewPersonalDataButton.setBackground(Color.LIGHT_GRAY);
+        add(viewPersonalDataButton, gbc4);
+        
+        // ✅ Add action listeners
+        attachCVButton.addActionListener(e -> controller.handleAttachCV());
+        analysePersonalDataButton.addActionListener(e -> controller.handleAnalyze());
+        startSearchingButton.addActionListener(e -> controller.handleSearch());
+        viewPersonalDataButton.addActionListener(e -> controller.handleViewPersonalData());
     }
 }
