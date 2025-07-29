@@ -35,7 +35,8 @@ public class AutomationController
         if (UserModel.login(email, password)) 
         {
         	// if success to login. 
-            showMainView();
+        	mainFrame.setVisible(false);
+        	showMainView();
         } else 
         {
         	// failed 
@@ -66,10 +67,12 @@ public class AutomationController
     
     private void showMainView() 
     {
-        MainView mainView = new MainView();
+
+    	MainView mainView = new MainView();
         MainModel mainModel = new MainModel();
         mainFrame.setContentPane(mainView);
         new MainController(mainModel, mainView);
         mainFrame.revalidate();
+
     }
 }
