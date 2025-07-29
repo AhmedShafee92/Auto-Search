@@ -13,12 +13,11 @@ public class MainController
     private final MainView view;
     private final JFrame frame;
 
-    
-    
+     
     public MainController(MainView view) 
     {
         this.model = new MainModel();
-		this.view = view;
+		this.view = view;		
 		this.frame = new JFrame();
         initListeners();
     }
@@ -27,6 +26,7 @@ public class MainController
     {
         this.model = model;
         this.view = view;
+        
 
         frame = new JFrame("Insert Your Details");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -41,7 +41,6 @@ public class MainController
     private void initListeners() 
     {
         view.attachCVButton.addActionListener(e -> model.attachCV());
-
         view.startSearchingButton.addActionListener(e -> {
             frame.setVisible(false);
             // Replace this with your new GUI frame
@@ -62,9 +61,5 @@ public class MainController
         );
     }
     
-    
-    
-    
-    
-    
+  
 }

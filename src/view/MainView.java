@@ -4,7 +4,8 @@ import controller.AutomationController;
 import javax.swing.*;
 import java.awt.*;
 
-public class MainView extends JPanel {
+public class MainView extends JPanel 
+{
 	
     public JButton attachCVButton = new JButton("Attach CV");
     public JLabel attachTipLabel = new JLabel("Please attach your CV before analyzing or searching.");
@@ -13,7 +14,8 @@ public class MainView extends JPanel {
     public JButton viewPersonalDataButton = new JButton("View Personal Data");
 
     
-    public MainView() {
+    public MainView() 
+    {
         setLayout(new GridBagLayout());
         setPreferredSize(new Dimension(500, 400));
 
@@ -64,10 +66,12 @@ public class MainView extends JPanel {
         viewPersonalDataButton.setBackground(Color.LIGHT_GRAY);
         add(viewPersonalDataButton, gbc4);
         
-        // ✅ Add action listeners
-        attachCVButton.addActionListener(e -> controller.handleAttachCV());
-        analysePersonalDataButton.addActionListener(e -> controller.handleAnalyze());
-        startSearchingButton.addActionListener(e -> controller.handleSearch());
-        viewPersonalDataButton.addActionListener(e -> controller.handleViewPersonalData());
+		/*
+		 * // ✅ Add action listeners attachCVButton.addActionListener(e ->
+		 * controller.handleAttachCV()); analysePersonalDataButton.addActionListener(e
+		 * -> controller.handleAnalyze()); startSearchingButton.addActionListener(e ->
+		 * controller.handleSearch()); viewPersonalDataButton.addActionListener(e ->
+		 * controller.handleViewPersonalData());
+		 */
     }
 }
