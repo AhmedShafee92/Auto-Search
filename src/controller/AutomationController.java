@@ -62,9 +62,6 @@ public class AutomationController
     }
 
    
-    
-    
-    
     private void showMainView() 
     {
 
