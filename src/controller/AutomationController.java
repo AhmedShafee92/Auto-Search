@@ -42,7 +42,7 @@ public class AutomationController
         	// failed 
             JOptionPane.showMessageDialog(authView, "Login Failed!", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }
+    } 
 
     private void handleSignup() 
     {

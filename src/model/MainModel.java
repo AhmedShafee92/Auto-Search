@@ -25,9 +25,8 @@ public class MainModel {
 
     public void analyseData(JFrame frame) 
     {
-       // CreateFoldersCloud.createFoldersCloud();
-       // StoreUserDataServer.createAnalyseUserFiles();
-
+    		//TODO: should get from the new module of the server .
+    		//TODO: should save the analyse user data inside  the JSON of the user in DB positions in table and .
         try {
             String result = ConnectGoogleAPIServer.analyseUserCVData();
             int decision = JOptionPane.showOptionDialog(frame, result,
