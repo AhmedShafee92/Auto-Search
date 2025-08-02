@@ -13,20 +13,22 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class MainModel {
+public class MainModel 
+{
 
-    public void attachCV() {
+    public void attachCV() 
+    {
         StoreUserDataLocal.storeCVUserLocal();
     }
 
-    public boolean isCVValid() {
+    public boolean isCVValid() 
+    {
         return StoreUserDataLocal.CheckCVFileExist() && !StoreUserDataLocal.isWordFileCVEmpty();
     }
 
     public void analyseData(JFrame frame) 
     {
-    		//TODO: should get from the new module of the server .
-    		//TODO: should save the analyse user data inside  the JSON of the user in DB positions in table and .
+    		// TODO: should save the analyse user data inside  the JSON of the user in DB positions in table and . - second step - 
         try {
             String result = ConnectGoogleAPIServer.analyseUserCVData();
             int decision = JOptionPane.showOptionDialog(frame, result,
@@ -37,17 +39,22 @@ public class MainModel {
                     new Object[]{"Yes, Save", "No, Retry"},
                     "Yes, Save");
 
-            if (decision == JOptionPane.OK_OPTION) {
-            //    List<String> positions = ConnectGoogleAPIServer.positionsAnalyseUserCVData();
-              //  List<String> places = ConnectGoogleAPIServer.placesAnalyseUserCVData();
-
-            //    ExcelWriter.writeListToExcelSerevr(places, positions);
+            if (decision == JOptionPane.OK_OPTION) 
+            {
+            	
+            	//List<String> positions = ConnectGoogleAPIServer.positionsAnalyseUserCVData();
+            	//List<String> places = ConnectGoogleAPIServer.placesAnalyseUserCVData();
+            	// TODO : save list of positions and places that the user can work in . 
+            	
+            	//ExcelWriter.writeListToExcelSerevr(places, positions);
+            	
 
                 File json = new File("AppStorage/analyse_data", "user_analyse_data.json");
                 if (json.exists()) {
-                //    ConnectConvertStringToJson.serverConvertWordToJson();
-                  //  ConnectConvertStringToJson.uploadJsonFileCloud();
-                }
+                	
+                	// ConnectConvertStringToJson.serverConvertWordToJson();
+                	//  ConnectConvertStringToJson.uploadJsonFileCloud();
+             }
             }
         } catch (IOException e) {
             e.printStackTrace();

@@ -44,7 +44,8 @@ public class ExcelWriter
         }
     }
     
-    public static StringBuilder writeListToExcelSerevr(List<String> places_list, List<String> positions_list) {
+    public static StringBuilder writeListToExcelSerevr(List<String> places_list, List<String> positions_list) 
+    {
         // Connect to the server side and store the data in the excel file on the server side
         // Send the two arrays (lists) as two strings and put the two strings with title in JSON
         // and send the JSON to the server.
@@ -55,37 +56,40 @@ public class ExcelWriter
         String serverUrl = "http://localhost:8000/storage_second_stage_analysing";
         StringBuilder response = new StringBuilder();
         try {
-            // Step 1: Create a URL object and open a connection
-            URL url = new URL(serverUrl);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+	            // Step 1: Create a URL object and open a connection
+	            URL url = new URL(serverUrl);
+	            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+	
+	            // Step 2: Configure the connection for POST
+	            connection.setRequestMethod("POST");
+	            connection.setRequestProperty("Content-Type", "application/json");
+	            connection.setDoOutput(true);
+	
+	            // Step 3: Create the JSON request body
+	            // Change the field names to "positions_list" and "places_list" (as expected by the server)
+	            String jsonInputString = "{ \"positions_list\": \"" + str_positions_list + "\", \"places_list\": \"" + str_places_list + "\" }";
+	
+	            // Step 4: Send the JSON data
+	            try (OutputStream os = connection.getOutputStream())
+	            {
+	                byte[] input = jsonInputString.getBytes("utf-8");
+	                os.write(input, 0, input.length);
+	                System.out.println("Data sent successfully");
+				}
 
-            // Step 2: Configure the connection for POST
-            connection.setRequestMethod("POST");
-            connection.setRequestProperty("Content-Type", "application/json");
-            connection.setDoOutput(true);
-
-            // Step 3: Create the JSON request body
-            // Change the field names to "positions_list" and "places_list" (as expected by the server)
-            String jsonInputString = "{ \"positions_list\": \"" + str_positions_list + "\", \"places_list\": \"" + str_places_list + "\" }";
-
-            // Step 4: Send the JSON data
-            try (OutputStream os = connection.getOutputStream()) {
-                byte[] input = jsonInputString.getBytes("utf-8");
-                os.write(input, 0, input.length);
-                System.out.println("Data sent successfully");
-            }
-
-            // Step 5: Read the JSON response
-            int status = connection.getResponseCode();
-            if (status == HttpURLConnection.HTTP_OK) {
-                try (BufferedReader br = new BufferedReader(
-                        new InputStreamReader(connection.getInputStream(), "utf-8"))) {
-                    String responseLine;
-                    while ((responseLine = br.readLine()) != null) {
-                        response.append(responseLine.trim());
-                    }
-                }
-            } else {
+	            // Step 5: Read the JSON response
+	            int status = connection.getResponseCode();
+	            if (status == HttpURLConnection.HTTP_OK)
+	            {
+	                try (BufferedReader br = new BufferedReader( new InputStreamReader(connection.getInputStream(), "utf-8"))) 
+	                {
+	                    String responseLine;
+	                    while ((responseLine = br.readLine()) != null) 
+	                    {
+	                        response.append(responseLine.trim());
+	                    }
+	                }
+	            } else {
                 System.out.println("Server responded with status code: " + status);
                 return null;
             }
@@ -101,14 +105,11 @@ public class ExcelWriter
     {
         String serverUrl = "http://localhost:4000/process";
         StringBuilder response = new StringBuilder();
-
         try {
        
 	            // Step 1: Create a URL object and open a connection
 	            URL url = new URL(serverUrl);
 	            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-	
 	            // Step 2: Configure the connection for POST
 	            connection.setRequestMethod("POST");
 	            connection.setRequestProperty("Content-Type", "application/json");
