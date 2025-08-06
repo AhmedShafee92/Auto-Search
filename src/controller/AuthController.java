@@ -53,8 +53,7 @@ public class AuthController
 
         if (response.equals("success")) {
             JOptionPane.showMessageDialog(authView, "Sign-Up Successful!");
-        	mainFrame.setVisible(false);
-            showMainView();
+            
         } else if (response.equals("exists")) {
             JOptionPane.showMessageDialog(authView, "User already exists!", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {

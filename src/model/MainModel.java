@@ -44,8 +44,10 @@ public class MainModel
             {
             	
             	// TODO : save list of positions and places, and save JSON for personal data of the user . 
+            	int userId = Session.getUserId();
+            	AnalyseController.sendAnalyseRequest(userId);
             	
-            	AnalyseController.sendAnalyseRequest();
+            	
 				/*
 				 * List<String> positions = ConnectGoogleAPIServer.positionsAnalyseUserCVData();
 				 * List<String> places = ConnectGoogleAPIServer.placesAnalyseUserCVData();
