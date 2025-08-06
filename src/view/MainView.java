@@ -1,5 +1,5 @@
 package view;
-import controller.AutomationController;
+import controller.AuthController;
 
 import javax.swing.*;
 import java.awt.*;

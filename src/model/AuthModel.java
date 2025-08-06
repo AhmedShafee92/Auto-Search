@@ -10,10 +10,11 @@ import java.net.URL;
 
 import org.json.JSONObject; // You need org.json library for this
 
-public class UserModel {
+public class AuthModel {
 
 	
-	public static String signup(String email, String password) {
+	public static String signup(String email, String password) 
+	{
 		try {
 			URL url = new URL("http://localhost:3000/api/signup");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -33,9 +34,11 @@ public class UserModel {
 			int responseCode = conn.getResponseCode();
 
 			BufferedReader reader;
-			if (responseCode >= 200 && responseCode < 300) {
+			if (responseCode >= 200 && responseCode < 300) 
+			{
 				reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
-			} else {
+			} else 
+			{
 				reader = new BufferedReader(new InputStreamReader(conn.getErrorStream(), "utf-8"));
 			}
 
@@ -48,7 +51,8 @@ public class UserModel {
 
 			if (responseCode == 201) {
 				return "success";
-			} else if (responseCode == 409 && response.toString().contains("User already exists")) {
+			} else if (responseCode == 409 && response.toString().contains("User already exists")) 
+			{
 				return "exists";
 			} else {
 				return response.toString(); // Return actual error from server
@@ -60,7 +64,8 @@ public class UserModel {
 		}
 	}
 
-	public static boolean login(String username, String password) {
+	public static boolean login(String username, String password) 
+	{
 		String url = "http://localhost:3000/api/login";
 
 		JSONObject json = new JSONObject();

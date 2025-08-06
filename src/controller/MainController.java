@@ -46,7 +46,7 @@ public class MainController
             // Replace this with your new GUI frame
             JOptionPane.showMessageDialog(null, "Proceeding to next screen...");
         });
-
+        
         view.analysePersonalDataButton.addActionListener(e -> {
             if (!model.isCVValid()) {
                 JOptionPane.showMessageDialog(view, "CV file missing or empty.");

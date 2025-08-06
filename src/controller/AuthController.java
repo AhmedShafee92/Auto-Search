@@ -1,19 +1,19 @@
 package controller;
 
 import model.MainModel;
-import model.UserModel;
+import model.AuthModel;
 import view.AuthView;
 import view.MainView;
 
 import javax.swing.*;
 
-public class AutomationController 
+public class AuthController 
 {
 
     private AuthView authView;
     private JFrame mainFrame;
 
-    public AutomationController(AuthView authView, JFrame mainFrame) 
+    public AuthController(AuthView authView, JFrame mainFrame) 
     {
         this.authView = authView;
         this.mainFrame = mainFrame;
@@ -32,7 +32,7 @@ public class AutomationController
         String email = authView.emailField.getText();
         String password = new String(authView.passwordField.getPassword());
 
-        if (UserModel.login(email, password)) 
+        if (AuthModel.login(email, password)) 
         {
         	// if success to login. 
         	mainFrame.setVisible(false);
@@ -49,10 +49,11 @@ public class AutomationController
         String email = authView.emailField.getText();
         String password = new String(authView.passwordField.getPassword());
 
-        String response = UserModel.signup(email, password);
+        String response = AuthModel.signup(email, password);
 
         if (response.equals("success")) {
             JOptionPane.showMessageDialog(authView, "Sign-Up Successful!");
+        	mainFrame.setVisible(false);
             showMainView();
         } else if (response.equals("exists")) {
             JOptionPane.showMessageDialog(authView, "User already exists!", "Warning", JOptionPane.WARNING_MESSAGE);

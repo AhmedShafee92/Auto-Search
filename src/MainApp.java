@@ -1,4 +1,4 @@
-import controller.AutomationController;
+import controller.AuthController;
 import view.AuthView;
 
 import javax.swing.*;
@@ -12,7 +12,7 @@ public class MainApp {
 
             AuthView authView = new AuthView();
             frame.setContentPane(authView);
-            new AutomationController(authView, frame);
+            new AuthController(authView, frame);
 
             frame.setVisible(true);
         });

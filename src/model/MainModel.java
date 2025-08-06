@@ -3,6 +3,7 @@ package model;
 import conncet.server.analyse.file.ConnectConvertStringToJson;
 import conncet.server.analyse.file.ConnectGoogleAPIServer;
 import conncet.server.analyse.file.ExcelWriter;
+import controller.AnalyseController;
 import store.user.data.CreateFoldersCloud;
 import store.user.data.StoreUserDataLocal;
 import store.user.data.StoreUserDataServer;
@@ -42,19 +43,24 @@ public class MainModel
             if (decision == JOptionPane.OK_OPTION) 
             {
             	
-            	//List<String> positions = ConnectGoogleAPIServer.positionsAnalyseUserCVData();
-            	//List<String> places = ConnectGoogleAPIServer.placesAnalyseUserCVData();
-            	// TODO : save list of positions and places that the user can work in . 
+            	// TODO : save list of positions and places, and save JSON for personal data of the user . 
             	
-            	//ExcelWriter.writeListToExcelSerevr(places, positions);
+            	AnalyseController.sendAnalyseRequest();
+				/*
+				 * List<String> positions = ConnectGoogleAPIServer.positionsAnalyseUserCVData();
+				 * List<String> places = ConnectGoogleAPIServer.placesAnalyseUserCVData();
+				 * ExcelWriter.writeListToExcelSerevr(places, positions);
+				 */    
             	
-
-                File json = new File("AppStorage/analyse_data", "user_analyse_data.json");
-                if (json.exists()) {
-                	
-                	// ConnectConvertStringToJson.serverConvertWordToJson();
-                	//  ConnectConvertStringToJson.uploadJsonFileCloud();
-             }
+				/*
+				 * File json = new File("AppStorage/analyse_data", "user_analyse_data.json"); if
+				 * (json.exists()) {
+				 * 
+				 * ConnectConvertStringToJson.serverConvertWordToJson();
+				 * ConnectConvertStringToJson.uploadJsonFileCloud(); }
+				 */
+            	
+            	
             }
         } catch (IOException e) {
             e.printStackTrace();
