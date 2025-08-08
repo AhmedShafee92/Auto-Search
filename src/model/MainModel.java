@@ -39,6 +39,7 @@ public class MainModel
                     null,
                     new Object[]{"Yes, Save", "No, Retry"},
                     "Yes, Save");
+            
 
             if (decision == JOptionPane.OK_OPTION) 
             {
