@@ -35,7 +35,7 @@ public class ConnectGoogleAPIServer
 	// sending to AI API to analysing user data (text - data ). 
     private static String AnalyseText(String message) 
     {
-    	 
+   	 
         String serverAddress = "127.0.0.1";  
         int port = 5000;  // Server port
         String response = "";

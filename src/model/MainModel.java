@@ -31,40 +31,30 @@ public class MainModel
     {
     		// TODO: should save the analyse user data inside  the JSON of the user in DB positions in table and . - second step - 
         try {
-            String result = ConnectGoogleAPIServer.analyseUserCVData();
-            int decision = JOptionPane.showOptionDialog(frame, result,
-                    "AI CV Analysis",
-                    JOptionPane.YES_NO_CANCEL_OPTION,
-                    JOptionPane.QUESTION_MESSAGE,
-                    null,
-                    new Object[]{"Yes, Save", "No, Retry"},
-                    "Yes, Save");
+	            String result = ConnectGoogleAPIServer.analyseUserCVData();
+	            int decision = JOptionPane.showOptionDialog(frame, result,
+                "AI CV Analysis",
+                JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                new Object[]{"Yes, Save", "No, Retry"},
+                "Yes, Save");
             
 
-            if (decision == JOptionPane.OK_OPTION) 
-            {
-            	
-            	// TODO : save list of positions and places, and save JSON for personal data of the user . 
-            	int userId = Session.getUserId();
-            	AnalyseController.sendAnalyseRequest(userId);
-            	
-            	
-				/*
-				 * List<String> positions = ConnectGoogleAPIServer.positionsAnalyseUserCVData();
-				 * List<String> places = ConnectGoogleAPIServer.placesAnalyseUserCVData();
-				 * ExcelWriter.writeListToExcelSerevr(places, positions);
-				 */    
-            	
-				/*
-				 * File json = new File("AppStorage/analyse_data", "user_analyse_data.json"); if
-				 * (json.exists()) {
-				 * 
-				 * ConnectConvertStringToJson.serverConvertWordToJson();
-				 * ConnectConvertStringToJson.uploadJsonFileCloud(); }
-				 */
-            	
-            	
-            }
+	            if (decision == JOptionPane.OK_OPTION) 
+	            {
+	            	
+	            	// TODO : save list of positions and places, and save JSON for personal data of the user . 
+	            	int userId = Session.getUserId();
+	            	
+	            	//TODO : change this function with function that send json with userID and fileData .
+	            	// fileData is a string with formated that can send to the google API .
+	            	AnalyseController.sendAnalyseRequest(userId);
+	            	
+	        
+	            	  	
+	            }
+	            
         } catch (IOException e) {
             e.printStackTrace();
         }
