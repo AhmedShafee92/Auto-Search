@@ -29,7 +29,6 @@ public class MainModel
 
     public void analyseData(JFrame frame) 
     {
-    		// TODO: should save the analyse user data inside  the JSON of the user in DB positions in table and . - second step - 
         try {
 	            String result = ConnectGoogleAPIServer.analyseUserCVData();
 	            int decision = JOptionPane.showOptionDialog(frame, result,
@@ -47,9 +46,8 @@ public class MainModel
 	            	// TODO : save list of positions and places, and save JSON for personal data of the user . 
 	            	int userId = Session.getUserId();
 	            	
-	            	//TODO : change this function with function that send json with userID and fileData .
-	            	// fileData is a string with formated that can send to the google API .
-	            	AnalyseController.sendAnalyseRequest(userId);
+	            	//TODO : change this function with function that send json with userID and filePath .
+	            	 AnalyseController.sendAnalyseRequest(userId);
 	            	
 	        
 	            	  	
