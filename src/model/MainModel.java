@@ -43,14 +43,12 @@ public class MainModel
 	            if (decision == JOptionPane.OK_OPTION) 
 	            {
 	            	
-	            	// TODO : save list of positions and places, and save JSON for personal data of the user . 
 	            	int userId = Session.getUserId();
-	            	
-	            	//TODO : change this function with function that send json with userID and filePath .
-	            	 AnalyseController.sendAnalyseRequest(userId);
-	            	
-	        
-	            	  	
+	            	String filePath =  StoreUserDataLocal.getPersonaldatapahtcv();
+	            	File userCVFile = new File(filePath);
+	            	// Here we sending request to the server to save the user analysing data in the DB . 
+	            	AnalyseController.sendAnalyseRequest(userId,userCVFile);
+	            		    
 	            }
 	            
         } catch (IOException e) {

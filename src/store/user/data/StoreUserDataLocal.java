@@ -27,7 +27,14 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class StoreUserDataLocal {
+public class StoreUserDataLocal 
+{
+
+	public static String getPersonaldatapahtcv() 
+	{
+		return personalDataPahtCV;
+	}
+
 
 	// Base directory name for the storage within the project directory
 	// Data paths for the storage of the user .
@@ -305,6 +312,14 @@ public class StoreUserDataLocal {
 		}
 
 		return wordFilePath;
+	}
+
+	public static Path getPersonalDataPath() {
+		return personalDataPath;
+	}
+
+	public static void setPersonalDataPath(Path personalDataPath) {
+		StoreUserDataLocal.personalDataPath = personalDataPath;
 	}
 
 	public static boolean CheckCVFileExist() 
