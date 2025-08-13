@@ -1,18 +1,10 @@
 package model;
 
-import conncet.server.analyse.file.ConnectConvertStringToJson;
 import conncet.server.analyse.file.ConnectGoogleAPIServer;
-import conncet.server.analyse.file.ExcelWriter;
 import controller.AnalyseController;
-import store.user.data.CreateFoldersCloud;
 import store.user.data.StoreUserDataLocal;
-import store.user.data.StoreUserDataServer;
-import store.user.data.UserManager;
-
 import javax.swing.*;
-import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 public class MainModel 
 {
