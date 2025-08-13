@@ -1,4 +1,6 @@
 /controller/
 /model/
-/conncet/
-/store/
+/FileIntClient.class
+/FileIntHttpClient.class
+/test.txt
+/ClientAnalyseRequest.class

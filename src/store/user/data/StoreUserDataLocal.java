@@ -42,7 +42,7 @@ public class StoreUserDataLocal
 	static Path projectDir = Paths.get(System.getProperty("user.dir"), BASE_STORAGE_DIR);
 	static Path personalDataPath = projectDir.resolve("personal_data");
 	static Path analyseDataPath = projectDir.resolve("analyse_data");
-	static final String personalDataPahtCV = "AppStorage/personal_data/user_cv.docx ";
+	static final String personalDataPahtCV = "AppStorage/personal_data/user_cv.docx";
 	static final String analyseDataPathJson = "AppStorage/analyse_data/user_analyse_data.json";
 	
 	public static void main(String[] args) {

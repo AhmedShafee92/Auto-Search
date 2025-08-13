@@ -53,7 +53,12 @@ public class MainController
                 return;
             }
 
-            model.analyseData(frame);
+            try {
+				model.analyseData(frame);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
         });
 
         view.viewPersonalDataButton.addActionListener(e ->

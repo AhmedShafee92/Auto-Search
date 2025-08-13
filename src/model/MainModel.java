@@ -27,7 +27,7 @@ public class MainModel
         return StoreUserDataLocal.CheckCVFileExist() && !StoreUserDataLocal.isWordFileCVEmpty();
     }
 
-    public void analyseData(JFrame frame) 
+    public void analyseData(JFrame frame) throws Exception 
     {
         try {
 	            String result = ConnectGoogleAPIServer.analyseUserCVData();
@@ -42,16 +42,14 @@ public class MainModel
 
 	            if (decision == JOptionPane.OK_OPTION) 
 	            {
-	            	
 	            	int userId = Session.getUserId();
 	            	String filePath =  StoreUserDataLocal.getPersonaldatapahtcv();
-	            	File userCVFile = new File(filePath);
 	            	// Here we sending request to the server to save the user analysing data in the DB . 
-	            	AnalyseController.sendAnalyseRequest(userId,userCVFile);
+	            	AnalyseController.sendAnalyseRequest(filePath,userId);
 	            		    
 	            }
 	            
-        } catch (IOException e) {
+    		} catch (IOException e) {
             e.printStackTrace();
         }
     }
