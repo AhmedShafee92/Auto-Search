@@ -9,9 +9,9 @@ import store.user.data.StoreUserDataLocal;
 public class FileIntHttpClient 
 {
 	
-	public static void main(String[] args) {
-		
-		
+	public static void main(String[] args) 
+	{
+			
     	String PathFile =  StoreUserDataLocal.getPersonaldatapahtcv();
 		int userID = 1; 
 		sendAnalyseRequest(PathFile,userID);
@@ -23,8 +23,9 @@ public class FileIntHttpClient
 
 
 
-    public static void sendAnalyseRequest(String PathFile, int userID) {
-        try {
+    public static void sendAnalyseRequest(String PathFile, int userID) 
+    {
+        try{
         	       	
             URL url = new URL("http://localhost:3000/api/analyse");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -83,9 +84,6 @@ public class FileIntHttpClient
             e.printStackTrace();
         }
     }
-	
-	
-	
 	
 	
 }
