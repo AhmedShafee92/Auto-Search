@@ -13,7 +13,7 @@ public class FileIntHttpClient
 	{
 			
     	String PathFile =  StoreUserDataLocal.getPersonaldatapahtcv();
-		int userID = 1; 
+		int userID = 2; 
 		sendAnalyseRequest(PathFile,userID);
 	}
 	
