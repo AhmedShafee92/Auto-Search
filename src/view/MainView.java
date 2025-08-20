@@ -66,12 +66,6 @@ public class MainView extends JPanel
         viewPersonalDataButton.setBackground(Color.LIGHT_GRAY);
         add(viewPersonalDataButton, gbc4);
         
-		/*
-		 * // ✅ Add action listeners attachCVButton.addActionListener(e ->
-		 * controller.handleAttachCV()); analysePersonalDataButton.addActionListener(e
-		 * -> controller.handleAnalyze()); startSearchingButton.addActionListener(e ->
-		 * controller.handleSearch()); viewPersonalDataButton.addActionListener(e ->
-		 * controller.handleViewPersonalData());
-		 */
+
     }
 }
