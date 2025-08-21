@@ -18,7 +18,7 @@ public class AuthModel
 	{
 		try {
 			
-			URL url = new URL("http://localhost:3000/api/signup");
+				URL url = new URL("http://localhost:3000/api/signup");
 				HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 	
 				conn.setRequestMethod("POST");

@@ -1,7 +1,10 @@
 package controller;
 
 import model.MainModel;
+//import model.AutomationModel;
 import view.MainView;
+import view.AutomationView;
+//import controller.AutomationController;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -26,7 +29,6 @@ public class MainController
     {
         this.model = model;
         this.view = view;
-        
 
         frame = new JFrame("Insert Your Details");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -42,9 +44,10 @@ public class MainController
     {
         view.attachCVButton.addActionListener(e -> model.attachCV());
         view.startSearchingButton.addActionListener(e -> {
-            frame.setVisible(false);
-            // Replace this with your new GUI frame
-            JOptionPane.showMessageDialog(null, "Proceeding to next screen...");
+        	
+            // Here we show the new frame (automation frame / manual frame ) .
+            showAutomationView();
+ 
         });
         
         view.analysePersonalDataButton.addActionListener(e -> {
@@ -61,10 +64,22 @@ public class MainController
 			}
         });
 
-        view.viewPersonalDataButton.addActionListener(e ->
-            JOptionPane.showMessageDialog(frame, "Soon Available!")
-        );
+        view.viewPersonalDataButton.addActionListener(e ->{
+            JOptionPane.showMessageDialog(frame, "Soon Available!");
+        
+        });
     }
     
-  
+    private void showAutomationView() 
+    {
+		
+		  AutomationView automationView = new AutomationView(); 
+		  frame.setContentPane(automationView); 
+		  frame.revalidate(); 
+		  frame.repaint();
+		 
+    }
+    
+    
+   
 }
