@@ -43,10 +43,9 @@ public class MainController
     private void initListeners() 
     {
         view.attachCVButton.addActionListener(e -> model.attachCV());
-        view.startSearchingButton.addActionListener(e -> {
-        	
-            // Here we show the new frame (automation frame / manual frame ) .
-            showAutomationView();
+        view.startSearchingButton.addActionListener(e -> {	
+	        // Here we show the new frame (automation search || manual search ) .
+	        showAutomationView();
  
         });
         
